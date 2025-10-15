@@ -181,7 +181,7 @@ export function Footer() {
                   <p className="font-medium">Argentina (Presencial)</p>
                   <p>Pellegrini 1073 Piso 2 Oficina 3</p>
                   <p>Resistencia, Chaco, Argentina</p>
-                  <p className="mt-2 font-medium">Brasil - Paraguay (Híbrido)</p>
+                  <p className="mt-2 font-medium">Brasil - PY (Híbrido)</p>
                 </div>
               </div>
               
