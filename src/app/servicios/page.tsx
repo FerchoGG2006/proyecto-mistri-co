@@ -330,7 +330,7 @@ export default function ServiciosPage() {
                       style={{
                         backgroundImage: `linear-gradient(135deg, rgba(33, 150, 243, 0.8) 0%, rgba(13, 71, 161, 0.9) 100%), url('/images/servicios/servicio-${
                           index + 1
-                        }.jpg')`,
+                        }.svg')`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
