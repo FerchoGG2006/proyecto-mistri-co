@@ -49,12 +49,11 @@ export function Navigation() {
           {/* Right side items */}
           <div className="flex items-center space-x-4">
             {/* CTA Button */}
-            <Button 
-              className="hidden sm:flex bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-gray-900 border-0 shadow-lg hover:shadow-xl transition-all duration-300"
-              onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
-            >
-              <Calendar className="mr-2 h-4 w-4" />
-              Agenda una reunión
+            <Button asChild className="hidden sm:flex bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-gray-900 border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+              <Link href="/contacto">
+                <Calendar className="mr-2 h-4 w-4" />
+                Agenda una reunión
+              </Link>
             </Button>
 
 
@@ -84,15 +83,11 @@ export function Navigation() {
                 </Link>
               ))}
               <div className="pt-2 border-t border-gray-200">
-                <Button 
-                  className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-gray-900 border-0 shadow-lg hover:shadow-xl transition-all duration-300"
-                  onClick={() => {
-                    setIsOpen(false)
-                    window.open('https://wa.me/5493624649700', '_blank')
-                  }}
-                >
-                  <Calendar className="mr-2 h-4 w-4" />
-                  Agenda una reunión
+                <Button asChild className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-gray-900 border-0 shadow-lg hover:shadow-xl transition-all duration-300">
+                  <Link href="/contacto" onClick={() => setIsOpen(false)}>
+                    <Calendar className="mr-2 h-4 w-4" />
+                    Agenda una reunión
+                  </Link>
                 </Button>
               </div>
             </div>

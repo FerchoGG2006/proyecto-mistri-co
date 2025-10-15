@@ -131,6 +131,16 @@ export function Footer() {
                   Blog
                 </Link>
               </li>
+              <li>
+                <Link href="/charlas" className="text-gray-300 hover:text-primary transition-colors">
+                  Charlas
+                </Link>
+              </li>
+              <li>
+                <Link href="/contacto" className="text-gray-300 hover:text-primary transition-colors">
+                  Contacto
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -181,19 +191,17 @@ export function Footer() {
                   <p className="font-medium">Argentina (Presencial)</p>
                   <p>Pellegrini 1073 Piso 2 Oficina 3</p>
                   <p>Resistencia, Chaco, Argentina</p>
-                  <p className="mt-2 font-medium">Brasil - PY (Híbrido)</p>
+                  <p className="mt-2 font-medium">Brasil - Paraguay (Híbrido)</p>
                 </div>
               </div>
               
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
                 <Link 
-                  href="https://wa.me/5493624649700" 
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="tel:+5493624123456" 
                   className="text-gray-300 hover:text-primary transition-colors"
                 >
-                  +54 9 362 464-9700
+                  +54 9 362 412-3456
                 </Link>
               </div>
               
