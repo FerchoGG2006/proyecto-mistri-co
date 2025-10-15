@@ -359,7 +359,7 @@ export default function ServiciosPage() {
                             {service.description}
                           </p>
 
-                          <div className="space-y-2 mb-4">
+                          <div className="space-y-2 mb-2">
                             {service.features
                               .slice(0, 3)
                               .map((feature, featureIndex) => (
@@ -373,17 +373,6 @@ export default function ServiciosPage() {
                                   </span>
                                 </div>
                               ))}
-                          </div>
-
-                          {/* Botón de WhatsApp */}
-                          <div className="mt-auto">
-                            <button
-                              onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
-                              className="w-full bg-lime-400 text-gray-900 hover:bg-lime-300 transition-colors duration-300 py-2 px-4 rounded-lg font-medium text-sm flex items-center justify-center space-x-2"
-                            >
-                              <MessageSquare className="h-4 w-4" />
-                              <span>Consultar por WhatsApp</span>
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -445,7 +434,7 @@ export default function ServiciosPage() {
                             {service.description}
                           </p>
 
-                          <div className="space-y-2 mb-4">
+                          <div className="space-y-2 mb-2">
                             {service.features
                               .slice(0, 3)
                               .map((feature, featureIndex) => (
@@ -459,17 +448,6 @@ export default function ServiciosPage() {
                                   </span>
                                 </div>
                               ))}
-                          </div>
-
-                          {/* Botón de WhatsApp */}
-                          <div className="mt-auto">
-                            <button
-                              onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
-                              className="w-full bg-lime-400 text-gray-900 hover:bg-lime-300 transition-colors duration-300 py-2 px-4 rounded-lg font-medium text-sm flex items-center justify-center space-x-2"
-                            >
-                              <MessageSquare className="h-4 w-4" />
-                              <span>Consultar por WhatsApp</span>
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -531,7 +509,7 @@ export default function ServiciosPage() {
                             {service.description}
                           </p>
 
-                          <div className="space-y-2 mb-4">
+                          <div className="space-y-2 mb-2">
                             {service.features
                               .slice(0, 3)
                               .map((feature, featureIndex) => (
@@ -545,17 +523,6 @@ export default function ServiciosPage() {
                                   </span>
                                 </div>
                               ))}
-                          </div>
-
-                          {/* Botón de WhatsApp */}
-                          <div className="mt-auto">
-                            <button
-                              onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
-                              className="w-full bg-lime-400 text-gray-900 hover:bg-lime-300 transition-colors duration-300 py-2 px-4 rounded-lg font-medium text-sm flex items-center justify-center space-x-2"
-                            >
-                              <MessageSquare className="h-4 w-4" />
-                              <span>Consultar por WhatsApp</span>
-                            </button>
                           </div>
                         </div>
                       </div>
@@ -746,6 +713,26 @@ export default function ServiciosPage() {
               );
             })}
           </StaggeredAnimation>
+        </div>
+      </section>
+
+      {/* WhatsApp Consultation Section */}
+      <section className="py-16 bg-gradient-to-r from-mistri-blue-50 to-mistri-blue-100">
+        <div className="container-custom text-center">
+          <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4">
+            ¿Necesitas Asesoramiento Personalizado?
+          </h2>
+          <p className="text-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+            Nuestros expertos están listos para ayudarte a encontrar la solución perfecta para tu organización
+          </p>
+          <Button
+            size="lg"
+            onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
+            className="bg-lime-400 hover:bg-lime-300 text-gray-900 font-semibold px-8 py-4 text-lg shadow-lg hover:shadow-xl transition-all duration-300"
+          >
+            <MessageSquare className="mr-3 h-6 w-6" />
+            Consultar por WhatsApp
+          </Button>
         </div>
       </section>
 
