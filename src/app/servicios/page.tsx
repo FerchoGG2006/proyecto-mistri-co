@@ -735,36 +735,6 @@ export default function ServiciosPage() {
           </Button>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-[#83e935] text-gray-900">
-        <div className="container-custom text-center">
-          <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            ¿Listo para Transformar tu Organización?
-          </h2>
-          <p className="text-xl text-gray-600 mb-8">
-            Comienza tu proceso de transformación hoy y descubre el potencial de
-            tus equipos
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button
-              size="lg"
-              className="btn-secondary hover:shadow-xl hover:shadow-white-400/25 text-gray-600"
-              onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
-            >
-              <Calendar className="mr-2 h-5 w-5 text-gray-600" />
-              Solicitar Consulta Gratuita
-            </Button>
-            <Button
-              size="lg"
-              variant="outline"
-              className="border-white text-gray-600 hover:bg-white hover:text-mistri-blue-500 glass-effect"
-            >
-              Ver Casos de Éxito
-            </Button>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
