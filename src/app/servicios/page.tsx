@@ -24,6 +24,7 @@ import {
   BookOpen,
   Calendar,
   LucideIcon,
+  MessageSquare,
 } from "lucide-react";
 import * as Icons from "lucide-react";
 import Link from "next/link";
@@ -358,7 +359,7 @@ export default function ServiciosPage() {
                             {service.description}
                           </p>
 
-                          <div className="space-y-2 mb-2">
+                          <div className="space-y-2 mb-4">
                             {service.features
                               .slice(0, 3)
                               .map((feature, featureIndex) => (
@@ -372,6 +373,17 @@ export default function ServiciosPage() {
                                   </span>
                                 </div>
                               ))}
+                          </div>
+
+                          {/* Botón de WhatsApp */}
+                          <div className="mt-auto">
+                            <button
+                              onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
+                              className="w-full bg-lime-400 text-gray-900 hover:bg-lime-300 transition-colors duration-300 py-2 px-4 rounded-lg font-medium text-sm flex items-center justify-center space-x-2"
+                            >
+                              <MessageSquare className="h-4 w-4" />
+                              <span>Consultar por WhatsApp</span>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -433,7 +445,7 @@ export default function ServiciosPage() {
                             {service.description}
                           </p>
 
-                          <div className="space-y-2 mb-2">
+                          <div className="space-y-2 mb-4">
                             {service.features
                               .slice(0, 3)
                               .map((feature, featureIndex) => (
@@ -447,6 +459,17 @@ export default function ServiciosPage() {
                                   </span>
                                 </div>
                               ))}
+                          </div>
+
+                          {/* Botón de WhatsApp */}
+                          <div className="mt-auto">
+                            <button
+                              onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
+                              className="w-full bg-lime-400 text-gray-900 hover:bg-lime-300 transition-colors duration-300 py-2 px-4 rounded-lg font-medium text-sm flex items-center justify-center space-x-2"
+                            >
+                              <MessageSquare className="h-4 w-4" />
+                              <span>Consultar por WhatsApp</span>
+                            </button>
                           </div>
                         </div>
                       </div>
@@ -508,7 +531,7 @@ export default function ServiciosPage() {
                             {service.description}
                           </p>
 
-                          <div className="space-y-2 mb-2">
+                          <div className="space-y-2 mb-4">
                             {service.features
                               .slice(0, 3)
                               .map((feature, featureIndex) => (
@@ -522,6 +545,17 @@ export default function ServiciosPage() {
                                   </span>
                                 </div>
                               ))}
+                          </div>
+
+                          {/* Botón de WhatsApp */}
+                          <div className="mt-auto">
+                            <button
+                              onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
+                              className="w-full bg-lime-400 text-gray-900 hover:bg-lime-300 transition-colors duration-300 py-2 px-4 rounded-lg font-medium text-sm flex items-center justify-center space-x-2"
+                            >
+                              <MessageSquare className="h-4 w-4" />
+                              <span>Consultar por WhatsApp</span>
+                            </button>
                           </div>
                         </div>
                       </div>

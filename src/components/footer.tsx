@@ -154,7 +154,7 @@ export function Footer() {
                 </Link>
               </li>
               <li>
-                <Link href="/servicios#asesoramiento" className="text-gray-300 hover:text-primary transition-colors">
+                <Link href="https://wa.me/5493624649700" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-primary transition-colors">
                   Asesoramiento Estratégico
                 </Link>
               </li>
@@ -198,10 +198,12 @@ export function Footer() {
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
                 <Link 
-                  href="tel:+5493624123456" 
+                  href="https://wa.me/5493624649700" 
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-gray-300 hover:text-primary transition-colors"
                 >
-                  +54 9 362 412-3456
+                  +54 9 362 464-9700
                 </Link>
               </div>
               

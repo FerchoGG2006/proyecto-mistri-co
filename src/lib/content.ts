@@ -114,7 +114,7 @@ export const content = {
         },
         secondary: {
           text: "Contactar asesor",
-          href: "/contacto?form=asesor"
+          href: "https://wa.me/5493624649700"
         }
       }
     }
