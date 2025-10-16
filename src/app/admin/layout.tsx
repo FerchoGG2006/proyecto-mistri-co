@@ -31,12 +31,7 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     const token = localStorage.getItem('admin_token');
     const authenticated = !!token;
     setIsAuthenticated(authenticated);
-    
-    // Si no está autenticado y no está en la página de auth, redirigir al login
-    if (!authenticated && pathname !== '/admin/auth') {
-      router.push('/admin/auth');
-    }
-  }, [pathname, router]);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('admin_token');
@@ -54,8 +49,14 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { name: 'Configuración', href: '/admin/settings', icon: Settings },
   ];
 
-  // Si no está autenticado y no está en la página de auth, mostrar loading
-  if (!isAuthenticated && pathname !== '/admin/auth') {
+  // Si estamos en la página de auth, mostrar solo el contenido sin layout
+  if (pathname === '/admin/auth') {
+    return <>{children}</>;
+  }
+
+  // Si no está autenticado, redirigir al login
+  if (!isAuthenticated) {
+    router.push('/admin/auth');
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <div className="text-center">
