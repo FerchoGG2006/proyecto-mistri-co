@@ -29,8 +29,14 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
   // Verificar autenticación
   useEffect(() => {
     const token = localStorage.getItem('admin_token');
-    setIsAuthenticated(!!token);
-  }, []);
+    const authenticated = !!token;
+    setIsAuthenticated(authenticated);
+    
+    // Si no está autenticado y no está en la página de auth, redirigir al login
+    if (!authenticated && pathname !== '/admin/auth') {
+      router.push('/admin/auth');
+    }
+  }, [pathname, router]);
 
   const handleLogout = () => {
     localStorage.removeItem('admin_token');
@@ -48,10 +54,16 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { name: 'Configuración', href: '/admin/settings', icon: Settings },
   ];
 
-  // Si no está autenticado y no está en la página de auth, redirigir al login
+  // Si no está autenticado y no está en la página de auth, mostrar loading
   if (!isAuthenticated && pathname !== '/admin/auth') {
-    router.push('/admin/auth');
-    return null;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-mistri-blue-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Redirigiendo al login...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
