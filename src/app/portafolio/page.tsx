@@ -306,14 +306,6 @@ export default function ContactPage() {
                       <MessageSquare className="h-4 w-4 mr-2" />
                       WhatsApp Directo
                     </Button>
-                    <Button 
-                      variant="outline" 
-                      className="w-full border-white text-white hover:bg-white hover:text-gray-900"
-                      onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
-                    >
-                      <Phone className="h-4 w-4 mr-2" />
-                      Llamar Ahora
-                    </Button>
                   </div>
                 </CardContent>
               </Card>
@@ -324,8 +316,9 @@ export default function ContactPage() {
                   <div className="h-64 bg-gray-200 rounded-lg flex items-center justify-center">
                     <div className="text-center text-gray-600">
                       <MapPin className="h-12 w-12 mx-auto mb-2" />
-                      <p className="font-medium">Mapa de Ubicación</p>
-                      <p className="text-sm">ARG - BRA - PY</p>
+                      <p className="font-medium">Nuestra Ubicación</p>
+                      <p className="text-sm">Pellegrini 1073 Piso 2 Oficina 3</p>
+                      <p className="text-sm">Resistencia, Chaco</p>
                     </div>
                   </div>
                 </CardContent>
