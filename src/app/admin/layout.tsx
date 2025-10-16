@@ -28,17 +28,9 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
   // Verificar autenticación
   useEffect(() => {
-    const checkAuth = () => {
-      const token = localStorage.getItem('admin_token');
-      if (!token && pathname !== '/admin/auth') {
-        router.push('/admin/auth');
-        return;
-      }
-      setIsAuthenticated(!!token);
-    };
-
-    checkAuth();
-  }, [pathname, router]);
+    const token = localStorage.getItem('admin_token');
+    setIsAuthenticated(!!token);
+  }, []);
 
   const handleLogout = () => {
     localStorage.removeItem('admin_token');
@@ -56,16 +48,10 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
     { name: 'Configuración', href: '/admin/settings', icon: Settings },
   ];
 
-  // Si no está autenticado y no está en la página de auth, no mostrar nada
+  // Si no está autenticado y no está en la página de auth, redirigir al login
   if (!isAuthenticated && pathname !== '/admin/auth') {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-mistri-blue-500 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Verificando autenticación...</p>
-        </div>
-      </div>
-    );
+    router.push('/admin/auth');
+    return null;
   }
 
   return (
