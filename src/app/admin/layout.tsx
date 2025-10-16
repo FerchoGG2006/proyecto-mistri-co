@@ -58,7 +58,14 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
 
   // Si no está autenticado y no está en la página de auth, no mostrar nada
   if (!isAuthenticated && pathname !== '/admin/auth') {
-    return null;
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-32 w-32 border-b-2 border-mistri-blue-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Verificando autenticación...</p>
+        </div>
+      </div>
+    );
   }
 
   return (
