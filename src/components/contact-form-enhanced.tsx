@@ -122,14 +122,14 @@ export default function ContactFormEnhanced() {
                 <Phone className="h-5 w-5 text-primary mt-1" />
                 <div>
                   <p className="font-medium">Teléfono</p>
-                  <p className="text-sm text-muted-foreground">+54 11 1234-5678</p>
+                  <p className="text-sm text-muted-foreground">+54 9 362 464-9700</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
                 <MapPin className="h-5 w-5 text-primary mt-1" />
                 <div>
                   <p className="font-medium">Ubicación</p>
-                  <p className="text-sm text-muted-foreground">Buenos Aires, Argentina</p>
+                  <p className="text-sm text-muted-foreground">Resistencia, Chaco, Argentina</p>
                 </div>
               </div>
             </CardContent>
@@ -294,6 +294,8 @@ export default function ContactFormEnhanced() {
 
               <Button
                 type="submit"
+                variant="outline"
+                size="lg"
                 className="w-full"
                 disabled={status.type === 'loading'}
               >
