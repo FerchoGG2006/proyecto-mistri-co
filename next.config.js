@@ -1,3 +1,5 @@
+const withNextIntl = require('next-intl/plugin')('./i18n.ts');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   // Configuración para export estático (DonWeb)
@@ -5,9 +7,16 @@ const nextConfig = {
   trailingSlash: true,
   // Fix para el warning de workspace root
   outputFileTracingRoot: __dirname,
+  // Excluir páginas de admin del build estático
+  pageExtensions: ['js', 'jsx', 'ts', 'tsx'],
+  // Deshabilitar funcionalidades incompatibles con export estático
+  experimental: {
+    esmExternals: false,
+  },
   images: {
     // Deshabilitar optimización de imágenes para export estático
     unoptimized: true,
+    domains: ['localhost'],
   },
   webpack: (config, { isServer }) => {
     // Configuración para evitar ChunkLoadError
@@ -33,4 +42,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withNextIntl(nextConfig);

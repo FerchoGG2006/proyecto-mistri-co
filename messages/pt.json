@@ -1,0 +1,663 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "create": "Criar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "close": "Fechar",
+    "open": "Abrir",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "view": "Ver",
+    "download": "Baixar",
+    "upload": "Enviar",
+    "send": "Enviar",
+    "submit": "Enviar",
+    "login": "Entrar",
+    "logout": "Sair",
+    "register": "Registrar",
+    "profile": "Perfil",
+    "settings": "Configurações",
+    "help": "Ajuda",
+    "contact": "Contato",
+    "about": "Sobre",
+    "home": "Início",
+    "menu": "Menu",
+    "language": "Idioma",
+    "theme": "Tema"
+  },
+  "navigation": {
+    "home": "Início",
+    "about": "Quem Somos",
+    "services": "Serviços",
+    "academy": "Academia Mistri",
+    "blog": "Blog",
+    "contact": "Contato",
+    "portfolio": "Portfólio",
+    "terms": "Termos e Condições",
+    "workWithUs": "Trabalhe Conosco",
+    "store": "Loja",
+    "cta": "Agende uma reunião"
+  },
+  "hero": {
+    "title": "Transformamos Organizações",
+    "subtitle": "Desenvolvimento de Equipes e Formação de Líderes",
+    "description": "Consultoria argentina especializada em transformação organizacional, desenvolvimento de equipes e formação de gerentes médios. Impulsionamos o crescimento sustentável da sua organização.",
+    "cta": "Agende uma reunião",
+    "secondaryCta": "Conheça nossos serviços"
+  },
+  "admin": {
+    "title": "Painel de Administração",
+    "login": {
+      "title": "Entrar",
+      "subtitle": "Acesse o painel de administração",
+      "description": "Digite suas credenciais para acessar o painel",
+      "formTitle": "Credenciais de Acesso",
+      "formDescription": "Digite seu email e senha para continuar",
+      "email": "Email",
+      "password": "Senha",
+      "loginButton": "Entrar",
+      "submit": "Entrar",
+      "credentials": "Credenciais de acesso:",
+      "emailPlaceholder": "admin@mistri.com",
+      "passwordPlaceholder": "••••••••",
+      "invalidCredentials": "Credenciais incorretas",
+      "internalError": "Erro interno. Tente novamente.",
+      "loading": "Carregando...",
+      "backToSite": "Não é administrador?",
+      "homePage": "Voltar ao site"
+    },
+    "sidebar": {
+      "dashboard": "Painel",
+      "blog": "Blog",
+      "videos": "Vídeos",
+      "charlas": "Palestras",
+      "media": "Mídia",
+      "users": "Usuários",
+      "settings": "Configurações",
+      "logout": "Sair"
+    },
+    "dashboard": {
+      "title": "Painel",
+      "welcome": "Bem-vindo ao painel de administração",
+      "stats": {
+        "totalUsers": "Total de Usuários",
+        "totalPosts": "Total de Posts",
+        "totalVideos": "Total de Vídeos",
+        "totalEvents": "Total de Eventos"
+      }
+    }
+  },
+  "forms": {
+    "contact": {
+      "title": "Entre em contato",
+      "description": "Estamos aqui para ajudar. Envie-nos uma mensagem e responderemos o mais rápido possível.",
+      "name": "Nome",
+      "email": "Email",
+      "phone": "Telefone",
+      "company": "Empresa",
+      "message": "Mensagem",
+      "submit": "Enviar Mensagem",
+      "success": "Mensagem enviada com sucesso",
+      "error": "Erro ao enviar a mensagem"
+    },
+    "academy": {
+      "title": "Formulário da Academia",
+      "name": "Nome completo",
+      "email": "Email",
+      "phone": "Telefone",
+      "company": "Empresa",
+      "position": "Cargo",
+      "experience": "Anos de experiência",
+      "interests": "Áreas de interesse",
+      "submit": "Enviar Solicitação",
+      "success": "Solicitação enviada com sucesso",
+      "error": "Erro ao enviar a solicitação"
+    }
+  },
+  "footer": {
+    "description": "Consultoria argentina especializada em transformação organizacional, desenvolvimento de equipes e formação de gerentes médios.",
+    "quickLinks": "Links Rápidos",
+    "services": "Serviços",
+    "contact": "Contato",
+    "followUs": "Siga-nos",
+    "rights": "Todos os direitos reservados",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos e Condições",
+    "navigation": {
+      "home": "Início",
+      "services": "Serviços",
+      "about": "Quem Somos",
+      "academy": "Academia Mistri",
+      "blog": "Blog"
+    },
+    "serviceLinks": {
+      "formacion": "Formação e Desenvolvimento",
+      "asesoramiento": "Assessoria Estratégica",
+      "marketing": "Marketing Digital",
+      "ventas": "Otimização de Vendas",
+      "liderazgo": "Desenvolvimento de Liderança",
+      "analisis": "Análise de Números"
+    }
+  },
+  "pages": {
+    "home": {
+      "title": "Início",
+      "hero": {
+        "title": "Transformamos Organizações",
+        "subtitle": "Desenvolvimento de Equipes e Formação de Líderes",
+        "description": "Consultoria argentina especializada em transformação organizacional, desenvolvimento de equipes e formação de gerentes médios. Impulsionamos o crescimento sustentável da sua organização.",
+        "cta": "Agende uma reunião",
+        "secondaryCta": "Conheça nossos serviços"
+      },
+      "services": {
+        "title": "Nossos Serviços",
+        "subtitle": "Soluções integrais para sua organização"
+      },
+      "about": {
+        "title": "Quem Somos",
+        "subtitle": "Conheça nossa equipe e experiência"
+      },
+      "contact": {
+        "title": "Contato",
+        "subtitle": "Vamos conversar sobre seu projeto"
+      },
+      "academy": {
+        "title": "Academia Mistri",
+        "subtitle": "Formação especializada para líderes"
+      },
+      "homeServices": {
+        "title": "Nossos Serviços",
+        "subtitle": "Soluções integrais para sua organização",
+        "services": [
+          {
+            "icon": "Users",
+            "title": "Formação de Gestores Médios",
+            "description": "Desenvolvemos líderes efetivos que impulsionam o crescimento da sua organização.",
+            "features": [
+              "Programas de liderança personalizados",
+              "Mentoria e coaching executivo",
+              "Desenvolvimento de habilidades interpessoais",
+              "Avaliação 360° e acompanhamento"
+            ],
+            "href": "/servicios"
+          },
+          {
+            "icon": "Target",
+            "title": "Capacitação e Desenvolvimento",
+            "description": "Potencializamos o talento das suas equipes com metodologias comprovadas.",
+            "features": [
+              "Workshops especializados por área",
+              "Capacitação em competências técnicas",
+              "Programas de certificação",
+              "Acompanhamento contínuo"
+            ],
+            "href": "/servicios"
+          },
+          {
+            "icon": "TrendingUp",
+            "title": "Transformação Organizacional",
+            "description": "Reestruturamos processos para maximizar a eficiência e produtividade.",
+            "features": [
+              "Diagnóstico organizacional",
+              "Redesign de processos",
+              "Implementação de mudanças",
+              "Medição de resultados"
+            ],
+            "href": "/servicios"
+          }
+        ]
+      },
+      "clients": {
+        "title": "Organizações que Confiam em Nós",
+        "subtitle": "Trabalhamos com empresas de diversos setores, ajudando-as a alcançar seus objetivos de transformação organizacional.",
+        "clients": [
+          {
+            "name": "Muñoz Marchesí",
+            "logo": "/images/clients/logo-munoz-marchesi.png",
+            "alt": "Logo de Muñoz Marchesí"
+          },
+          {
+            "name": "Dala Computação",
+            "logo": "/images/clients/logo-dala-computacion.png",
+            "alt": "Logo de Dala Computação"
+          },
+          {
+            "name": "Emprende Seguro",
+            "logo": "/images/clients/logo-emprendé-seguro.png",
+            "alt": "Logo de Emprende Seguro"
+          },
+          {
+            "name": "Espaço Wilde",
+            "logo": "/images/clients/logo-espacio-wilde.jpg",
+            "alt": "Logo de Espaço Wilde"
+          },
+          {
+            "name": "Romero Nagy",
+            "logo": "/images/clients/logo-romero_nagy.png",
+            "alt": "Logo de Romero Nagy"
+          },
+          {
+            "name": "SBR Repuestos",
+            "logo": "/images/clients/logo-SBR-repuestos.jpg",
+            "alt": "Logo de SBR Repuestos"
+          }
+        ]
+      },
+      "academyPrograms": {
+        "title": "Programas de Academia",
+        "subtitle": "Formação especializada em liderança e gestão",
+        "programs": [
+          {
+            "icon": "BookOpen",
+            "title": "Cursos Intensivos",
+            "description": "6 módulos em 6 semanas para um aprendizado profundo e aplicável."
+          },
+          {
+            "icon": "Presentation",
+            "title": "Workshops Especializados",
+            "description": "3 encontros de 90 minutos focados em habilidades específicas."
+          },
+          {
+            "icon": "Lightbulb",
+            "title": "Palestras Inspiradoras",
+            "description": "10 temáticas atuais sobre o futuro do trabalho e a inovação."
+          }
+        ]
+      },
+      "testimonials": {
+        "badge": "Depoimentos",
+        "title": "O que dizem nossos clientes",
+        "description": "Conheça as experiências de organizações que transformaram sua cultura e resultados conosco."
+      },
+      "cta": {
+        "title": "Pronto para transformar sua organização?",
+        "description": "Junte-se às organizações que já deram o próximo passo em direção ao crescimento sustentável.",
+        "primaryButton": {
+          "text": "Agende uma reunião",
+          "href": "/contacto",
+          "icon": "Calendar"
+        },
+        "secondaryButton": {
+          "text": "Conheça nossos serviços",
+          "href": "/servicios"
+        }
+      },
+      "method": {
+        "title": "Método MISTRI®",
+        "description": "Nossa metodologia comprovada que transformou mais de 50 organizações na Argentina e América Latina.",
+        "steps": [
+          {
+            "letter": "M",
+            "title": "Metrics",
+            "titleEs": "Métricas",
+            "description": "Medimos o que importa. Estabelecemos KPIs claros e sistemas de acompanhamento para avaliar o progresso real."
+          },
+          {
+            "letter": "I",
+            "title": "Information",
+            "titleEs": "Informação",
+            "description": "Os dados se tornam conhecimento. Analisamos informações relevantes para tomar decisões informadas."
+          },
+          {
+            "letter": "S",
+            "title": "Strategy",
+            "titleEs": "Estratégia",
+            "description": "Projetamos planos de ação específicos e personalizados para cada organização e seus objetivos únicos."
+          },
+          {
+            "letter": "T",
+            "title": "Training",
+            "titleEs": "Treinamento",
+            "description": "Capacitamos sua equipe com as ferramentas e conhecimentos necessários para implementar as mudanças."
+          },
+          {
+            "letter": "R",
+            "title": "Results",
+            "titleEs": "Resultados",
+            "description": "Acompanhamos a implementação e medimos o impacto real das transformações realizadas."
+          },
+          {
+            "letter": "I",
+            "title": "Innovation",
+            "titleEs": "Inovação",
+            "description": "Fomentamos uma cultura de melhoria contínua e inovação para manter a vantagem competitiva."
+          }
+        ]
+      }
+    },
+    "about": {
+      "title": "Quem Somos",
+      "subtitle": "Conheça nossa equipe e experiência",
+      "description": "Somos uma consultoria especializada em transformação organizacional com mais de 15 anos de experiência ajudando empresas a crescer de forma sustentável."
+    },
+    "services": {
+      "title": "Serviços",
+      "subtitle": "Soluções integrais para sua organização",
+      "description": "Oferecemos serviços especializados em desenvolvimento organizacional, formação de líderes e transformação empresarial.",
+      "hero": {
+        "title": "Serviços Especializados",
+        "subtitle": "Transformação organizacional e desenvolvimento de equipes",
+        "description": "Oferecemos um ecossistema completo de serviços projetados para impulsionar o crescimento sustentável da sua organização.",
+        "ctaText": "Solicitar consulta",
+        "secondary": "Ver casos de sucesso"
+      },
+      "tabs": {
+        "formacion": "Formação e Desenvolvimento",
+        "asesoramiento": "Assessoria Especializada",
+        "especializados": "Serviços Especializados"
+      },
+      "sectionHeader": {
+        "title": "Nossos Serviços Especializados",
+        "description": "Selecione a categoria que melhor se adapta às necessidades da sua organização"
+      },
+      "cards": {
+        "formacion": [
+          {
+            "icon": "Users",
+            "title": "Formação de Gestores Médios",
+            "description": "Desenvolvemos líderes efetivos que impulsionam o crescimento da sua organização.",
+            "features": [
+              "Programas de liderança personalizados",
+              "Mentoria e coaching executivo",
+              "Desenvolvimento de habilidades interpessoais",
+              "Avaliação 360° e acompanhamento",
+              "Certificação em competências gerenciais"
+            ],
+            "duration": "6-12 meses",
+            "price": "Consultar"
+          },
+          {
+            "icon": "Target",
+            "title": "Capacitação e Desenvolvimento",
+            "description": "Programas de formação contínua para manter sua equipe atualizada e competitiva.",
+            "features": [
+              "Cursos especializados por indústria",
+              "Workshops práticos e vivenciais",
+              "Acompanhamento e avaliação contínua",
+              "Certificações profissionais",
+              "Plataforma de aprendizado online"
+            ],
+            "duration": "3-6 meses",
+            "price": "Consultar"
+          },
+          {
+            "icon": "BookOpen",
+            "title": "Academia Mistri",
+            "description": "Programas de formação especializada em liderança e gestão organizacional.",
+            "features": [
+              "Cursos certificados de liderança",
+              "Metodologia MISTRI® exclusiva",
+              "Casos de estudo reais",
+              "Mentoria personalizada",
+              "Rede de networking profissional"
+            ],
+            "duration": "4-8 meses",
+            "price": "Consultar"
+          }
+        ],
+        "asesoramiento": [
+          {
+            "icon": "TrendingUp",
+            "title": "Consultoria Estratégica",
+            "description": "Acompanhamento especializado para a transformação e crescimento da sua organização.",
+            "features": [
+              "Diagnóstico organizacional completo",
+              "Plano estratégico personalizado",
+              "Implementação e acompanhamento",
+              "Métricas de impacto e ROI",
+              "Acompanhamento a longo prazo"
+            ],
+            "duration": "6-18 meses",
+            "price": "Consultar"
+          },
+          {
+            "icon": "Users",
+            "title": "Desenvolvimento de Equipes",
+            "description": "Fortalecimento de equipes de trabalho para maximizar seu potencial e desempenho.",
+            "features": [
+              "Team building especializado",
+              "Resolução de conflitos",
+              "Comunicação efetiva",
+              "Trabalho em equipe",
+              "Liderança colaborativa"
+            ],
+            "duration": "3-9 meses",
+            "price": "Consultar"
+          },
+          {
+            "icon": "Target",
+            "title": "Transformação Cultural",
+            "description": "Mudanças culturais profundas que impulsionam a inovação e o crescimento sustentável.",
+            "features": [
+              "Diagnóstico cultural",
+              "Design de nova cultura",
+              "Implementação gradual",
+              "Capacitação de líderes",
+              "Acompanhamento e ajustes"
+            ],
+            "duration": "12-24 meses",
+            "price": "Consultar"
+          }
+        ],
+        "especializados": [
+          {
+            "icon": "MessageSquare",
+            "title": "Marketing e Comunicação",
+            "description": "Estratégias de marketing e comunicação para fortalecer sua marca e alcançar sua audiência.",
+            "features": [
+              "Estratégia de marca",
+              "Marketing digital",
+              "Comunicação interna",
+              "Relações públicas",
+              "Gestão de crises"
+            ],
+            "duration": "3-6 meses",
+            "price": "Consultar"
+          },
+          {
+            "icon": "TrendingUp",
+            "title": "Vendas e Comercial",
+            "description": "Otimização de processos comerciais e desenvolvimento de equipes de vendas de alto desempenho.",
+            "features": [
+              "Estratégia comercial",
+              "Capacitação em vendas",
+              "Processos de venda",
+              "CRM e acompanhamento",
+              "Análise de performance"
+            ],
+            "duration": "3-9 meses",
+            "price": "Consultar"
+          },
+          {
+            "icon": "Users",
+            "title": "Liderança Executiva",
+            "description": "Desenvolvimento de competências de liderança para executivos e diretores.",
+            "features": [
+              "Coaching executivo",
+              "Liderança estratégica",
+              "Tomada de decisões",
+              "Gestão da mudança",
+              "Networking executivo"
+            ],
+            "duration": "6-12 meses",
+            "price": "Consultar"
+          },
+          {
+            "icon": "Target",
+            "title": "Análise e Métricas",
+            "description": "Sistemas de medição e análise para otimizar o desempenho organizacional.",
+            "features": [
+              "KPIs e métricas",
+              "Dashboards executivos",
+              "Análise de dados",
+              "Relatórios automáticos",
+              "Otimização contínua"
+            ],
+            "duration": "3-6 meses",
+            "price": "Consultar"
+          }
+        ]
+      },
+      "method": {
+        "title": "Método MISTRI®",
+        "description": "Nossa metodologia comprovada que transformou mais de 50 organizações na Argentina e América Latina.",
+        "steps": [
+          {
+            "letter": "M",
+            "title": "Metrics",
+            "titleEs": "Métricas",
+            "description": "Medimos o que importa. Estabelecemos KPIs claros e sistemas de acompanhamento para avaliar o progresso real."
+          },
+          {
+            "letter": "I",
+            "title": "Information",
+            "titleEs": "Informação",
+            "description": "Os dados se tornam conhecimento. Analisamos informações relevantes para tomar decisões informadas."
+          },
+          {
+            "letter": "S",
+            "title": "Strategy",
+            "titleEs": "Estratégia",
+            "description": "Projetamos planos de ação específicos e personalizados para cada organização e seus objetivos únicos."
+          },
+          {
+            "letter": "T",
+            "title": "Training",
+            "titleEs": "Treinamento",
+            "description": "Capacitamos sua equipe com as ferramentas e conhecimentos necessários para implementar as mudanças."
+          },
+          {
+            "letter": "R",
+            "title": "Results",
+            "titleEs": "Resultados",
+            "description": "Acompanhamos a implementação e medimos o impacto real das transformações realizadas."
+          },
+          {
+            "letter": "I",
+            "title": "Innovation",
+            "titleEs": "Inovação",
+            "description": "Fomentamos uma cultura de melhoria contínua e inovação para manter a vantagem competitiva."
+          }
+        ]
+      },
+      "testimonials": {
+        "title": "O que dizem nossos clientes",
+        "description": "Depoimentos reais de organizações que transformaram sua cultura e resultados conosco.",
+        "items": [
+          {
+            "name": "Emmanuel Amado",
+            "company": "SBR SAS",
+            "content": "Com a Mistri&Co transformamos completamente nossa cultura organizacional. Os resultados se viram desde o primeiro mês.",
+            "rating": 5,
+            "website": "https://sbrepuestos.com/"
+          },
+          {
+            "name": "María González",
+            "company": "TechCorp",
+            "content": "O programa de formação de líderes foi excepcional. Nossos gerentes estão muito mais preparados e motivados.",
+            "rating": 5,
+            "website": null
+          },
+          {
+            "name": "Carlos Rodríguez",
+            "company": "InnovateLab",
+            "content": "A consultoria estratégica nos ajudou a redefinir nossos processos e aumentar a produtividade em 40%.",
+            "rating": 5,
+            "website": null
+          }
+        ]
+      },
+      "whatsapp": {
+        "title": "Precisa de Assessoria Personalizada?",
+        "description": "Nossos especialistas estão prontos para ajudá-lo a encontrar a solução perfeita para sua organização.",
+        "button": "Consultar por WhatsApp"
+      }
+    },
+    "contact": {
+      "title": "Contato",
+      "subtitle": "Vamos conversar sobre seu projeto",
+      "description": "Estamos aqui para ajudá-lo. Entre em contato conosco e vamos conversar sobre como podemos impulsionar o crescimento da sua organização."
+    },
+    "blog": {
+      "title": "Blog",
+      "subtitle": "Artigos e recursos sobre transformação organizacional",
+      "description": "Descubra insights, tendências e melhores práticas em desenvolvimento organizacional e liderança.",
+      "searchPlaceholder": "Buscar artigos...",
+      "featuredPost": "Artigo em Destaque",
+      "recentPosts": "Artigos Recentes",
+      "categories": "Categorias",
+      "popularTags": "Tags Populares",
+      "newsletter": {
+        "title": "Newsletter",
+        "description": "Receba os últimos artigos e recursos sobre liderança e desenvolvimento organizacional.",
+        "emailPlaceholder": "Seu email",
+        "subscribeButton": "Inscrever-se"
+      },
+      "readArticle": "Ler Artigo",
+      "readMore": "Ler Mais",
+      "views": "visualizações",
+      "likes": "curtidas",
+      "featured": "Destaque"
+    },
+    "store": {
+      "title": "Loja",
+      "subtitle": "Produtos e serviços especializados",
+      "description": "Descubra nossos produtos e serviços projetados para impulsionar o crescimento da sua organização."
+    },
+    "workWithUs": {
+      "title": "Trabalhe Conosco",
+      "subtitle": "Junte-se à nossa equipe",
+      "description": "Faça parte de uma equipe comprometida com a transformação organizacional e o desenvolvimento de líderes."
+    },
+      "academy": {
+        "title": "Academia Mistri",
+        "subtitle": "Formação especializada para líderes",
+        "description": "Programas de formação projetados para desenvolver as competências de liderança e gestão da sua equipe.",
+        "hero": {
+          "cta": "Agende uma reunião",
+          "secondaryCta": "Conheça nossos serviços"
+        },
+        "seo": {
+          "title": "Academia Mistri - Formação de Líderes e Desenvolvimento Organizacional",
+          "description": "Programas especializados de formação em liderança, gestão de equipes e transformação organizacional. Cursos certificados para desenvolver competências gerenciais.",
+          "keywords": "formação de líderes, desenvolvimento organizacional, cursos de liderança, capacitação executiva, gestão de equipes, transformação empresarial, academia mistri"
+        },
+        "courses": {
+          "title": "Programas de Formação",
+          "description": "Desenvolva as competências que você precisa para liderar no século XXI. Nossos programas são projetados por especialistas em desenvolvimento organizacional e contam com metodologias comprovadas internacionalmente."
+        },
+        "advantages": {
+          "title": "Vantagens de estudar conosco",
+          "description": "Nossa abordagem única combina teoria e prática para garantir seu sucesso profissional."
+        },
+        "testimonials": {
+          "title": "O que dizem nossos estudantes",
+          "description": "Depoimentos reais. Conheça as experiências de profissionais que transformaram sua carreira conosco."
+        },
+        "cta": {
+          "title": "Pronto para dar o próximo passo?",
+          "description": "Junte-se a centenas de profissionais que já deram o próximo passo. Descubra como nossos programas podem impulsionar sua carreira e o crescimento da sua organização.",
+          "button": "Inscreva-se Agora"
+        }
+      },
+    "portfolio": {
+      "title": "Portfólio",
+      "subtitle": "Casos de sucesso e projetos realizados",
+      "description": "Conheça alguns dos projetos que desenvolvemos e os resultados obtidos."
+    },
+    "terms": {
+      "title": "Termos e Condições",
+      "subtitle": "Termos e Condições de Uso",
+      "description": "Estes termos e condições regem o uso do nosso site e serviços."
+    }
+  }
+}

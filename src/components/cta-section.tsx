@@ -43,13 +43,13 @@ export function CTASection({
           <Button
             asChild
             size="lg"
-            className="w-full sm:w-auto btn-secondary hover:shadow-xl hover:shadow-white-400/25 text-gray-600"
+            className="w-full sm:w-auto bg-white text-gray-900 hover:bg-gray-50 font-semibold border-0 shadow-lg hover:shadow-xl transition-all duration-300 px-8"
           >
             <Link href={primaryButton.href}>
               {primaryButton.icon && (
                 (() => {
                   const IconComponent = Icons[primaryButton.icon as keyof typeof Icons] as LucideIcon
-                  return IconComponent ? <IconComponent className="mr-2 h-5 w-5 text-gray-600" /> : null
+                  return IconComponent ? <IconComponent className="mr-2 h-5 w-5 text-gray-900" /> : null
                 })()
               )}
               {primaryButton.text}
@@ -61,7 +61,7 @@ export function CTASection({
               asChild
               variant="outline"
               size="lg"
-              className="w-full sm:w-auto border-white text-gray-600 hover:bg-white hover:text-mistri-blue-500 glass-effect"
+              className="w-full sm:w-auto bg-mistri-blue-500 text-white hover:bg-mistri-blue-600 font-semibold border-0 shadow-lg hover:shadow-xl transition-all duration-300 px-8"
             >
               <Link href={secondaryButton.href}>
                 {secondaryButton.text}

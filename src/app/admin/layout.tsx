@@ -1,202 +1,26 @@
-"use client";
-
-import React, { useState, useEffect } from 'react';
-import Link from 'next/link';
-import { usePathname, useRouter } from 'next/navigation';
-import { 
-  LayoutDashboard, 
-  LogOut,
-  Menu,
-  X
-} from 'lucide-react';
-import { isAuthenticated, removeAuthToken } from '@/lib/auth';
+import React from 'react';
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { locales } from '@/i18n';
+import AdminLayoutClient from './admin-layout-client';
 
 interface AdminLayoutProps {
   children: React.ReactNode;
 }
 
-export default function AdminLayout({ children }: AdminLayoutProps) {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [auth, setAuth] = useState<boolean | null>(null);
-  const pathname = usePathname();
-  const router = useRouter();
+export async function generateStaticParams() {
+  return locales.map((locale) => ({ locale }));
+}
 
-  // Verificar autenticación solo si no estamos en login
-  useEffect(() => {
-    if (pathname !== '/admin/login') {
-      const authenticated = isAuthenticated();
-      setAuth(authenticated);
-      
-      if (!authenticated) {
-        router.replace('/admin/login');
-      }
-    } else {
-      // En login, no necesitamos verificar autenticación
-      setAuth(null);
-    }
-  }, [pathname, router]);
-
-  const handleLogout = () => {
-    removeAuthToken();
-    setAuth(false);
-    router.replace('/admin/login');
-  };
-
-  // Si estamos en login, mostrar solo el contenido sin verificar auth
-  if (pathname === '/admin/login') {
-    return <>{children}</>;
-  }
-
-  // Si está verificando autenticación (solo fuera de login), mostrar mensaje simple
-  if (auth === null) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <p className="text-gray-600">Verificando...</p>
-        </div>
-      </div>
-    );
-  }
-
-  // Si no está autenticado (solo fuera de login), mostrar mensaje simple
-  if (!auth) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <p className="text-gray-600">Redirigiendo...</p>
-        </div>
-      </div>
-    );
-  }
-
+export default async function AdminLayout({ children }: AdminLayoutProps) {
+  // Obtener mensajes para el idioma por defecto (español)
+  const messages = await getMessages({ locale: 'es' });
+  
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Sidebar */}
-      <div className="hidden md:fixed md:inset-y-0 md:flex md:w-64 md:flex-col">
-        <div className="flex min-h-0 flex-1 flex-col bg-blue-900">
-          <div className="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
-            <div className="flex flex-shrink-0 items-center px-4">
-              <h1 className="text-xl font-bold text-white">Mistri&Co Admin</h1>
-            </div>
-            <nav className="mt-5 flex-1 space-y-1 px-2">
-              <Link
-                href="/admin/dashboard"
-                className={`${
-                  pathname === '/admin/dashboard'
-                    ? 'bg-blue-800 text-white'
-                    : 'text-gray-300 hover:bg-blue-700 hover:text-white'
-                } group flex items-center px-2 py-2 text-sm font-medium rounded-md`}
-              >
-                <LayoutDashboard className="mr-3 h-5 w-5 flex-shrink-0" />
-                Dashboard
-              </Link>
-            </nav>
-          </div>
-          <div className="flex flex-shrink-0 border-t border-blue-700 p-4">
-            <button
-              onClick={handleLogout}
-              className="group block w-full flex-shrink-0"
-            >
-              <div className="flex items-center">
-                <LogOut className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-300" />
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-400 group-hover:text-gray-300">
-                    Cerrar Sesión
-                  </p>
-                </div>
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Contenido principal */}
-      <div className="md:pl-64 flex flex-col flex-1">
-        {/* Header móvil */}
-        <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-gray-50">
-          <button
-            type="button"
-            className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <Menu className="h-6 w-6" />
-          </button>
-        </div>
-
-        {/* Contenido */}
-        <main className="flex-1">
-          {children}
-        </main>
-      </div>
-
-      {/* Sidebar móvil */}
-      <div className={`fixed inset-0 flex z-40 md:hidden ${sidebarOpen ? '' : 'hidden'}`}>
-        <div className="fixed inset-0 bg-gray-600 bg-opacity-75" onClick={() => setSidebarOpen(false)} />
-        <div className="relative flex w-full max-w-xs flex-1 flex-col bg-blue-900">
-          <div className="absolute top-0 right-0 -mr-12 pt-2">
-            <button
-              type="button"
-              className="ml-1 flex h-10 w-10 items-center justify-center rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
-              onClick={() => setSidebarOpen(false)}
-            >
-              <X className="h-6 w-6 text-white" />
-            </button>
-          </div>
-          <div className="flex flex-shrink-0 items-center px-4 pt-5">
-            <h1 className="text-xl font-bold text-white">Mistri&Co Admin</h1>
-          </div>
-          <div className="mt-5 h-0 flex-1 overflow-y-auto">
-            <nav className="space-y-1 px-2">
-              <Link
-                href="/admin/dashboard"
-                className={`${
-                  pathname === '/admin/dashboard'
-                    ? 'bg-blue-800 text-white'
-                    : 'text-gray-300 hover:bg-blue-700 hover:text-white'
-                } group flex items-center px-2 py-2 text-base font-medium rounded-md`}
-                onClick={() => setSidebarOpen(false)}
-              >
-                <LayoutDashboard className="mr-4 h-6 w-6 flex-shrink-0" />
-                Dashboard
-              </Link>
-            </nav>
-          </div>
-          <div className="flex flex-shrink-0 border-t border-blue-700 p-4">
-            <button
-              onClick={handleLogout}
-              className="group block w-full flex-shrink-0"
-            >
-              <div className="flex items-center">
-                <LogOut className="mr-3 h-5 w-5 text-gray-400 group-hover:text-gray-300" />
-                <div className="ml-3">
-                  <p className="text-sm font-medium text-gray-400 group-hover:text-gray-300">
-                    Cerrar Sesión
-                  </p>
-                </div>
-              </div>
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Contenido principal */}
-      <div className="md:pl-64 flex flex-col flex-1">
-        {/* Header móvil */}
-        <div className="sticky top-0 z-10 md:hidden pl-1 pt-1 sm:pl-3 sm:pt-3 bg-gray-50">
-          <button
-            type="button"
-            className="-ml-0.5 -mt-0.5 h-12 w-12 inline-flex items-center justify-center rounded-md text-gray-500 hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-mistri-blue-500"
-            onClick={() => setSidebarOpen(true)}
-          >
-            <Menu className="h-6 w-6" />
-          </button>
-        </div>
-
-        {/* Contenido */}
-        <main className="flex-1">
-          {children}
-        </main>
-      </div>
-    </div>
+    <NextIntlClientProvider messages={messages} locale="es">
+      <AdminLayoutClient>
+        {children}
+      </AdminLayoutClient>
+    </NextIntlClientProvider>
   );
 }

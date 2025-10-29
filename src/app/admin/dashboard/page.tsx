@@ -1,6 +1,7 @@
 "use client";
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Link from 'next/link';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { 
@@ -9,10 +10,17 @@ import {
   Calendar, 
   Eye, 
   Users,
-  Settings
+  Settings,
+  Image
 } from 'lucide-react';
 
 export default function AdminDashboard() {
+  const [currentTime, setCurrentTime] = useState<string>('');
+  
+  useEffect(() => {
+    setCurrentTime(new Date().toLocaleString());
+  }, []);
+
   const stats = {
     totalBlogs: 12,
     publishedBlogs: 8,
@@ -54,7 +62,7 @@ export default function AdminDashboard() {
       <div className="flex items-center justify-between">
         <h1 className="text-3xl font-bold text-gray-900">Dashboard</h1>
         <div className="text-sm text-gray-500">
-          Última actualización: {new Date().toLocaleString()}
+          Última actualización: {currentTime || 'Cargando...'}
         </div>
       </div>
 
@@ -99,18 +107,30 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <Button className="w-full justify-start" variant="outline">
-                <FileText className="mr-2 h-4 w-4" />
-                Crear Nuevo Blog
-              </Button>
-              <Button className="w-full justify-start" variant="outline">
-                <Video className="mr-2 h-4 w-4" />
-                Subir Video
-              </Button>
-              <Button className="w-full justify-start" variant="outline">
-                <Calendar className="mr-2 h-4 w-4" />
-                Programar Charla
-              </Button>
+              <Link href="/admin/blog/new">
+                <Button className="w-full justify-start" variant="outline">
+                  <FileText className="mr-2 h-4 w-4" />
+                  Crear Nuevo Blog
+                </Button>
+              </Link>
+              <Link href="/admin/videos/new">
+                <Button className="w-full justify-start" variant="outline">
+                  <Video className="mr-2 h-4 w-4" />
+                  Subir Video
+                </Button>
+              </Link>
+              <Link href="/admin/charlas/new">
+                <Button className="w-full justify-start" variant="outline">
+                  <Calendar className="mr-2 h-4 w-4" />
+                  Programar Charla
+                </Button>
+              </Link>
+              <Link href="/admin/media">
+                <Button className="w-full justify-start" variant="outline">
+                  <Image className="mr-2 h-4 w-4" />
+                  Biblioteca de Medios
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>
@@ -122,14 +142,18 @@ export default function AdminDashboard() {
           </CardHeader>
           <CardContent>
             <div className="space-y-4">
-              <Button className="w-full justify-start" variant="outline">
-                <Users className="mr-2 h-4 w-4" />
-                Gestionar Usuarios
-              </Button>
-              <Button className="w-full justify-start" variant="outline">
-                <Settings className="mr-2 h-4 w-4" />
-                Configuración General
-              </Button>
+              <Link href="/admin/users">
+                <Button className="w-full justify-start" variant="outline">
+                  <Users className="mr-2 h-4 w-4" />
+                  Gestionar Usuarios
+                </Button>
+              </Link>
+              <Link href="/admin/settings">
+                <Button className="w-full justify-start" variant="outline">
+                  <Settings className="mr-2 h-4 w-4" />
+                  Configuración General
+                </Button>
+              </Link>
             </div>
           </CardContent>
         </Card>

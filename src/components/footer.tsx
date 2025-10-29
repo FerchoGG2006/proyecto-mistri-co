@@ -14,8 +14,11 @@ import {
 } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { useState, useEffect } from 'react'
+import { useTranslations, useLocale } from 'next-intl'
 
 export function Footer() {
+  const t = useTranslations('footer');
+  const locale = useLocale();
   const [showScrollTop, setShowScrollTop] = useState(false)
 
   useEffect(() => {
@@ -60,8 +63,7 @@ export function Footer() {
                 />
               </Link>
               <p className="text-gray-300 leading-relaxed">
-                Transformamos empresas a través de estrategias de ventas, marketing y liderazgo. 
-                Capacitamos equipos y optimizamos procesos para maximizar resultados.
+                {t('description')}
               </p>
             </div>
             
@@ -104,31 +106,31 @@ export function Footer() {
 
           {/* Enlaces rápidos */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white">Enlaces Rápidos</h4>
+            <h4 className="text-lg font-semibold text-white">{t('quickLinks')}</h4>
             <ul className="space-y-3">
               <li>
                 <Link href="/" className="text-gray-300 hover:text-primary transition-colors">
-                  Inicio
+                  {t('navigation.home')}
                 </Link>
               </li>
               <li>
-                <Link href="/servicios" className="text-gray-300 hover:text-primary transition-colors">
-                  Servicios
+                <Link href={`/${locale}/servicios`} className="text-gray-300 hover:text-primary transition-colors">
+                  {t('navigation.services')}
                 </Link>
               </li>
               <li>
-                <Link href="/quienes-somos" className="text-gray-300 hover:text-primary transition-colors">
-                  Quiénes Somos
+                <Link href={`/${locale}/quienes-somos`} className="text-gray-300 hover:text-primary transition-colors">
+                  {t('navigation.about')}
                 </Link>
               </li>
               <li>
-                <Link href="/academia" className="text-gray-300 hover:text-primary transition-colors">
-                  Academia
+                <Link href={`/${locale}/academia`} className="text-gray-300 hover:text-primary transition-colors">
+                  {t('navigation.academy')}
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-300 hover:text-primary transition-colors">
-                  Blog
+                <Link href={`/${locale}/blog`} className="text-gray-300 hover:text-primary transition-colors">
+                  {t('navigation.blog')}
                 </Link>
               </li>
             </ul>
@@ -136,36 +138,36 @@ export function Footer() {
 
           {/* Servicios */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white">Nuestros Servicios</h4>
+            <h4 className="text-lg font-semibold text-white">{t('services')}</h4>
             <ul className="space-y-3">
               <li>
-                <Link href="/servicios#formacion" className="text-gray-300 hover:text-primary transition-colors">
-                  Formación y Desarrollo
+                <Link href={`/${locale}/servicios#formacion`} className="text-gray-300 hover:text-primary transition-colors">
+                  {t('serviceLinks.formacion')}
                 </Link>
               </li>
               <li>
                 <Link href="https://wa.me/5493624649700" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-primary transition-colors">
-                  Asesoramiento Estratégico
+                  {t('serviceLinks.asesoramiento')}
                 </Link>
               </li>
               <li>
-                <Link href="/servicios#especializados" className="text-gray-300 hover:text-primary transition-colors">
-                  Marketing Digital
+                <Link href={`/${locale}/servicios#especializados`} className="text-gray-300 hover:text-primary transition-colors">
+                  {t('serviceLinks.marketing')}
                 </Link>
               </li>
               <li>
-                <Link href="/servicios#especializados" className="text-gray-300 hover:text-primary transition-colors">
-                  Optimización de Ventas
+                <Link href={`/${locale}/servicios#especializados`} className="text-gray-300 hover:text-primary transition-colors">
+                  {t('serviceLinks.ventas')}
                 </Link>
               </li>
               <li>
-                <Link href="/servicios#especializados" className="text-gray-300 hover:text-primary transition-colors">
-                  Desarrollo de Liderazgo
+                <Link href={`/${locale}/servicios#especializados`} className="text-gray-300 hover:text-primary transition-colors">
+                  {t('serviceLinks.liderazgo')}
                 </Link>
               </li>
               <li>
-                <Link href="/servicios#especializados" className="text-gray-300 hover:text-primary transition-colors">
-                  Análisis de Números
+                <Link href={`/${locale}/servicios#especializados`} className="text-gray-300 hover:text-primary transition-colors">
+                  {t('serviceLinks.analisis')}
                 </Link>
               </li>
             </ul>
@@ -173,7 +175,7 @@ export function Footer() {
 
           {/* Información de contacto */}
           <div className="space-y-6">
-            <h4 className="text-lg font-semibold text-white">Contacto</h4>
+            <h4 className="text-lg font-semibold text-white">{t('contact')}</h4>
             <div className="space-y-4">
               <div className="flex items-start space-x-3">
                 <MapPin className="h-5 w-5 text-primary mt-1 flex-shrink-0" />
@@ -200,10 +202,10 @@ export function Footer() {
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0" />
                 <Link 
-                  href="mailto:info@mistri.co" 
+                  href="mailto:contacto@mistriconsultora.com" 
                   className="text-gray-300 hover:text-primary transition-colors"
                 >
-                  info@mistri.co
+                  contacto@mistriconsultora.com
                 </Link>
               </div>
             </div>
@@ -214,18 +216,15 @@ export function Footer() {
         <div className="border-t border-gray-700 mt-12 pt-8">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="text-gray-400 text-sm">
-              © {new Date().getFullYear()} Mistri&Co. Todos los derechos reservados.
+              © {new Date().getFullYear()} Mistri&Co. {t('rights')}.
             </div>
             
             <div className="flex space-x-6 text-sm">
-              <Link href="/politica-privacidad" className="text-gray-400 hover:text-primary transition-colors">
-                Política de Privacidad
+              <Link href={`/${locale}/politica-privacidad`} className="text-gray-400 hover:text-primary transition-colors">
+                {t('privacy')}
               </Link>
-              <Link href="/terminos-condiciones" className="text-gray-400 hover:text-primary transition-colors">
-                Términos y Condiciones
-              </Link>
-              <Link href="/cookies" className="text-gray-400 hover:text-primary transition-colors">
-                Política de Cookies
+              <Link href={`/${locale}/terminos-condiciones`} className="text-gray-400 hover:text-primary transition-colors">
+                {t('terms')}
               </Link>
             </div>
           </div>

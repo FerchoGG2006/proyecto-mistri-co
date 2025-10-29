@@ -53,7 +53,7 @@ export { ProgressBar, LoadingProgress, StepProgress } from './progress-bar'
 
 // Microinteractions
 export { RippleButton } from './ripple-button'
-export { ScrollAnimation, Parallax, StaggerAnimation } from './scroll-animation'
+export { ScrollAnimation } from './scroll-animation'
 export { HoverCard, TiltCard, MagneticButton } from './hover-card'
 
 // Form Validation

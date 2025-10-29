@@ -59,26 +59,16 @@ export function RippleButton({
   }
 
   return (
-    <>
-      <style jsx>{`
-        @keyframes ripple {
-          to {
-            transform: scale(4);
-            opacity: 0;
-          }
-        }
-      `}</style>
-      <Button
-        ref={buttonRef}
-        variant={variant}
-        size={size}
-        className={cn("relative overflow-hidden", className)}
-        onClick={createRipple}
-        asChild={asChild}
-        {...props}
-      >
-        {children}
-      </Button>
-    </>
+    <Button
+      ref={buttonRef}
+      variant={variant}
+      size={size}
+      className={cn("relative overflow-hidden", className)}
+      onClick={createRipple}
+      asChild={asChild}
+      {...props}
+    >
+      {children}
+    </Button>
   )
 }

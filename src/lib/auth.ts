@@ -1,40 +1,56 @@
-// Sistema de autenticación simple para el panel de administración
-
+// auth.ts
 export const ADMIN_CREDENTIALS = {
   email: 'admin@mistri.com',
-  password: 'admin123'
+  password: 'Mistri2024!Admin',
 };
 
+const TOKEN_KEY = 'mistri_admin_token';
+const TOKEN_VAL = 'mistri_secure_admin_2024_token';
+
 export function validateCredentials(email: string, password: string): boolean {
-  return email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password;
+  // Validación más estricta
+  const emailMatch = email.toLowerCase().trim() === ADMIN_CREDENTIALS.email.toLowerCase();
+  const passwordMatch = password === ADMIN_CREDENTIALS.password;
+  
+  return emailMatch && passwordMatch;
 }
 
 export function setAuthToken(): void {
   if (typeof document !== 'undefined') {
-    document.cookie = 'admin_token=mistri_admin_2024; path=/; max-age=86400'; // 24 horas
+    // Cookie que expira en 8 horas (más seguro)
+    const expires = new Date();
+    expires.setTime(expires.getTime() + (8 * 60 * 60 * 1000));
+    document.cookie = `${TOKEN_KEY}=${TOKEN_VAL}; expires=${expires.toUTCString()}; path=/admin; secure; samesite=strict`;
   }
 }
 
 export function removeAuthToken(): void {
   if (typeof document !== 'undefined') {
-    document.cookie = 'admin_token=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT';
+    document.cookie = `${TOKEN_KEY}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/admin;`;
   }
 }
 
 export function getAuthToken(): string | null {
   if (typeof document === 'undefined') return null;
   
-  const cookies = document.cookie.split(';');
-  const tokenCookie = cookies.find(cookie => cookie.trim().startsWith('admin_token='));
-  
-  if (tokenCookie) {
-    return tokenCookie.split('=')[1];
+  try {
+    const cookies = document.cookie.split(';');
+    const tokenCookie = cookies.find(cookie => cookie.trim().startsWith(`${TOKEN_KEY}=`));
+    return tokenCookie ? tokenCookie.split('=')[1] : null;
+  } catch (error) {
+    console.error('Error reading auth token:', error);
+    return null;
   }
-  
-  return null;
 }
 
 export function isAuthenticated(): boolean {
-  const token = getAuthToken();
-  return token === 'mistri_admin_2024';
+  if (typeof document === 'undefined') return false;
+  
+  try {
+    const token = getAuthToken();
+    return token === TOKEN_VAL;
+  } catch (error) {
+    console.error('Error checking authentication:', error);
+    return false;
+  }
 }

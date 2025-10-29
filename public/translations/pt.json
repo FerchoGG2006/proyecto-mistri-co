@@ -1,0 +1,180 @@
+{
+  "common": {
+    "loading": "Carregando...",
+    "error": "Erro",
+    "success": "Sucesso",
+    "save": "Salvar",
+    "cancel": "Cancelar",
+    "edit": "Editar",
+    "delete": "Excluir",
+    "create": "Criar",
+    "back": "Voltar",
+    "next": "Próximo",
+    "previous": "Anterior",
+    "close": "Fechar",
+    "open": "Abrir",
+    "search": "Buscar",
+    "filter": "Filtrar",
+    "sort": "Ordenar",
+    "view": "Ver",
+    "download": "Baixar",
+    "upload": "Enviar",
+    "send": "Enviar",
+    "submit": "Enviar",
+    "login": "Entrar",
+    "logout": "Sair",
+    "register": "Registrar",
+    "profile": "Perfil",
+    "settings": "Configurações",
+    "help": "Ajuda",
+    "contact": "Contato",
+    "about": "Sobre",
+    "home": "Início",
+    "menu": "Menu",
+    "language": "Idioma",
+    "theme": "Tema"
+  },
+  "navigation": {
+    "home": "Início",
+    "about": "Quem Somos",
+    "services": "Serviços",
+    "academy": "Academia Mistri",
+    "blog": "Blog",
+    "contact": "Contato",
+    "portfolio": "Portfólio",
+    "terms": "Termos e Condições",
+    "workWithUs": "Trabalhe Conosco",
+    "store": "Loja"
+  },
+  "hero": {
+    "title": "Transformamos Organizações",
+    "subtitle": "Desenvolvimento de Equipes e Formação de Líderes",
+    "description": "Consultoria argentina especializada em transformação organizacional, desenvolvimento de equipes e formação de gerentes médios. Impulsionamos o crescimento sustentável da sua organização.",
+    "cta": "Agende uma reunião",
+    "secondaryCta": "Conheça nossos serviços"
+  },
+  "admin": {
+    "title": "Painel de Administração",
+    "login": {
+      "title": "Entrar",
+      "description": "Digite suas credenciais para acessar o painel",
+      "email": "Email",
+      "password": "Senha",
+      "loginButton": "Entrar",
+      "credentials": "Credenciais de acesso:",
+      "emailPlaceholder": "admin@mistri.com",
+      "passwordPlaceholder": "••••••••",
+      "invalidCredentials": "Credenciais incorretas",
+      "internalError": "Erro interno. Tente novamente."
+    },
+    "sidebar": {
+      "dashboard": "Painel",
+      "blog": "Blog",
+      "videos": "Vídeos",
+      "charlas": "Palestras",
+      "media": "Mídia",
+      "users": "Usuários",
+      "settings": "Configurações",
+      "logout": "Sair"
+    },
+    "dashboard": {
+      "title": "Painel",
+      "welcome": "Bem-vindo ao painel de administração",
+      "stats": {
+        "totalUsers": "Total de Usuários",
+        "totalPosts": "Total de Posts",
+        "totalVideos": "Total de Vídeos",
+        "totalEvents": "Total de Eventos"
+      }
+    }
+  },
+  "forms": {
+    "contact": {
+      "name": "Nome",
+      "email": "Email",
+      "phone": "Telefone",
+      "company": "Empresa",
+      "message": "Mensagem",
+      "submit": "Enviar Mensagem",
+      "success": "Mensagem enviada com sucesso",
+      "error": "Erro ao enviar a mensagem"
+    },
+    "academy": {
+      "title": "Formulário da Academia",
+      "name": "Nome completo",
+      "email": "Email",
+      "phone": "Telefone",
+      "company": "Empresa",
+      "position": "Cargo",
+      "experience": "Anos de experiência",
+      "interests": "Áreas de interesse",
+      "submit": "Enviar Solicitação",
+      "success": "Solicitação enviada com sucesso",
+      "error": "Erro ao enviar a solicitação"
+    }
+  },
+  "footer": {
+    "description": "Consultoria argentina especializada em transformação organizacional, desenvolvimento de equipes e formação de gerentes médios.",
+    "quickLinks": "Links Rápidos",
+    "services": "Serviços",
+    "contact": "Contato",
+    "followUs": "Siga-nos",
+    "rights": "Todos os direitos reservados",
+    "privacy": "Política de Privacidade",
+    "terms": "Termos e Condições"
+  },
+  "pages": {
+    "home": {
+      "title": "Início",
+      "hero": {
+        "title": "Transformamos Organizações",
+        "subtitle": "Desenvolvimento de Equipes e Formação de Líderes",
+        "description": "Consultoria argentina especializada em transformação organizacional, desenvolvimento de equipes e formação de gerentes médios. Impulsionamos o crescimento sustentável da sua organização.",
+        "cta": "Agende uma reunião",
+        "secondaryCta": "Conheça nossos serviços"
+      },
+      "services": {
+        "title": "Nossos Serviços",
+        "subtitle": "Soluções integrais para sua organização"
+      },
+      "about": {
+        "title": "Quem Somos",
+        "subtitle": "Conheça nossa equipe e experiência"
+      },
+      "contact": {
+        "title": "Contato",
+        "subtitle": "Vamos conversar sobre seu projeto"
+      }
+    },
+    "about": {
+      "title": "Quem Somos",
+      "subtitle": "Conheça nossa equipe e experiência",
+      "description": "Somos uma consultoria especializada em transformação organizacional com mais de 15 anos de experiência ajudando empresas a crescer de forma sustentável."
+    },
+    "services": {
+      "title": "Serviços",
+      "subtitle": "Soluções integrais para sua organização",
+      "description": "Oferecemos serviços especializados em desenvolvimento organizacional, formação de líderes e transformação empresarial."
+    },
+    "contact": {
+      "title": "Contato",
+      "subtitle": "Vamos conversar sobre seu projeto",
+      "description": "Estamos aqui para ajudá-lo. Entre em contato conosco e vamos conversar sobre como podemos impulsionar o crescimento da sua organização."
+    },
+    "blog": {
+      "title": "Blog",
+      "subtitle": "Artigos e recursos sobre transformação organizacional",
+      "description": "Descubra insights, tendências e melhores práticas em desenvolvimento organizacional e liderança."
+    },
+    "academy": {
+      "title": "Academia Mistri",
+      "subtitle": "Formação especializada para líderes",
+      "description": "Programas de formação projetados para desenvolver as competências de liderança e gestão da sua equipe."
+    },
+    "portfolio": {
+      "title": "Portfólio",
+      "subtitle": "Casos de sucesso e projetos realizados",
+      "description": "Conheça alguns dos projetos que desenvolvemos e os resultados obtidos."
+    }
+  }
+}

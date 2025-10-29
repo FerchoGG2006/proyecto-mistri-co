@@ -1,226 +1,389 @@
-'use client'
+"use client";
 
-import { useState, useRef, useEffect } from 'react'
-import { Button } from '@/components/ui/button'
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card'
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { useEditor, EditorContent } from '@tiptap/react';
+import StarterKit from '@tiptap/starter-kit';
+import Image from '@tiptap/extension-image';
+import Link from '@tiptap/extension-link';
+import TextAlign from '@tiptap/extension-text-align';
+import Underline from '@tiptap/extension-underline';
+import { TextStyle } from '@tiptap/extension-text-style';
+import { Color } from '@tiptap/extension-color';
+import { Highlight } from '@tiptap/extension-highlight';
+import { CodeBlockLowlight } from '@tiptap/extension-code-block-lowlight';
+import { createLowlight } from 'lowlight';
 import { 
   Bold, 
   Italic, 
-  Underline, 
+  Underline as UnderlineIcon, 
+  Strikethrough, 
+  Code, 
+  Heading1, 
+  Heading2, 
+  Heading3, 
   List, 
   ListOrdered, 
   Quote, 
-  Link, 
-  Image, 
-  Code,
-  Eye,
-  Edit,
-  Save,
   Undo,
-  Redo
-} from 'lucide-react'
-import { cn } from '@/lib/utils'
+  Redo, 
+  Link as LinkIcon, 
+  Unlink, 
+  Image as ImageIcon,
+  AlignLeft,
+  AlignCenter,
+  AlignRight,
+  AlignJustify,
+  Palette,
+  Highlighter,
+  Code2
+} from 'lucide-react';
+import { Button } from './button';
+import { Input } from './input';
+import { useState } from 'react';
 
 interface RichTextEditorProps {
-  content: string
-  onChange: (content: string) => void
-  placeholder?: string
-  className?: string
+  content?: string;
+  onChange?: (content: string) => void;
+  placeholder?: string;
+  className?: string;
 }
 
 export function RichTextEditor({ 
-  content, 
+  content = '', 
   onChange, 
-  placeholder = "Escribe tu contenido aquí...",
-  className 
+  placeholder = 'Escribe tu contenido aquí...',
+  className = ''
 }: RichTextEditorProps) {
-  const [isPreview, setIsPreview] = useState(false)
-  const editorRef = useRef<HTMLDivElement>(null)
-  const [history, setHistory] = useState<string[]>([content])
-  const [historyIndex, setHistoryIndex] = useState(0)
+  const [showLinkDialog, setShowLinkDialog] = useState(false);
+  const [linkUrl, setLinkUrl] = useState('');
+  const [showImageDialog, setShowImageDialog] = useState(false);
+  const [imageUrl, setImageUrl] = useState('');
 
-  useEffect(() => {
-    if (editorRef.current && !isPreview) {
-      editorRef.current.innerHTML = content
-    }
-  }, [content, isPreview])
+  const editor = useEditor({
+    extensions: [
+      StarterKit,
+      Image.configure({
+        HTMLAttributes: {
+          class: 'max-w-full h-auto rounded-lg',
+        },
+      }),
+      Link.configure({
+        openOnClick: false,
+        HTMLAttributes: {
+          class: 'text-blue-600 underline',
+        },
+      }),
+      TextAlign.configure({
+        types: ['heading', 'paragraph'],
+      }),
+      Underline,
+      TextStyle,
+      Color,
+      Highlight.configure({
+        multicolor: true,
+      }),
+      CodeBlockLowlight.configure({
+        lowlight: createLowlight(),
+      }),
+    ],
+    content,
+    onUpdate: ({ editor }) => {
+      onChange?.(editor.getHTML());
+    },
+    editorProps: {
+      attributes: {
+        class: 'prose prose-sm sm:prose lg:prose-lg xl:prose-2xl mx-auto focus:outline-none min-h-[300px] p-4',
+      },
+    },
+    immediatelyRender: false,
+  });
 
-  const updateContent = (newContent: string) => {
-    onChange(newContent)
-    const newHistory = history.slice(0, historyIndex + 1)
-    newHistory.push(newContent)
-    setHistory(newHistory)
-    setHistoryIndex(newHistory.length - 1)
+  if (!editor) {
+    return null;
   }
 
-  const executeCommand = (command: string, value?: string) => {
-    document.execCommand(command, false, value)
-    if (editorRef.current) {
-      updateContent(editorRef.current.innerHTML)
+  const addLink = () => {
+    if (linkUrl) {
+      editor.chain().focus().setLink({ href: linkUrl }).run();
+      setLinkUrl('');
+      setShowLinkDialog(false);
     }
-  }
+  };
 
-  const handleInput = () => {
-    if (editorRef.current) {
-      updateContent(editorRef.current.innerHTML)
+  const addImage = () => {
+    if (imageUrl) {
+      editor.chain().focus().setImage({ src: imageUrl }).run();
+      setImageUrl('');
+      setShowImageDialog(false);
     }
-  }
+  };
 
-  const undo = () => {
-    if (historyIndex > 0) {
-      const newIndex = historyIndex - 1
-      setHistoryIndex(newIndex)
-      onChange(history[newIndex])
-      if (editorRef.current) {
-        editorRef.current.innerHTML = history[newIndex]
-      }
-    }
-  }
-
-  const redo = () => {
-    if (historyIndex < history.length - 1) {
-      const newIndex = historyIndex + 1
-      setHistoryIndex(newIndex)
-      onChange(history[newIndex])
-      if (editorRef.current) {
-        editorRef.current.innerHTML = history[newIndex]
-      }
-    }
-  }
-
-  const insertLink = () => {
-    const url = prompt('Ingresa la URL:')
-    if (url) {
-      executeCommand('createLink', url)
-    }
-  }
-
-  const insertImage = () => {
-    const url = prompt('Ingresa la URL de la imagen:')
-    if (url) {
-      executeCommand('insertImage', url)
-    }
-  }
-
-  const formatButtons = [
-    { icon: Bold, command: 'bold', title: 'Negrita' },
-    { icon: Italic, command: 'italic', title: 'Cursiva' },
-    { icon: Underline, command: 'underline', title: 'Subrayado' },
-    { icon: Code, command: 'code', title: 'Código' },
-    { icon: List, command: 'insertUnorderedList', title: 'Lista' },
-    { icon: ListOrdered, command: 'insertOrderedList', title: 'Lista numerada' },
-    { icon: Quote, command: 'formatBlock', value: 'blockquote', title: 'Cita' },
-  ]
+  const ToolbarButton = ({ 
+    onClick, 
+    isActive = false, 
+    children, 
+    title 
+  }: { 
+    onClick: () => void; 
+    isActive?: boolean; 
+    children: React.ReactNode; 
+    title: string;
+  }) => (
+    <Button
+      variant={isActive ? "default" : "outline"}
+      size="sm"
+      onClick={onClick}
+      title={title}
+      className="h-8 w-8 p-0"
+    >
+      {children}
+    </Button>
+  );
 
   return (
-    <Card className={cn("w-full", className)}>
-      <CardHeader className="pb-3">
-        <div className="flex items-center justify-between">
-          <CardTitle className="text-lg">Editor de Contenido</CardTitle>
-          <div className="flex items-center space-x-2">
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={undo}
-              disabled={historyIndex === 0}
+    <div className={`border border-gray-300 rounded-lg ${className}`}>
+      {/* Toolbar */}
+      <div className="border-b border-gray-300 p-2 flex flex-wrap gap-1">
+        {/* Text Formatting */}
+        <div className="flex gap-1 border-r border-gray-300 pr-2 mr-2">
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleBold().run()}
+            isActive={editor.isActive('bold')}
+            title="Negrita"
+          >
+            <Bold className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleItalic().run()}
+            isActive={editor.isActive('italic')}
+            title="Cursiva"
+          >
+            <Italic className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleUnderline().run()}
+            isActive={editor.isActive('underline')}
+            title="Subrayado"
+          >
+            <UnderlineIcon className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleStrike().run()}
+            isActive={editor.isActive('strike')}
+            title="Tachado"
+          >
+            <Strikethrough className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleCode().run()}
+            isActive={editor.isActive('code')}
+            title="Código"
+          >
+            <Code className="h-4 w-4" />
+          </ToolbarButton>
+        </div>
+
+        {/* Headings */}
+        <div className="flex gap-1 border-r border-gray-300 pr-2 mr-2">
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
+            isActive={editor.isActive('heading', { level: 1 })}
+            title="Título 1"
+          >
+            <Heading1 className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleHeading({ level: 2 }).run()}
+            isActive={editor.isActive('heading', { level: 2 })}
+            title="Título 2"
+          >
+            <Heading2 className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleHeading({ level: 3 }).run()}
+            isActive={editor.isActive('heading', { level: 3 })}
+            title="Título 3"
+          >
+            <Heading3 className="h-4 w-4" />
+          </ToolbarButton>
+        </div>
+
+        {/* Lists */}
+        <div className="flex gap-1 border-r border-gray-300 pr-2 mr-2">
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleBulletList().run()}
+            isActive={editor.isActive('bulletList')}
+            title="Lista con viñetas"
+          >
+            <List className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleOrderedList().run()}
+            isActive={editor.isActive('orderedList')}
+            title="Lista numerada"
+          >
+            <ListOrdered className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleBlockquote().run()}
+            isActive={editor.isActive('blockquote')}
+            title="Cita"
+          >
+            <Quote className="h-4 w-4" />
+          </ToolbarButton>
+        </div>
+
+        {/* Alignment */}
+        <div className="flex gap-1 border-r border-gray-300 pr-2 mr-2">
+          <ToolbarButton
+            onClick={() => editor.chain().focus().setTextAlign('left').run()}
+            isActive={editor.isActive({ textAlign: 'left' })}
+            title="Alinear izquierda"
+          >
+            <AlignLeft className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().setTextAlign('center').run()}
+            isActive={editor.isActive({ textAlign: 'center' })}
+            title="Centrar"
+          >
+            <AlignCenter className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().setTextAlign('right').run()}
+            isActive={editor.isActive({ textAlign: 'right' })}
+            title="Alinear derecha"
+          >
+            <AlignRight className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().setTextAlign('justify').run()}
+            isActive={editor.isActive({ textAlign: 'justify' })}
+            title="Justificar"
+          >
+            <AlignJustify className="h-4 w-4" />
+          </ToolbarButton>
+        </div>
+
+        {/* Colors and Highlight */}
+        <div className="flex gap-1 border-r border-gray-300 pr-2 mr-2">
+          <ToolbarButton
+            onClick={() => editor.chain().focus().setColor('#000000').run()}
+            title="Color negro"
+          >
+            <Palette className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().setHighlight().run()}
+            isActive={editor.isActive('highlight')}
+            title="Resaltar"
+          >
+            <Highlighter className="h-4 w-4" />
+          </ToolbarButton>
+        </div>
+
+        {/* Media */}
+        <div className="flex gap-1 border-r border-gray-300 pr-2 mr-2">
+          <ToolbarButton
+            onClick={() => setShowLinkDialog(true)}
+            title="Agregar enlace"
+          >
+            <LinkIcon className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().unsetLink().run()}
+            isActive={editor.isActive('link')}
+            title="Quitar enlace"
+          >
+            <Unlink className="h-4 w-4" />
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => setShowImageDialog(true)}
+            title="Agregar imagen"
+          >
+            <ImageIcon className="h-4 w-4" />
+          </ToolbarButton>
+        </div>
+
+        {/* Code Block */}
+        <div className="flex gap-1 border-r border-gray-300 pr-2 mr-2">
+          <ToolbarButton
+            onClick={() => editor.chain().focus().toggleCodeBlock().run()}
+            isActive={editor.isActive('codeBlock')}
+            title="Bloque de código"
+          >
+            <Code2 className="h-4 w-4" />
+          </ToolbarButton>
+        </div>
+
+        {/* Undo/Redo */}
+        <div className="flex gap-1">
+          <ToolbarButton
+            onClick={() => editor.chain().focus().undo().run()}
+            title="Deshacer"
             >
               <Undo className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={redo}
-              disabled={historyIndex === history.length - 1}
+          </ToolbarButton>
+          <ToolbarButton
+            onClick={() => editor.chain().focus().redo().run()}
+            title="Rehacer"
             >
               <Redo className="h-4 w-4" />
+          </ToolbarButton>
+        </div>
+      </div>
+
+      {/* Editor Content */}
+      <div className="min-h-[300px]">
+        <EditorContent editor={editor} />
+      </div>
+
+      {/* Link Dialog */}
+      {showLinkDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h3 className="text-lg font-semibold mb-4">Agregar Enlace</h3>
+            <Input
+              type="url"
+              placeholder="https://ejemplo.com"
+              value={linkUrl}
+              onChange={(e) => setLinkUrl(e.target.value)}
+              className="mb-4"
+            />
+            <div className="flex gap-2 justify-end">
+              <Button variant="outline" onClick={() => setShowLinkDialog(false)}>
+                Cancelar
             </Button>
-            <Button
-              variant={isPreview ? "default" : "outline"}
-              size="sm"
-              onClick={() => setIsPreview(!isPreview)}
-            >
-              {isPreview ? <Edit className="h-4 w-4 mr-2" /> : <Eye className="h-4 w-4 mr-2" />}
-              {isPreview ? 'Editar' : 'Vista previa'}
+              <Button onClick={addLink}>
+                Agregar
             </Button>
+            </div>
           </div>
         </div>
-      </CardHeader>
-      
-      <CardContent>
-        <Tabs value={isPreview ? "preview" : "edit"} className="w-full">
-          <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="edit" onClick={() => setIsPreview(false)}>
-              <Edit className="h-4 w-4 mr-2" />
-              Editor
-            </TabsTrigger>
-            <TabsTrigger value="preview" onClick={() => setIsPreview(true)}>
-              <Eye className="h-4 w-4 mr-2" />
-              Vista previa
-            </TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="edit" className="mt-4">
-            {/* Toolbar */}
-            <div className="flex flex-wrap items-center gap-2 p-3 border border-gray-200 rounded-t-lg bg-gray-50">
-              {formatButtons.map((button) => (
-                <Button
-                  key={button.command}
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => executeCommand(button.command, button.value)}
-                  title={button.title}
-                  className="h-8 w-8 p-0"
-                >
-                  <button.icon className="h-4 w-4" />
-                </Button>
-              ))}
-              <div className="w-px h-6 bg-gray-300 mx-1" />
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={insertLink}
-                title="Insertar enlace"
-                className="h-8 w-8 p-0"
-              >
-                <Link className="h-4 w-4" />
+      )}
+
+      {/* Image Dialog */}
+      {showImageDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-96">
+            <h3 className="text-lg font-semibold mb-4">Agregar Imagen</h3>
+            <Input
+              type="url"
+              placeholder="https://ejemplo.com/imagen.jpg"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+              className="mb-4"
+            />
+            <div className="flex gap-2 justify-end">
+              <Button variant="outline" onClick={() => setShowImageDialog(false)}>
+                Cancelar
               </Button>
-              <Button
-                variant="ghost"
-                size="sm"
-                onClick={insertImage}
-                title="Insertar imagen"
-                className="h-8 w-8 p-0"
-              >
-                <Image className="h-4 w-4" />
+              <Button onClick={addImage}>
+                Agregar
               </Button>
             </div>
-            
-            {/* Editor */}
-            <div
-              ref={editorRef}
-              contentEditable
-              onInput={handleInput}
-              className="min-h-[400px] p-4 border border-gray-200 border-t-0 rounded-b-lg bg-white focus:outline-none focus:ring-2 focus:ring-primary/20"
-              style={{ whiteSpace: 'pre-wrap' }}
-              data-placeholder={placeholder}
-            />
-          </TabsContent>
-          
-          <TabsContent value="preview" className="mt-4">
-            <div className="min-h-[400px] p-4 border border-gray-200 rounded-lg bg-white">
-              {content ? (
-                <div 
-                  className="prose prose-sm max-w-none"
-                  dangerouslySetInnerHTML={{ __html: content }}
-                />
-              ) : (
-                <p className="text-gray-500 italic">{placeholder}</p>
+          </div>
+        </div>
               )}
             </div>
-          </TabsContent>
-        </Tabs>
-      </CardContent>
-    </Card>
-  )
+  );
 }
