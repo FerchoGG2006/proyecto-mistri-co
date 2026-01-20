@@ -2,13 +2,13 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import { 
-  MapPin, 
-  Phone, 
-  Mail, 
-  Facebook, 
-  Instagram, 
-  Linkedin, 
+import {
+  MapPin,
+  Phone,
+  Mail,
+  Facebook,
+  Instagram,
+  Linkedin,
   Youtube,
   ArrowUp
 } from 'lucide-react'
@@ -60,45 +60,45 @@ export function Footer() {
                 />
               </Link>
               <p className="text-gray-300 leading-relaxed">
-                Transformamos empresas a través de estrategias de ventas, marketing y liderazgo. 
+                Transformamos empresas a través de estrategias de ventas, marketing y liderazgo.
                 Capacitamos equipos y optimizamos procesos para maximizar resultados.
               </p>
             </div>
-            
+
             {/* Redes sociales */}
             <div className="flex space-x-4">
-              <Link 
+              {/*<Link 
                 href="https://facebook.com/mistri.co" 
                 className="p-2 bg-gray-700 hover:bg-primary rounded-lg transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Facebook className="h-5 w-5" />
-              </Link>
-              <Link 
-                href="https://instagram.com/mistri.co" 
+              </Link>*/}
+              <Link
+                href="https://instagram.com/mistri.co"
                 className="p-2 bg-gray-700 hover:bg-primary rounded-lg transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Instagram className="h-5 w-5" />
               </Link>
-              <Link 
+              {/*<Link 
                 href="https://linkedin.com/company/mistri-co" 
                 className="p-2 bg-gray-700 hover:bg-primary rounded-lg transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Linkedin className="h-5 w-5" />
-              </Link>
-              <Link 
+              </Link>*/}
+              {/*<Link 
                 href="https://youtube.com/@mistri.co" 
                 className="p-2 bg-gray-700 hover:bg-primary rounded-lg transition-colors"
                 target="_blank"
                 rel="noopener noreferrer"
               >
                 <Youtube className="h-5 w-5" />
-              </Link>
+              </Link>*/}
             </div>
           </div>
 
@@ -194,21 +194,21 @@ export function Footer() {
                   <p className="mt-2 font-medium">Brasil - Paraguay (Híbrido)</p>
                 </div>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-primary flex-shrink-0" />
-                <Link 
-                  href="tel:+5493624123456" 
+                <Link
+                  href="https://wa.me/5493624123456"
                   className="text-gray-300 hover:text-primary transition-colors"
                 >
                   +54 9 362 412-3456
                 </Link>
               </div>
-              
+
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0" />
-                <Link 
-                  href="mailto:info@mistri.co" 
+                <Link
+                  href="mailto:info@mistri.co"
                   className="text-gray-300 hover:text-primary transition-colors"
                 >
                   info@mistri.co
@@ -224,7 +224,7 @@ export function Footer() {
             <div className="text-gray-400 text-sm">
               © {new Date().getFullYear()} Mistri&Co. Todos los derechos reservados.
             </div>
-            
+
             <div className="flex space-x-6 text-sm">
               <Link href="/politica-privacidad" className="text-gray-400 hover:text-primary transition-colors">
                 Política de Privacidad
