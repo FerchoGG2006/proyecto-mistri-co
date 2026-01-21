@@ -1,3 +1,5 @@
+'use client';
+
 import { Hero } from "@/components/hero";
 import { ServiceCard } from "@/components/service-card";
 import { ClientsSection } from "@/components/clients-section";
@@ -18,124 +20,63 @@ import {
 } from "lucide-react";
 import * as Icons from "lucide-react";
 import Link from "next/link";
-import { content } from "@/lib/content";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function Home() {
-  const services = [
-    {
-      icon: "Users",
-      title: "Formación de Mandos Medios",
-      description:
-        "Desarrollamos líderes efectivos que impulsen el crecimiento de tu organización.",
-      features: [
-        "Programas de liderazgo personalizado",
-        "Mentoría y coaching ejecutivo",
-        "Desarrollo de habilidades blandas",
-        "Evaluación 360° y seguimiento",
-      ],
-      href: "/servicios",
-      variant: "featured" as const,
-    },
-    {
-      icon: "Target",
-      title: "Capacitación y Desarrollo",
-      description:
-        "Potenciamos el talento de tus equipos con metodologías probadas.",
-      features: [
-        "Talleres especializados por área",
-        "Capacitación en competencias técnicas",
-        "Programas de certificación",
-        "Acompañamiento continuo",
-      ],
-      href: "/servicios",
-    },
-    {
-      icon: "TrendingUp",
-      title: "Transformación Organizacional",
-      description:
-        "Reestructuramos procesos para maximizar la eficiencia y productividad.",
-      features: [
-        "Diagnóstico organizacional",
-        "Rediseño de procesos",
-        "Implementación de cambios",
-        "Medición de resultados",
-      ],
-      href: "/servicios",
-    },
-  ];
+  const { t } = useLanguage();
+
+  const services = t.titles.servicios.items;
 
   const clients = [
-    { 
-      name: "Muñoz Marchesí", 
+    {
+      name: "Muñoz Marchesí",
       logo: "/images/clients/logo-munoz-marchesi.png",
       alt: "Logo de Muñoz Marchesí"
     },
-    { 
-      name: "Dala Computación", 
+    {
+      name: "Dala Computación",
       logo: "/images/clients/logo-dala-computacion.png",
       alt: "Logo de Dala Computación"
     },
-    { 
-      name: "Emprendé Seguro", 
+    {
+      name: "Emprendé Seguro",
       logo: "/images/clients/logo-emprendé-seguro.png",
       alt: "Logo de Emprendé Seguro"
     },
-    { 
-      name: "Espacio Wilde", 
+    {
+      name: "Espacio Wilde",
       logo: "/images/clients/logo-espacio-wilde.jpg",
       alt: "Logo de Espacio Wilde"
     },
-    { 
-      name: "Romero Nagy", 
+    {
+      name: "Romero Nagy",
       logo: "/images/clients/logo-romero_nagy.png",
       alt: "Logo de Romero Nagy"
     },
-    { 
-      name: "SBR Repuestos", 
+    {
+      name: "SBR Repuestos",
       logo: "/images/clients/logo-SBR-repuestos.jpg",
       alt: "Logo de SBR Repuestos"
     },
   ];
 
-  const academyFeatures = [
-    {
-      icon: "BookOpen",
-      title: "Cursos Intensivos",
-      description:
-        "6 módulos en 6 semanas para un aprendizaje profundo y aplicable.",
-      duration: "6 semanas",
-    },
-    {
-      icon: "Presentation",
-      title: "Talleres Especializados",
-      description:
-        "3 encuentros de 90 minutos enfocados en habilidades específicas.",
-      duration: "3 encuentros",
-    },
-    {
-      icon: "Lightbulb",
-      title: "Charlas Inspiradoras",
-      description:
-        "10 temáticas actuales sobre el futuro del trabajo y la innovación.",
-      duration: "1 hora",
-    },
-  ];
+  const academyFeatures = t.academia.features;
 
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <Hero
-        title={content.titles.home.hero}
-        subtitle="Desarrollo de equipos y formación de líderes"
-        description={content.descriptions.home.hero}
-        ctaText={content.ctas.home.primary.text}
-        ctaLink={content.ctas.home.primary.href}
+        title={t.titles.home.hero}
+        subtitle={t.shared.home.heroSubtitle}
+        description={t.descriptions.home.hero}
+        ctaText={t.ctas.home.primary.text}
+        ctaLink={t.ctas.home.primary.href}
         showStats={true}
         backgroundImage="/images/home/bg-home.jpg"
         overlayType="photo"
         secondaryButton={{
-          text: "Nuestros Servicios",
-          href: "/servicios",
+          text: t.ctas.home.secondary.text,
+          href: t.ctas.home.secondary.href,
           icon: "Target"
         }}
       />
@@ -144,8 +85,8 @@ export default function Home() {
       <AnimatedSection animation="fadeIn" className="section-padding bg-white">
         <div className="container-custom">
           <SectionHeader
-            title={content.titles.home.services}
-            description={content.descriptions.home.services}
+            title={t.titles.home.services}
+            description={t.descriptions.home.services}
           />
 
           <StaggeredAnimation animation="slideUp" staggerDelay={150} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -164,20 +105,20 @@ export default function Home() {
           <AnimatedSection animation="scale" delay={600} className="text-center mt-12">
             <Button asChild size="lg" className="btn-primary text-gray-600">
               <Link href="/servicios">
-                Ver todos los servicios
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                {t.titles.servicios.viewAll}
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
-                </Button>
+            </Button>
           </AnimatedSection>
-              </div>
+        </div>
       </AnimatedSection>
 
       {/* Academy Section */}
       <AnimatedSection animation="fadeIn" className="section-padding bg-gray-50">
         <div className="container-custom">
           <SectionHeader
-            title={content.titles.home.academy}
-            description={content.descriptions.home.academy}
+            title={t.titles.home.academy}
+            description={t.descriptions.home.academy}
           />
 
           <StaggeredAnimation animation="slideUp" staggerDelay={200} className="grid md:grid-cols-3 gap-8 mb-12">
@@ -187,7 +128,7 @@ export default function Home() {
               ] as LucideIcon;
               return (
                 <Link
-                key={index}
+                  key={index}
                   href="/academia"
                   className="relative h-80 rounded-2xl overflow-hidden group cursor-pointer hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-2xl block"
                   style={{
@@ -202,27 +143,27 @@ export default function Home() {
                   <div className="absolute inset-0 bg-pattern-dots opacity-20" />
                   {/* Overlay con gradiente */}
                   <div className="absolute inset-0 bg-gradient-to-br from-mistri-blue-500/80 to-mistri-blue-900/90 group-hover:from-mistri-blue-400/90 group-hover:to-mistri-blue-800/95 transition-all duration-500" />
-                  
+
                   {/* Contenido */}
                   <div className="relative z-10 h-full flex flex-col items-center justify-center text-center text-white p-8">
                     <div className="w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-white/30 transition-all duration-500">
                       <IconComponent className="h-10 w-10 text-white" />
-          </div>
+                    </div>
 
                     <h3 className="text-2xl font-bold mb-4 group-hover:text-mistri-lime-300 transition-colors duration-300">
                       {feature.title}
-              </h3>
-                    
+                    </h3>
+
                     <p className="text-white/90 mb-6 leading-relaxed">
                       {feature.description}
                     </p>
-                    
+
                     <div className="bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full">
                       <span className="text-sm font-semibold text-white">
                         {feature.duration}
                       </span>
-            </div>
-              </div>
+                    </div>
+                  </div>
 
                   {/* Efecto de brillo al hover */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 transform translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000" />
@@ -235,19 +176,19 @@ export default function Home() {
             <Button asChild size="lg" className="btn-primary text-gray-600">
               <Link href="/academia">
                 <BookOpen className="mr-2 h-5 w-5" />
-                Conocer Academia Mistri
+                {t.academia.viewMore}
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Link>
             </Button>
           </AnimatedSection>
-            </div>
+        </div>
       </AnimatedSection>
 
       {/* Clients Section */}
       <LazySection>
         <ClientsSection
-          title="Organizaciones que Confían en Nosotros"
-          subtitle="Hemos trabajado con empresas de diversos sectores, ayudándolas a alcanzar sus objetivos de transformación organizacional."
+          title={t.shared.clients.title}
+          subtitle={t.shared.clients.subtitle}
           clients={clients}
         />
       </LazySection>
@@ -256,14 +197,14 @@ export default function Home() {
       <AnimatedSection animation="fadeIn" className="section-padding bg-white">
         <div className="container-custom">
           <SectionHeader
-            badge={content.badges.home.testimonials}
-            title={content.titles.home.testimonials}
-            description={content.descriptions.home.testimonials}
+            badge={t.badges.home.testimonials}
+            title={t.titles.home.testimonials}
+            description={t.descriptions.home.testimonials}
             badgeVariant="outline"
           />
 
           <StaggeredAnimation animation="slideUp" staggerDelay={150} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Link 
+            <Link
               href="https://sbrepuestos.com/?fbclid=PAZXh0bgNhZW0CMTEAAaclbXScXu8RceUjjq00qm-mYUN02TEV6WQCR9UiVWoL-RWtP-iQKCpeZkc50Q_aem_Zbuodh380rtXQEgevzcWeQ"
               target="_blank"
               rel="noopener noreferrer"
@@ -273,26 +214,26 @@ export default function Home() {
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     {[...Array(5)].map((_, i) => (
-                        <Star
-                          key={i}
+                      <Star
+                        key={i}
                         className="h-5 w-5 text-mistri-lime-500 fill-current"
-                        />
-                      ))}
-              </div>
+                      />
+                    ))}
+                  </div>
                   <p className="text-body text-gray-700 mb-6">
                     &ldquo;Con Mistri&Co hemos transformado nuestro negocio. No solo capacitamos a nuestro equipo de ventas, sino que reorganizamos la empresa por completo. Su trabajo en marketing y el análisis de números estratégicos nos dio una claridad que no teníamos.&rdquo;
                   </p>
                   <div className="flex items-center space-x-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-mistri-blue-500 to-mistri-blue-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-semibold">EA</span>
-              </div>
+                    </div>
                     <div>
                       <div className="font-semibold text-gray-900">Emmanuel Amado</div>
                       <div className="text-small text-gray-600">
                         Presidente, SBR SAS
-            </div>
-              </div>
-            </div>
+                      </div>
+                    </div>
+                  </div>
                 </CardContent>
               </Card>
             </Link>
@@ -306,27 +247,27 @@ export default function Home() {
                       className="h-5 w-5 text-mistri-lime-500 fill-current"
                     />
                   ))}
-              </div>
+                </div>
                 <p className="text-body text-gray-700 mb-6">
                   &ldquo;Mistri&Co resolvió nuestro gran desafío: cómo vender y comercializar servicios intangibles. Nos ayudaron a acceder a más clientes con una mentalidad completamente nueva, transformando nuestra perspectiva comercial.&rdquo;
                 </p>
                 <div className="flex items-center space-x-3">
                   <div className="w-10 h-10 bg-gradient-to-br from-mistri-lime-500 to-mistri-lime-600 rounded-full flex items-center justify-center">
                     <span className="text-gray-900 font-semibold">PV</span>
-            </div>
+                  </div>
                   <div>
                     <div className="font-semibold text-gray-900">
                       Patricia Vázquez
-              </div>
+                    </div>
                     <div className="text-small text-gray-600">
                       Fundadora, Vazquez Contadores Asociados
-            </div>
-          </div>
-        </div>
-                </CardContent>
-              </Card>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
 
-            <Link 
+            <Link
               href="https://www.munozmarchesi.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -349,8 +290,8 @@ export default function Home() {
                     <div className="w-10 h-10 bg-gradient-to-br from-mistri-blue-500 to-mistri-blue-600 rounded-full flex items-center justify-center">
                       <span className="text-white font-semibold">GM</span>
                     </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">
+                    <div>
+                      <div className="font-semibold text-gray-900">
                         Gustavo Melinik
                       </div>
                       <div className="text-small text-gray-600">
@@ -362,19 +303,19 @@ export default function Home() {
               </Card>
             </Link>
           </StaggeredAnimation>
-          </div>
+        </div>
       </AnimatedSection>
 
       {/* CTA Section */}
       <CTASection
-        title={content.titles.home.cta}
-        description={content.descriptions.home.cta}
+        title={t.titles.home.cta}
+        description={t.descriptions.home.cta}
         primaryButton={{
-          text: content.ctas.home.ctaSection.primary.text,
-          href: content.ctas.home.ctaSection.primary.href,
-          icon: content.ctas.home.ctaSection.primary.icon
+          text: t.ctas.home.ctaSection.primary.text,
+          href: t.ctas.home.ctaSection.primary.href,
+          icon: t.ctas.home.ctaSection.primary.icon
         }}
-        secondaryButton={content.ctas.home.ctaSection.secondary}
+        secondaryButton={t.ctas.home.ctaSection.secondary}
         backgroundColor="bg-[#83e935]"
         textColor="text-gray-900"
       />

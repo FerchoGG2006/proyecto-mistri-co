@@ -28,9 +28,14 @@ import {
 import * as Icons from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { useLanguage } from "@/hooks/use-language";
 
 export default function ServiciosPage() {
+  const { t, language } = useLanguage();
   const [activeTab, setActiveTab] = useState("formacion");
+
+  const services = t.titles.servicios.detailedServices;
+  const mistriMethod = t.titles.servicios.method;
 
   // Manejar navegación desde enlaces del footer
   useEffect(() => {
@@ -74,166 +79,9 @@ export default function ServiciosPage() {
     };
   }, []);
 
-  const services = {
-    formacion: [
-      {
-        icon: "Users",
-        title: "Formación de Mandos Medios",
-        description:
-          "Desarrollamos líderes efectivos que impulsen el crecimiento de tu organización.",
-        features: [
-          "Programas de liderazgo personalizado",
-          "Mentoría y coaching ejecutivo",
-          "Desarrollo de habilidades blandas",
-          "Evaluación 360° y seguimiento",
-          "Certificación en competencias gerenciales",
-        ],
-        duration: "6-12 meses",
-        price: "Consultar",
-      },
-      {
-        icon: "Target",
-        title: "Capacitación y Desarrollo",
-        description:
-          "Potenciamos el talento de tus equipos con metodologías probadas.",
-        features: [
-          "Talleres especializados por área",
-          "Capacitación en competencias técnicas",
-          "Programas de certificación",
-          "Acompañamiento continuo",
-          "Medición de impacto y ROI",
-        ],
-        duration: "3-6 meses",
-        price: "Consultar",
-      },
-      {
-        icon: "TrendingUp",
-        title: "Transformación Organizacional",
-        description:
-          "Reestructuramos procesos para maximizar la eficiencia y productividad.",
-        features: [
-          "Diagnóstico organizacional",
-          "Rediseño de procesos",
-          "Implementación de cambios",
-          "Medición de resultados",
-          "Sostenibilidad del cambio",
-        ],
-        duration: "6-18 meses",
-        price: "Consultar",
-      },
-    ],
-    asesoramiento: [
-      {
-        icon: "DollarSign",
-        title: "Asesoramiento Financiero",
-        description:
-          "Optimizamos la gestión financiera de tu organización con estrategias probadas.",
-        features: [
-          "Análisis de estructura financiera",
-          "Optimización de costos",
-          "Planificación presupuestaria",
-          "Control de gestión",
-          "Indicadores financieros clave",
-        ],
-        duration: "3-9 meses",
-        price: "Consultar",
-      },
-      {
-        icon: "BarChart3",
-        title: "Asesoramiento Impositivo",
-        description:
-          "Te ayudamos a cumplir con todas las obligaciones fiscales de manera eficiente.",
-        features: [
-          "Revisión de obligaciones fiscales",
-          "Optimización tributaria",
-          "Cumplimiento normativo",
-          "Asesoramiento en auditorías",
-          "Capacitación del equipo contable",
-        ],
-        duration: "Ongoing",
-        price: "Consultar",
-      },
-      {
-        icon: "Shield",
-        title: "Asesoramiento en Organización Interna",
-        description:
-          "Estandarizamos y optimizamos todos los procesos administrativos de tu organización.",
-        features: [
-          "Mapeo de procesos actuales",
-          "Diseño de procedimientos",
-          "Implementación de controles",
-          "Capacitación del personal",
-          "Monitoreo y mejora continua",
-        ],
-        duration: "4-12 meses",
-        price: "Consultar",
-      },
-    ],
-    especializados: [
-      {
-        icon: "Megaphone",
-        title: "Marketing Digital",
-        description:
-          "Potenciamos tu presencia digital con estrategias integrales de marketing.",
-        features: [
-          "Estrategias de contenido",
-          "SEO y posicionamiento web",
-          "Marketing en redes sociales",
-          "Campañas publicitarias digitales",
-          "Análisis de métricas y ROI",
-        ],
-        duration: "3-12 meses",
-        price: "Consultar",
-      },
-      {
-        icon: "TrendingUp",
-        title: "Optimización de Ventas",
-        description:
-          "Mejoramos los procesos de ventas para maximizar los resultados comerciales.",
-        features: [
-          "Diagnóstico del proceso de ventas",
-          "Capacitación del equipo comercial",
-          "Implementación de CRM",
-          "Estrategias de cierre",
-          "Seguimiento y análisis de resultados",
-        ],
-        duration: "2-8 meses",
-        price: "Consultar",
-      },
-      {
-        icon: "Users",
-        title: "Desarrollo de Liderazgo",
-        description:
-          "Formamos líderes capaces de inspirar y dirigir equipos de alto rendimiento.",
-        features: [
-          "Programas de liderazgo personalizado",
-          "Coaching ejecutivo",
-          "Desarrollo de habilidades directivas",
-          "Gestión de equipos",
-          "Evaluación 360° y seguimiento",
-        ],
-        duration: "6-12 meses",
-        price: "Consultar",
-      },
-      {
-        icon: "BarChart3",
-        title: "Análisis de Números",
-        description:
-          "Transformamos datos en insights accionables para la toma de decisiones.",
-        features: [
-          "Análisis de KPIs empresariales",
-          "Dashboards ejecutivos",
-          "Reportes de gestión",
-          "Análisis de tendencias",
-          "Recomendaciones estratégicas",
-        ],
-        duration: "2-6 meses",
-        price: "Consultar",
-      },
-    ],
-  };
+  ;
 
-  const testimonials = [
+  const testimonials = language === 'ES' ? [
     {
       name: "Emmanuel Amado",
       company: "SBR SAS",
@@ -249,7 +97,7 @@ export default function ServiciosPage() {
       content:
         "Mistri&Co resolvió nuestro gran desafío: cómo vender y comercializar servicios intangibles. Nos ayudaron a acceder a más clientes con una mentalidad completamente nueva, transformando nuestra perspectiva comercial. Los resultados, además, fueron rápidos y contundentes.",
       rating: 5,
-      website: null, // No hay sitio web disponible
+      website: null,
     },
     {
       name: "Gustavo Melinik",
@@ -259,21 +107,46 @@ export default function ServiciosPage() {
       rating: 5,
       website: "https://www.munozmarchesi.com",
     },
+  ] : [
+    {
+      name: "Emmanuel Amado",
+      company: "SBR SAS",
+      content:
+        "Com a Mistri&Co transformamos nosso negócio. Não apenas treinamos nossa equipe de vendas, mas reorganizamos a empresa por completo. Seu trabalho em marketing e análise de números estratégicos nos deu uma clareza que não tínhamos. Foi uma implementação integral e os resultados demonstram isso.",
+      rating: 5,
+      website: "https://sbrepuestos.com",
+    },
+    {
+      name: "Patricia Vázquez",
+      company: "Vazquez Contadores Asociados",
+      content:
+        "Mistri&Co resolveu nosso grande desafio: como vender e comercializar serviços intangíveis. Eles nos ajudaram a acessar mais clientes com uma mentalidade completamente nova, transformando nossa perspectiva comercial. Os resultados, aliás, foram rápidos e contundentes.",
+      rating: 5,
+      website: null,
+    },
+    {
+      name: "Gustavo Melinik",
+      company: "Muñoz Marchesí",
+      content:
+        "Como Gerente de Filial, transformei a forma de liderar minhas equipes. Junto à Mistri&Co, combinamos metas claras, treinamento contínuo e incentivos estratégicos. Esta fórmula não apenas otimizou os resultados comerciais, mas potencializou significativamente o desempenho e a motivação de cada vendedor.",
+      rating: 5,
+      website: "https://www.munozmarchesi.com",
+    },
   ];
 
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
       <Hero
-        title="Servicios Especializados"
-        subtitle="Transformación organizacional y desarrollo de equipos"
-        description="Ofrecemos un ecosistema completo de servicios diseñados para impulsar la transformación y el crecimiento sostenible de tu organización. Desde formación de líderes hasta asesoramiento especializado."
-        ctaText="Solicitar consulta"
+        title={t.titles.servicios.hero}
+        subtitle={t.shared.home.heroSubtitle}
+        description={t.descriptions.home.services}
+        ctaText={language === 'ES' ? "Solicitar consulta" : "Solicitar consulta"}
         ctaLink="https://wa.me/5493624649700"
         backgroundImage="/images/servicios/bg-services.jpg"
         overlayType="photo"
         secondaryButton={{
-          text: "Ver casos de éxito",
+          text: language === 'ES' ? "Ver casos de éxito" : "Ver casos de sucesso",
           href: "#testimonios",
           icon: "CheckCircle",
         }}
@@ -283,8 +156,8 @@ export default function ServiciosPage() {
       <section className="py-20 bg-white">
         <div className="container-custom">
           <SectionHeader
-            title="Nuestros Servicios Especializados"
-            description="Selecciona la categoría que mejor se adapte a las necesidades de tu organización"
+            title={t.titles.servicios.categories.especializados}
+            description={language === 'ES' ? "Selecciona la categoría que mejor se adapte a las necesidades de tu organización" : "Selecione a categoria que melhor se adapte às necessidades de sua organização"}
           />
 
           <Tabs
@@ -293,23 +166,23 @@ export default function ServiciosPage() {
             className="w-full"
           >
             <TabsList className="flex flex-col sm:grid sm:grid-cols-2 lg:grid-cols-3 w-full mb-12 gap-1 sm:gap-2">
-              <TabsTrigger 
-                value="formacion" 
+              <TabsTrigger
+                value="formacion"
                 className="text-xs sm:text-sm lg:text-base whitespace-nowrap w-full sm:w-auto justify-center py-2 px-3"
               >
-                Formación y Desarrollo
+                {t.titles.servicios.categories.formacion}
               </TabsTrigger>
               <TabsTrigger
                 value="asesoramiento"
                 className="text-xs sm:text-sm lg:text-base whitespace-nowrap w-full sm:w-auto justify-center py-2 px-3"
               >
-                Asesoramiento Especializado
+                {t.titles.servicios.categories.asesoramiento}
               </TabsTrigger>
               <TabsTrigger
                 value="especializados"
                 className="text-xs sm:text-sm lg:text-base whitespace-nowrap w-full sm:w-auto justify-center py-2 px-3 sm:col-span-2 lg:col-span-1"
               >
-                Servicios Especializados
+                {t.titles.servicios.categories.especializados}
               </TabsTrigger>
             </TabsList>
 
@@ -328,9 +201,8 @@ export default function ServiciosPage() {
                       key={index}
                       className="relative h-96 rounded-2xl overflow-hidden group cursor-pointer hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-2xl"
                       style={{
-                        backgroundImage: `linear-gradient(135deg, rgba(33, 150, 243, 0.8) 0%, rgba(13, 71, 161, 0.9) 100%), url('/images/servicios/servicio-${
-                          index + 1
-                        }.jpg')`,
+                        backgroundImage: `linear-gradient(135deg, rgba(33, 150, 243, 0.8) 0%, rgba(13, 71, 161, 0.9) 100%), url('/images/servicios/servicio-${index + 1
+                          }.jpg')`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
@@ -403,9 +275,8 @@ export default function ServiciosPage() {
                       key={index}
                       className="relative h-96 rounded-2xl overflow-hidden group cursor-pointer hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-2xl"
                       style={{
-                        backgroundImage: `linear-gradient(135deg, rgba(33, 150, 243, 0.8) 0%, rgba(13, 71, 161, 0.9) 100%), url('/images/servicios/asesoramiento-${
-                          index + 1
-                        }.jpg')`,
+                        backgroundImage: `linear-gradient(135deg, rgba(33, 150, 243, 0.8) 0%, rgba(13, 71, 161, 0.9) 100%), url('/images/servicios/asesoramiento-${index + 1
+                          }.jpg')`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
@@ -478,9 +349,8 @@ export default function ServiciosPage() {
                       key={index}
                       className="relative h-96 rounded-2xl overflow-hidden group cursor-pointer hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-2xl"
                       style={{
-                        backgroundImage: `linear-gradient(135deg, rgba(33, 150, 243, 0.8) 0%, rgba(13, 71, 161, 0.9) 100%), url('/images/servicios/especializado-${
-                          index + 1
-                        }.svg')`,
+                        backgroundImage: `linear-gradient(135deg, rgba(33, 150, 243, 0.8) 0%, rgba(13, 71, 161, 0.9) 100%), url('/images/servicios/especializado-${index + 1
+                          }.svg')`,
                         backgroundSize: "cover",
                         backgroundPosition: "center",
                         backgroundRepeat: "no-repeat",
@@ -541,55 +411,12 @@ export default function ServiciosPage() {
       <section className="py-20 bg-light-gray">
         <div className="container-custom">
           <SectionHeader
-            title="Método MISTRI®"
-            description="Nuestra metodología probada que transforma organizaciones a través de un proceso sistemático y efectivo"
+            title={mistriMethod.title}
+            description={mistriMethod.description}
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 xl:gap-6">
-            {[
-              {
-                letter: "M",
-                title: "Metrics",
-                titleEs: "Métricas",
-                description:
-                  "Medimos lo importante: ventas, márgenes y desempeño. Sin números claros, cualquier estrategia es solo intuición.",
-              },
-              {
-                letter: "I",
-                title: "Information",
-                titleEs: "Información",
-                description:
-                  "Los datos se transforman en conocimiento. Descubrimos patrones y oportunidades para decisiones inteligentes.",
-              },
-              {
-                letter: "S",
-                title: "Strategy",
-                titleEs: "Estrategia",
-                description:
-                  "Trazamos la ruta hacia el éxito. Definimos objetivos claros y diseñamos el plan de acción más efectivo.",
-              },
-              {
-                letter: "T",
-                title: "Talent",
-                titleEs: "Talento",
-                description:
-                  "Las personas son el motor. Impulsamos el talento de tu equipo para convertir cada plan en resultados tangibles.",
-              },
-              {
-                letter: "R",
-                title: "Results",
-                titleEs: "Resultados",
-                description:
-                  "Medimos los logros alcanzados. Crecimiento real, procesos optimizados y objetivos cumplidos.",
-              },
-              {
-                letter: "I",
-                title: "Innovation",
-                titleEs: "Innovación",
-                description:
-                  "El ciclo nunca se detiene. Reinventarse, adaptarse y sorprender con nuevas soluciones.",
-              },
-            ].map((step, index) => (
+            {mistriMethod.steps.map((step, index) => (
               <div
                 key={index}
                 className="bg-white rounded-2xl p-6 xl:p-6 shadow-lg hover:shadow-xl transition-all duration-200 hover:-translate-y-1 group cursor-pointer h-full flex flex-col"
@@ -604,9 +431,9 @@ export default function ServiciosPage() {
                   {step.title}
                 </h3>
 
-                {/* Título en español */}
+                {/* Título local */}
                 <h4 className="text-lg font-semibold text-mistri-blue-600 mb-4 text-center">
-                  ({step.titleEs})
+                  ({step.titleLocal})
                 </h4>
 
                 {/* Descripción */}
@@ -623,8 +450,8 @@ export default function ServiciosPage() {
       <section id="testimonios" className="py-20 bg-white">
         <div className="container-custom">
           <SectionHeader
-            title="Lo que Dicen Nuestros Clientes"
-            description="Testimonios reales de organizaciones que han transformado su cultura y resultados"
+            title={t.titles.home.testimonials}
+            description={language === 'ES' ? "Testimonios reales de organizaciones que han transformado su cultura y resultados" : "Depoimentos reais de organizações que transformaram sua cultura e resultados"}
           />
 
           <StaggeredAnimation
@@ -637,9 +464,8 @@ export default function ServiciosPage() {
                 <div
                   className="relative h-96 rounded-2xl overflow-hidden group cursor-pointer hover:scale-105 transition-all duration-500 shadow-lg hover:shadow-2xl"
                   style={{
-                    backgroundImage: `linear-gradient(135deg, rgba(33, 150, 243, 0.8) 0%, rgba(13, 71, 161, 0.9) 100%), url('/images/servicios/testimonial-${
-                      index + 1
-                    }.svg')`,
+                    backgroundImage: `linear-gradient(135deg, rgba(33, 150, 243, 0.8) 0%, rgba(13, 71, 161, 0.9) 100%), url('/images/servicios/testimonial-${index + 1
+                      }.svg')`,
                     backgroundSize: "cover",
                     backgroundPosition: "center",
                     backgroundRepeat: "no-repeat",
@@ -719,11 +545,10 @@ export default function ServiciosPage() {
       <section className="py-20 bg-[#83e935] text-gray-900">
         <div className="container-custom text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
-            ¿Listo para Transformar tu Organización?
+            {t.titles.home.cta}
           </h2>
           <p className="text-xl text-gray-600 mb-8">
-            Comienza tu proceso de transformación hoy y descubre el potencial de
-            tus equipos
+            {t.descriptions.home.cta}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button
@@ -732,14 +557,14 @@ export default function ServiciosPage() {
               onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
             >
               <Calendar className="mr-2 h-5 w-5 text-gray-600" />
-              Solicitar Consulta Gratuita
+              {language === 'ES' ? "Solicitar Consulta Gratuita" : "Solicitar Consulta Gratuita"}
             </Button>
             <Button
               size="lg"
               variant="outline"
               className="border-white text-gray-600 hover:bg-white hover:text-mistri-blue-500 glass-effect"
             >
-              Ver Casos de Éxito
+              {language === 'ES' ? "Ver Casos de Éxito" : "Ver Casos de Sucesso"}
             </Button>
           </div>
         </div>
