@@ -38,28 +38,37 @@ export default function AdminLayout({
     const [isAuthenticated, setIsAuthenticated] = useState(false);
     const [isLoading, setIsLoading] = useState(true);
 
+    // Don't show layout on login page - check this FIRST
+    const isLoginPage = pathname === '/admin/login' || pathname === '/admin/login/';
+
     useEffect(() => {
+        // Skip auth check for login page
+        if (isLoginPage) {
+            setIsLoading(false);
+            return;
+        }
+
         // Check if user is authenticated
         const checkAuth = () => {
             const token = localStorage.getItem('admin_token');
-            if (!token && pathname !== '/admin/login') {
+            if (!token) {
                 router.push('/admin/login');
-            } else if (token) {
+            } else {
                 setIsAuthenticated(true);
             }
             setIsLoading(false);
         };
 
         checkAuth();
-    }, [pathname, router]);
+    }, [pathname, router, isLoginPage]);
 
     const handleLogout = () => {
         localStorage.removeItem('admin_token');
         router.push('/admin/login');
     };
 
-    // Don't show layout on login page
-    if (pathname === '/admin/login') {
+    // Render login page without layout - do this BEFORE any loading checks
+    if (isLoginPage) {
         return <>{children}</>;
     }
 
