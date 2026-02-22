@@ -1,5 +1,5 @@
 import { PrismaClient } from '@prisma/client';
-require('dotenv').config();
+import 'dotenv/config';
 
 async function main() {
     console.log('--- Explicit Diagnostic (Native Driver) ---');
@@ -12,11 +12,6 @@ async function main() {
     }
 
     const prisma = new PrismaClient({
-        datasources: {
-            db: {
-                url: url
-            }
-        },
         log: ['query', 'info', 'warn', 'error']
     });
 
