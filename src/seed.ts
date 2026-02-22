@@ -1,7 +1,6 @@
-import { PrismaClient } from '@prisma/client';
+import 'dotenv/config';
+import prisma from './lib/db';
 import { contentES } from './lib/content';
-
-const prisma = new PrismaClient();
 
 async function main() {
     console.log('Migrando datos...');

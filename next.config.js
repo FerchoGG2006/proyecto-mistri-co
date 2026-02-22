@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+// Force restart
 const nextConfig = {
   // Fix para el warning de workspace root
   outputFileTracingRoot: __dirname,

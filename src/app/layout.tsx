@@ -1,4 +1,5 @@
 import './globals.css';
+import { LanguageProvider } from '@/hooks/use-language';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
@@ -33,7 +34,9 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </head>
       <body className={inter.className} suppressHydrationWarning={true}>
-        {children}
+        <LanguageProvider>
+          {children}
+        </LanguageProvider>
       </body>
     </html>
   );
