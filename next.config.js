@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Configuración para export estático (DonWeb)
-  output: 'export',
-  trailingSlash: true,
   // Fix para el warning de workspace root
   outputFileTracingRoot: __dirname,
   images: {

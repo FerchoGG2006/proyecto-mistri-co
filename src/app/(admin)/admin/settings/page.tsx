@@ -1,8 +1,47 @@
-'use client';
-
+import { useState, useEffect } from 'react';
 import { Save } from 'lucide-react';
+import { useLanguage } from '@/hooks/use-language';
+import { getSettings, updateSettings } from '../actions';
 
 export default function SettingsPage() {
+    const { t } = useLanguage();
+    const [settings, setSettings] = useState({
+        siteName: '',
+        description: '',
+        contactEmail: '',
+        metaTitle: '',
+        metaKeywords: ''
+    });
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        const fetchSettings = async () => {
+            setLoading(true);
+            try {
+                const data = await getSettings();
+                setSettings(data);
+            } catch (error) {
+                console.error('Error fetching settings:', error);
+            }
+            setLoading(false);
+        };
+        fetchSettings();
+    }, []);
+
+    const handleSave = async () => {
+        try {
+            await updateSettings(settings);
+            alert('Configuración guardada exitosamente');
+        } catch (error) {
+            console.error('Error saving settings:', error);
+            alert('Error al guardar la configuración. Verifica la conexión a la base de datos.');
+        }
+    };
+
+    if (loading) {
+        return <div className="p-8 text-center text-gray-500">Cargando configuración...</div>;
+    }
+
     return (
         <div className="py-6">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
@@ -23,10 +62,10 @@ export default function SettingsPage() {
                                     </label>
                                     <input
                                         type="text"
-                                        name="site-name"
                                         id="site-name"
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                        defaultValue="Mistri&Co"
+                                        value={settings.siteName}
+                                        onChange={(e) => setSettings({ ...settings, siteName: e.target.value })}
                                     />
                                 </div>
 
@@ -36,10 +75,10 @@ export default function SettingsPage() {
                                     </label>
                                     <textarea
                                         id="site-description"
-                                        name="site-description"
                                         rows={3}
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                        defaultValue="Consultora argentina especializada en transformación organizacional"
+                                        value={settings.description}
+                                        onChange={(e) => setSettings({ ...settings, description: e.target.value })}
                                     />
                                 </div>
 
@@ -49,10 +88,10 @@ export default function SettingsPage() {
                                     </label>
                                     <input
                                         type="email"
-                                        name="contact-email"
                                         id="contact-email"
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                        defaultValue="contacto@mistri.com"
+                                        value={settings.contactEmail}
+                                        onChange={(e) => setSettings({ ...settings, contactEmail: e.target.value })}
                                     />
                                 </div>
                             </div>
@@ -60,6 +99,7 @@ export default function SettingsPage() {
                             <div className="mt-6">
                                 <button
                                     type="button"
+                                    onClick={handleSave}
                                     className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
                                 >
                                     <Save className="mr-2 h-4 w-4" />
@@ -83,10 +123,10 @@ export default function SettingsPage() {
                                     </label>
                                     <input
                                         type="text"
-                                        name="meta-title"
                                         id="meta-title"
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                        defaultValue="Mistri&Co - Consultora Especializada"
+                                        value={settings.metaTitle}
+                                        onChange={(e) => setSettings({ ...settings, metaTitle: e.target.value })}
                                     />
                                 </div>
 
@@ -96,10 +136,10 @@ export default function SettingsPage() {
                                     </label>
                                     <input
                                         type="text"
-                                        name="meta-keywords"
                                         id="meta-keywords"
                                         className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                        defaultValue="consultora, transformación, liderazgo"
+                                        value={settings.metaKeywords}
+                                        onChange={(e) => setSettings({ ...settings, metaKeywords: e.target.value })}
                                     />
                                 </div>
                             </div>
@@ -107,6 +147,7 @@ export default function SettingsPage() {
                             <div className="mt-6">
                                 <button
                                     type="button"
+                                    onClick={handleSave}
                                     className="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
                                 >
                                     <Save className="mr-2 h-4 w-4" />

@@ -27,38 +27,7 @@ export default function Home() {
 
   const services = t.titles.servicios.items;
 
-  const clients = [
-    {
-      name: "Muñoz Marchesí",
-      logo: "/images/clients/logo-munoz-marchesi.png",
-      alt: "Logo de Muñoz Marchesí"
-    },
-    {
-      name: "Dala Computación",
-      logo: "/images/clients/logo-dala-computacion.png",
-      alt: "Logo de Dala Computación"
-    },
-    {
-      name: "Emprendé Seguro",
-      logo: "/images/clients/logo-emprendé-seguro.png",
-      alt: "Logo de Emprendé Seguro"
-    },
-    {
-      name: "Espacio Wilde",
-      logo: "/images/clients/logo-espacio-wilde.jpg",
-      alt: "Logo de Espacio Wilde"
-    },
-    {
-      name: "Romero Nagy",
-      logo: "/images/clients/logo-romero_nagy.png",
-      alt: "Logo de Romero Nagy"
-    },
-    {
-      name: "SBR Repuestos",
-      logo: "/images/clients/logo-SBR-repuestos.jpg",
-      alt: "Logo de SBR Repuestos"
-    },
-  ];
+  const clients = t.shared.clients.items;
 
   const academyFeatures = t.academia.features;
 

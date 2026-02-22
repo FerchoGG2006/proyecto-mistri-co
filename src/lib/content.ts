@@ -232,10 +232,15 @@ export type TranslationType = {
     blog: string;
     cta: string;
   };
-  shared: {
+    shared: {
     clients: {
       title: string;
       subtitle: string;
+      items: Array<{
+        name: string;
+        logo: string;
+        alt: string;
+      }>;
     };
     home: {
       heroSubtitle: string;
@@ -246,6 +251,19 @@ export type TranslationType = {
       ourServices: string;
       contact: string;
       rights: string;
+    };
+  };
+  admin: {
+    blog: {
+      posts: Array<{
+        id: number;
+        title: string;
+        author: string;
+        date: string;
+        status: string;
+        views: number;
+        content?: string;
+      }>;
     };
   };
 };
@@ -484,7 +502,15 @@ export const contentES: TranslationType = {
   shared: {
     clients: {
       title: "Organizaciones que Confían en Nosotros",
-      subtitle: "Hemos trabajado con empresas de diversos sectores, ayudándolas a alcanzar sus objetivos de transformación organizacional."
+      subtitle: "Hemos trabajado con empresas de diversos sectores, ayudándolas a alcanzar sus objetivos de transformación organizacional.",
+      items: [
+        { name: "Muñoz Marchesí", logo: "/images/clients/logo-munoz-marchesi.png", alt: "Logo de Muñoz Marchesí" },
+        { name: "Dala Computación", logo: "/images/clients/logo-dala-computacion.png", alt: "Logo de Dala Computación" },
+        { name: "Emprendé Seguro", logo: "/images/clients/logo-emprendé-seguro.png", alt: "Logo de Emprendé Seguro" },
+        { name: "Espacio Wilde", logo: "/images/clients/logo-espacio-wilde.jpg", alt: "Logo de Espacio Wilde" },
+        { name: "Romero Nagy", logo: "/images/clients/logo-romero_nagy.png", alt: "Logo de Romero Nagy" },
+        { name: "SBR Repuestos", logo: "/images/clients/logo-SBR-repuestos.jpg", alt: "Logo de SBR Repuestos" },
+      ]
     },
     home: {
       heroSubtitle: "Desarrollo de equipos y formación de líderes"
@@ -495,6 +521,15 @@ export const contentES: TranslationType = {
       ourServices: "Nuestros Servicios",
       contact: "Contacto",
       rights: "Todos los derechos reservados."
+    }
+  },
+  admin: {
+    blog: {
+      posts: [
+        { id: 1, title: 'Transformación Digital en 2024', author: 'Admin', date: '2024-01-20', status: 'Publicado', views: 245 },
+        { id: 2, title: 'Liderazgo en Tiempos de Cambio', author: 'Admin', date: '2024-01-18', status: 'Publicado', views: 189 },
+        { id: 3, title: 'Desarrollo de Equipos Efectivos', author: 'Admin', date: '2024-01-15', status: 'Borrador', views: 0 },
+      ]
     }
   }
 };
@@ -733,7 +768,15 @@ export const contentPT: TranslationType = {
   shared: {
     clients: {
       title: "Organizações que Confiam em Nós",
-      subtitle: "Trabalhamos com empresas de diversos setores, ajudando-as a alcançar seus objetivos de transformação organizacional."
+      subtitle: "Trabalhamos com empresas de diversos setores, ajudando-as a alcançar seus objetivos de transformação organizacional.",
+      items: [
+        { name: "Muñoz Marchesí", logo: "/images/clients/logo-munoz-marchesi.png", alt: "Logo de Muñoz Marchesí" },
+        { name: "Dala Computación", logo: "/images/clients/logo-dala-computacion.png", alt: "Logo de Dala Computación" },
+        { name: "Emprendé Seguro", logo: "/images/clients/logo-emprendé-seguro.png", alt: "Logo de Emprendé Seguro" },
+        { name: "Espacio Wilde", logo: "/images/clients/logo-espacio-wilde.jpg", alt: "Logo de Espacio Wilde" },
+        { name: "Romero Nagy", logo: "/images/clients/logo-romero_nagy.png", alt: "Logo de Romero Nagy" },
+        { name: "SBR Repuestos", logo: "/images/clients/logo-SBR-repuestos.jpg", alt: "Logo de SBR Repuestos" },
+      ]
     },
     home: {
       heroSubtitle: "Desenvolvimento de equipes e formação de líderes"
@@ -744,6 +787,15 @@ export const contentPT: TranslationType = {
       ourServices: "Nossos Serviços",
       contact: "Contato",
       rights: "Todos os direitos reservados."
+    }
+  },
+  admin: {
+    blog: {
+      posts: [
+        { id: 1, title: 'Transformação Digital em 2024', author: 'Admin', date: '2024-01-20', status: 'Publicado', views: 245 },
+        { id: 2, title: 'Liderança em Tempos de Mudança', author: 'Admin', date: '2024-01-18', status: 'Publicado', views: 189 },
+        { id: 3, title: 'Desenvolvimento de Equipes Eficazes', author: 'Admin', date: '2024-01-15', status: 'Rascunho', views: 0 },
+      ]
     }
   }
 };
