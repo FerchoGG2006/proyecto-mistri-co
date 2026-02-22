@@ -1,8 +1,11 @@
 import { PrismaClient } from '@prisma/client';
+import { Pool, neonConfig } from '@neondatabase/serverless';
+import { PrismaNeon } from '@prisma/adapter-neon';
+import ws from 'ws';
 import 'dotenv/config';
 
-// Standard Prisma Client configuration for Node.js
-// We avoid the Neon serverless adapter locally to circumvent driver-level hangs
+// Requerido para @neondatabase/serverless en Node.js si se usan WebSockets
+neonConfig.webSocketConstructor = ws;
 
 const globalForPrisma = globalThis as unknown as {
     prisma: PrismaClient | undefined;
@@ -10,9 +13,15 @@ const globalForPrisma = globalThis as unknown as {
 
 const databaseUrl = process.env.DATABASE_URL;
 
+if (!databaseUrl) {
+    throw new Error('DATABASE_URL is not defined');
+}
+
+// Configuración de Neon para Prisma
+const adapter = new PrismaNeon({ connectionString: databaseUrl });
+
 export const prisma = globalForPrisma.prisma ?? new PrismaClient({
-    // Prisma 7 handles the connection string automatically if defined in .env
-    // but we can pass it explicitly for extra certainty
+    adapter,
     log: ['query', 'info', 'warn', 'error'],
 });
 

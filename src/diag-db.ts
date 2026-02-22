@@ -1,17 +1,23 @@
 import { PrismaClient } from '@prisma/client';
+import { Pool, neonConfig } from '@neondatabase/serverless';
+import { PrismaNeon } from '@prisma/adapter-neon';
+import ws from 'ws';
 import 'dotenv/config';
 
+neonConfig.webSocketConstructor = ws;
+
 async function main() {
-    console.log('--- Explicit Diagnostic (Native Driver) ---');
+    console.log('--- Explicit Diagnostic (Neon Adapter) ---');
     const url = process.env.DATABASE_URL;
-    console.log('DATABASE_URL length:', url?.length);
 
     if (!url) {
         console.error('ERROR: DATABASE_URL is not defined');
         return;
     }
 
+    const adapter = new PrismaNeon({ connectionString: url });
     const prisma = new PrismaClient({
+        adapter,
         log: ['query', 'info', 'warn', 'error']
     });
 
