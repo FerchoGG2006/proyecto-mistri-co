@@ -1,14 +1,11 @@
 import { PrismaClient } from '@prisma/client';
-import { Pool, neonConfig } from '@neondatabase/serverless';
-import { PrismaNeon } from '@prisma/adapter-neon';
-import ws from 'ws';
-import 'dotenv/config';
+import { PrismaNeonHttp } from '@prisma/adapter-neon';
 
-// Requerido para @neondatabase/serverless en Node.js si se usan WebSockets
-neonConfig.webSocketConstructor = ws;
+// NOTE: We avoid 'dotenv/config' here as Next.js handles environment variables natively.
 
 const globalForPrisma = globalThis as unknown as {
-    prisma: PrismaClient | undefined;
+    __prisma_stable: PrismaClient | undefined;
+    __adapter_stable: PrismaNeonHttp | undefined;
 };
 
 const databaseUrl = process.env.DATABASE_URL;
@@ -17,14 +14,19 @@ if (!databaseUrl) {
     throw new Error('DATABASE_URL is not defined');
 }
 
-// Configuración de Neon para Prisma
-const adapter = new PrismaNeon({ connectionString: databaseUrl });
+// Reutilizar o crear el Adapter HTTP
+if (!globalForPrisma.__adapter_stable) {
+    globalForPrisma.__adapter_stable = new PrismaNeonHttp(databaseUrl, {});
+}
+const adapter = globalForPrisma.__adapter_stable;
 
-export const prisma = globalForPrisma.prisma ?? new PrismaClient({
-    adapter,
-    log: ['query', 'info', 'warn', 'error'],
-});
-
-if (process.env.NODE_ENV !== 'production') globalForPrisma.prisma = prisma;
+// Reutilizar o crear la instancia de Prisma
+if (!globalForPrisma.__prisma_stable) {
+    globalForPrisma.__prisma_stable = new PrismaClient({
+        adapter,
+        log: ['query', 'info', 'warn', 'error'],
+    });
+}
+export const prisma = globalForPrisma.__prisma_stable;
 
 export default prisma;

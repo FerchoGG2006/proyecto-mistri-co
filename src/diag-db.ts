@@ -1,13 +1,9 @@
 import { PrismaClient } from '@prisma/client';
-import { Pool, neonConfig } from '@neondatabase/serverless';
-import { PrismaNeon } from '@prisma/adapter-neon';
-import ws from 'ws';
+import { PrismaNeonHttp } from '@prisma/adapter-neon';
 import 'dotenv/config';
 
-neonConfig.webSocketConstructor = ws;
-
 async function main() {
-    console.log('--- Explicit Diagnostic (Neon Adapter) ---');
+    console.log('--- Explicit Diagnostic (Neon HTTP Adapter) ---');
     const url = process.env.DATABASE_URL;
 
     if (!url) {
@@ -15,7 +11,7 @@ async function main() {
         return;
     }
 
-    const adapter = new PrismaNeon({ connectionString: url });
+    const adapter = new PrismaNeonHttp(url, {});
     const prisma = new PrismaClient({
         adapter,
         log: ['query', 'info', 'warn', 'error']
@@ -25,10 +21,10 @@ async function main() {
         console.log('Attempting to count videos...');
         const start = Date.now();
         const count = await prisma.video.count();
-        console.log('SUCCESS: Prisma connected natively. Video count:', count);
+        console.log('SUCCESS: Prisma connected with HTTP Adapter. Video count:', count);
         console.log(`Time taken: ${Date.now() - start}ms`);
     } catch (err: any) {
-        console.error('FAILURE: Prisma native error:', err.message);
+        console.error('FAILURE: Prisma error:', err.message);
         if (err.stack) console.error(err.stack);
     } finally {
         await prisma.$disconnect();
