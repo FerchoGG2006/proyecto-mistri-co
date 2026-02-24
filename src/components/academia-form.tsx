@@ -44,10 +44,10 @@ export function AcademiaForm({ programa }: AcademiaFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    
+
     // Simular envío del formulario
     toast.success('¡Gracias por tu interés! Te contactaremos pronto.')
-    
+
     // Resetear formulario
     setFormData({
       nombre: '',
@@ -83,7 +83,7 @@ export function AcademiaForm({ programa }: AcademiaFormProps) {
             </Badge>
           )}
         </CardHeader>
-        
+
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid md:grid-cols-2 gap-4">
@@ -100,7 +100,7 @@ export function AcademiaForm({ programa }: AcademiaFormProps) {
                   required
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 flex items-center">
                   <Mail className="h-4 w-4 mr-2" />
@@ -126,10 +126,10 @@ export function AcademiaForm({ programa }: AcademiaFormProps) {
                   type="tel"
                   value={formData.telefono}
                   onChange={(e) => handleChange('telefono', e.target.value)}
-                  placeholder="+54 9 11 1234-5678"
+                  placeholder="+54 9 362 464-9700"
                 />
               </div>
-              
+
               <div className="space-y-2">
                 <label className="text-sm font-medium text-gray-700 flex items-center">
                   <Building className="h-4 w-4 mr-2" />

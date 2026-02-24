@@ -23,7 +23,7 @@ export default function ContactPage() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate required fields
     if (!formData.name || !formData.email || !formData.message) {
       toast.error('Por favor completa todos los campos requeridos');
@@ -32,7 +32,7 @@ export default function ContactPage() {
 
     // Simulate form submission
     toast.success('¡Mensaje enviado exitosamente! Te contactaremos pronto.');
-    
+
     // Reset form
     setFormData({
       name: '',
@@ -104,7 +104,7 @@ export default function ContactPage() {
             <span className="block text-lime-400">Próximo Proyecto</span>
           </h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            Estamos aquí para ayudarte a hacer realidad tus ideas. Contáctanos y descubre 
+            Estamos aquí para ayudarte a hacer realidad tus ideas. Contáctanos y descubre
             cómo podemos transformar tu visión en soluciones tecnológicas innovadoras.
           </p>
         </div>
@@ -186,7 +186,7 @@ export default function ContactPage() {
                         id="phone"
                         value={formData.phone}
                         onChange={(e) => handleInputChange('phone', e.target.value)}
-                        placeholder="(123) 456-7890"
+                        placeholder="+54 9 362 464-9700"
                         required
                       />
                     </div>
@@ -282,7 +282,7 @@ export default function ContactPage() {
                   </div>
                   <div className="mt-4 p-3 bg-blue-50 rounded-lg">
                     <p className="text-sm text-blue-800">
-                      <strong>Emergencias:</strong> Para soporte urgente fuera de horario, 
+                      <strong>Emergencias:</strong> Para soporte urgente fuera de horario,
                       contáctanos por email y responderemos lo antes posible.
                     </p>
                   </div>
@@ -299,20 +299,22 @@ export default function ContactPage() {
                 </CardHeader>
                 <CardContent>
                   <div className="space-y-4">
-                    <Button 
+                    <Button
                       className="w-full bg-lime-400 text-gray-900 hover:bg-lime-300"
                       onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
                     >
                       <MessageSquare className="h-4 w-4 mr-2" />
                       WhatsApp Directo
                     </Button>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       className="w-full border-white text-white hover:bg-white hover:text-gray-900"
-                      onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
+                      asChild
                     >
-                      <Phone className="h-4 w-4 mr-2" />
-                      Llamar Ahora
+                      <a href="tel:+5493624649700">
+                        <Phone className="h-4 w-4 mr-2" />
+                        Llamar Ahora
+                      </a>
                     </Button>
                   </div>
                 </CardContent>
@@ -344,7 +346,7 @@ export default function ContactPage() {
               Respuestas a tus Dudas Más Comunes
             </h2>
           </div>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             <div>
               <h3 className="text-lg font-semibold text-gray-900 mb-2">¿Cuánto tiempo toma un proyecto típico?</h3>

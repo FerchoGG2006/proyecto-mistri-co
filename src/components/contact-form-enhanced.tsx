@@ -122,7 +122,7 @@ export default function ContactFormEnhanced() {
                 <Phone className="h-5 w-5 text-primary mt-1" />
                 <div>
                   <p className="font-medium">Teléfono</p>
-                  <p className="text-sm text-muted-foreground">+54 11 1234-5678</p>
+                  <p className="text-sm text-muted-foreground">+54 9 362 464-9700</p>
                 </div>
               </div>
               <div className="flex items-start gap-3">
@@ -210,7 +210,7 @@ export default function ContactFormEnhanced() {
                     type="tel"
                     value={formData.phone}
                     onChange={handleInputChange}
-                    placeholder="+54 11 1234-5678"
+                    placeholder="+54 9 362 464-9700"
                   />
                 </div>
                 <div>

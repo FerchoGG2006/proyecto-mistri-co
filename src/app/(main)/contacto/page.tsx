@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { AcademiaForm } from '@/components/academia-form'
 import ContactFormEnhanced from '@/components/contact-form-enhanced'
-import { 
+import {
   Mail,
   Phone,
   MapPin,
@@ -87,17 +87,17 @@ export default function ContactoPage() {
       <section className="bg-gradient-to-br from-mistri-blue-500 to-mistri-blue-600 text-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-          <Badge className="mb-4 bg-white/20 text-white border-white/30">
+            <Badge className="mb-4 bg-white/20 text-white border-white/30">
               Contacto
-          </Badge>
+            </Badge>
             <h1 className="text-4xl lg:text-6xl font-bold mb-6 leading-tight">
               ¿Listo para Transformar
               <span className="block text-secondary">
                 tu Organización?
               </span>
-          </h1>
+            </h1>
             <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-              Agenda una consulta gratuita y descubre cómo podemos ayudarte a 
+              Agenda una consulta gratuita y descubre cómo podemos ayudarte a
               desarrollar líderes efectivos, optimizar procesos y alcanzar tus objetivos estratégicos.
             </p>
           </div>
@@ -111,28 +111,28 @@ export default function ContactoPage() {
             {contactInfo.map((info, index) => {
               const IconComponent = Icons[info.icon as keyof typeof Icons] as LucideIcon
               return (
-              <Card key={index} className="text-center hover:shadow-lg transition-shadow">
-                <CardContent className="p-6">
-                  <div className="w-12 h-12 bg-mistri-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
-                    <IconComponent className="h-6 w-6 text-mistri-blue-600" />
+                <Card key={index} className="text-center hover:shadow-lg transition-shadow">
+                  <CardContent className="p-6">
+                    <div className="w-12 h-12 bg-mistri-blue-100 rounded-lg flex items-center justify-center mx-auto mb-4">
+                      <IconComponent className="h-6 w-6 text-mistri-blue-600" />
                     </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">{info.title}</h3>
-                  <p className="text-sm text-gray-600 mb-3">{info.description}</p>
-                  <p className="text-gray-900 font-medium mb-4">{info.value}</p>
-                  <Button 
-                    variant="outline" 
-                    size="sm" 
-                    className="w-full"
-                    onClick={() => {
-                      if (info.title === 'Teléfono' || info.title === 'Agenda una reunión') {
-                        window.open('https://wa.me/5493624649700', '_blank')
-                      } else if (info.title === 'Email') {
-                        window.open('mailto:mistriconsultora@gmail.com', '_blank')
-                      }
-                    }}
-                  >
-                    {info.action}
-                  </Button>
+                    <h3 className="font-semibold text-gray-900 mb-2">{info.title}</h3>
+                    <p className="text-sm text-gray-600 mb-3">{info.description}</p>
+                    <p className="text-gray-900 font-medium mb-4">{info.value}</p>
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => {
+                        if (info.title === 'Teléfono' || info.title === 'Agenda una reunión') {
+                          window.location.href = 'tel:+5493624649700'
+                        } else if (info.title === 'Email') {
+                          window.open('mailto:mistriconsultora@gmail.com', '_blank')
+                        }
+                      }}
+                    >
+                      {info.action}
+                    </Button>
                   </CardContent>
                 </Card>
               )
@@ -146,7 +146,7 @@ export default function ContactoPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid lg:grid-cols-2 gap-12">
             {/* Contact Form */}
-                    <div>
+            <div>
               {isAcademiaForm ? (
                 <AcademiaForm programa="" />
               ) : (
@@ -163,7 +163,7 @@ export default function ContactoPage() {
                   <ContactFormEnhanced />
                 </>
               )}
-                    </div>
+            </div>
 
             {/* Additional Info */}
             <div className="space-y-8">
@@ -190,7 +190,7 @@ export default function ContactoPage() {
                         Profesionales especializados en cada área de tu organización.
                       </p>
                     </div>
-                    </div>
+                  </div>
                   <div className="flex items-start space-x-3">
                     <CheckCircle className="h-6 w-6 text-secondary mt-0.5 flex-shrink-0" />
                     <div>
@@ -208,12 +208,12 @@ export default function ContactoPage() {
                         Soporte permanente para el crecimiento sostenible de tu organización.
                       </p>
                     </div>
-                    </div>
-                    </div>
                   </div>
+                </div>
+              </div>
 
               {/* Services Overview */}
-                  <div>
+              <div>
                 <h3 className="text-2xl font-bold text-dark mb-6">
                   Nuestros Servicios
                 </h3>
@@ -221,19 +221,19 @@ export default function ContactoPage() {
                   {services.map((service, index) => {
                     const IconComponent = Icons[service.icon as keyof typeof Icons] as LucideIcon
                     return (
-                    <Card key={index} className="hover:shadow-md transition-shadow">
-                      <CardContent className="p-4">
-                        <div className="flex items-start space-x-3">
-                          <div className="w-8 h-8 bg-mistri-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                            <IconComponent className="h-4 w-4 text-mistri-blue-600" />
-                  </div>
-                          <div>
-                            <h4 className="font-semibold text-gray-900 text-sm">{service.title}</h4>
-                            <p className="text-xs text-gray-600">{service.description}</p>
-                  </div>
-                  </div>
-                </CardContent>
-              </Card>
+                      <Card key={index} className="hover:shadow-md transition-shadow">
+                        <CardContent className="p-4">
+                          <div className="flex items-start space-x-3">
+                            <div className="w-8 h-8 bg-mistri-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                              <IconComponent className="h-4 w-4 text-mistri-blue-600" />
+                            </div>
+                            <div>
+                              <h4 className="font-semibold text-gray-900 text-sm">{service.title}</h4>
+                              <p className="text-xs text-gray-600">{service.description}</p>
+                            </div>
+                          </div>
+                        </CardContent>
+                      </Card>
                     )
                   })}
                 </div>
@@ -245,14 +245,14 @@ export default function ContactoPage() {
                   <div className="flex items-center space-x-3 mb-4">
                     <div className="w-10 h-10 bg-primary/10 rounded-lg flex items-center justify-center">
                       <Clock className="h-5 w-5 text-primary" />
-                  </div>
+                    </div>
                     <div>
                       <h4 className="font-semibold text-dark">Respuesta Rápida</h4>
                       <p className="text-sm text-medium-gray">Te contactamos en menos de 24 horas</p>
                     </div>
                   </div>
                   <p className="text-sm text-medium-gray">
-                    Nuestro equipo revisa cada consulta personalmente y te brinda 
+                    Nuestro equipo revisa cada consulta personalmente y te brinda
                     una respuesta detallada con las mejores opciones para tu organización.
                   </p>
                 </CardContent>
@@ -267,23 +267,25 @@ export default function ContactoPage() {
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl lg:text-4xl font-bold mb-4">
             ¿Prefieres una Consulta Inmediata?
-            </h2>
+          </h2>
           <p className="text-xl text-gray-600 mb-8">
             Llámanos ahora y habla directamente con uno de nuestros especialistas
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               className="w-full sm:w-auto"
-              onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
+              asChild
             >
-              <Phone className="mr-2 h-4 w-4" />
-              Llamar Ahora
+              <a href="tel:+5493624649700">
+                <Phone className="mr-2 h-4 w-4" />
+                Llamar Ahora
+              </a>
             </Button>
-            <Button 
-              variant="outline" 
-              size="sm" 
+            <Button
+              variant="outline"
+              size="sm"
               className="w-full sm:w-auto"
               onClick={() => window.open('https://wa.me/5493624649700', '_blank')}
             >

@@ -35,14 +35,14 @@ export default function CareersPage() {
 
   const handleApplicationSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!applicationData.name || !applicationData.email || !applicationData.position) {
       toast.error('Por favor completa todos los campos requeridos');
       return;
     }
 
     toast.success('¡Aplicación enviada exitosamente! Te contactaremos pronto.');
-    
+
     // Reset form
     setApplicationData({
       name: '',
@@ -79,7 +79,7 @@ export default function CareersPage() {
             <span className="block text-lime-400">con Nosotros</span>
           </h1>
           <p className="text-xl text-blue-100 max-w-3xl mx-auto">
-            Únete a nuestro equipo de capacitadores expertos y ayuda a transformar el retail. 
+            Únete a nuestro equipo de capacitadores expertos y ayuda a transformar el retail.
             Comparte tu conocimiento y forma parte de la revolución en la industria.
           </p>
         </div>
@@ -135,15 +135,15 @@ export default function CareersPage() {
                     <Input
                       value={applicationData.phone}
                       onChange={(e) => setApplicationData(prev => ({ ...prev, phone: e.target.value }))}
-                      placeholder="+507 0000-0000"
+                      placeholder="+54 9 362 464-9700"
                     />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Posición de Interés *
                     </label>
-                    <Select 
-                      value={selectedPosition || applicationData.position} 
+                    <Select
+                      value={selectedPosition || applicationData.position}
                       onValueChange={(value) => {
                         setApplicationData(prev => ({ ...prev, position: value }));
                         setSelectedPosition(value);
@@ -168,8 +168,8 @@ export default function CareersPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Años de Experiencia
                     </label>
-                    <Select 
-                      value={applicationData.experience} 
+                    <Select
+                      value={applicationData.experience}
                       onValueChange={(value) => setApplicationData(prev => ({ ...prev, experience: value }))}
                     >
                       <SelectTrigger>
@@ -188,8 +188,8 @@ export default function CareersPage() {
                     <label className="block text-sm font-medium text-gray-700 mb-2">
                       Disponibilidad
                     </label>
-                    <Select 
-                      value={applicationData.availability} 
+                    <Select
+                      value={applicationData.availability}
                       onValueChange={(value) => setApplicationData(prev => ({ ...prev, availability: value }))}
                     >
                       <SelectTrigger>
