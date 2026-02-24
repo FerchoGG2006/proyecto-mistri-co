@@ -10,11 +10,12 @@ export async function getPosts() {
     });
 }
 
-export async function createPost(formData: { title: string; status: string }) {
+export async function createPost(formData: { title: string; status: string; content?: string }) {
     const post = await prisma.post.create({
         data: {
             title: formData.title,
             status: formData.status,
+            content: formData.content,
             author: 'Admin',
             date: new Date().toISOString().split('T')[0],
             views: 0,
@@ -24,12 +25,13 @@ export async function createPost(formData: { title: string; status: string }) {
     return post;
 }
 
-export async function updatePost(id: number, formData: { title: string; status: string }) {
+export async function updatePost(id: number, formData: { title: string; status: string; content?: string }) {
     const post = await prisma.post.update({
         where: { id },
         data: {
             title: formData.title,
             status: formData.status,
+            content: formData.content,
         },
     });
     revalidatePath('/admin/blog');

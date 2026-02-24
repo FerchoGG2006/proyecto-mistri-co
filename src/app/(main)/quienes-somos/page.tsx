@@ -1,30 +1,28 @@
-'use client';
-
 import { Card, CardContent } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
 import { CTASection } from '@/components/cta-section'
 import { SectionHeader } from '@/components/section-header'
 import { AnimatedSection, StaggeredAnimation } from '@/components/ui/animated-section'
 import Link from 'next/link'
 import {
   Users,
-  Target,
-  TrendingUp,
-  Heart,
   ArrowRight,
   CheckCircle,
-  Calendar,
   LucideIcon
 } from 'lucide-react'
 import * as Icons from 'lucide-react'
-import { useLanguage } from '@/hooks/use-language'
+import { cookies } from 'next/headers'
+import { contentES, contentPT } from '@/lib/content'
 
-export default function QuienesSomosPage() {
-  const { t } = useLanguage()
+export const revalidate = 3600; // ISR cada hora
+
+export default async function QuienesSomosPage() {
+  const cookieStore = await cookies();
+  const language = cookieStore.get('preferredLanguage')?.value || 'ES';
+  const t = language === 'ES' ? contentES : contentPT;
+
   const teamAreas = t.titles.quienesSomos.teamAreas
   const values = t.titles.quienesSomos.values
-
 
   return (
     <div className="flex flex-col min-h-screen">

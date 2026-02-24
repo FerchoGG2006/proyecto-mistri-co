@@ -4,7 +4,7 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { contentES, contentPT, TranslationType } from '@/lib/content';
 
-type Language = 'ES' | 'PT';
+export type Language = 'ES' | 'PT';
 
 interface LanguageContextType {
     language: Language;
@@ -14,10 +14,10 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
-export function LanguageProvider({ children }: { children: React.ReactNode }) {
-    const [language, setLanguageState] = useState<Language>('ES');
+export function LanguageProvider({ children, initialLanguage = 'ES' }: { children: React.ReactNode, initialLanguage?: Language }) {
+    const [language, setLanguageState] = useState<Language>(initialLanguage);
 
-    // Cargar preferencia guardada
+    // Sincronizar con localStorage y cookies en el cliente
     useEffect(() => {
         const savedLang = localStorage.getItem('preferredLanguage') as Language;
         if (savedLang && (savedLang === 'ES' || savedLang === 'PT')) {
@@ -28,6 +28,10 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
     const setLanguage = (lang: Language) => {
         setLanguageState(lang);
         localStorage.setItem('preferredLanguage', lang);
+        // Establecer cookie para el servidor
+        document.cookie = `preferredLanguage=${lang}; path=/; max-age=31536000; samesite=lax`;
+        // Recargar para que el servidor tome el cambio si es necesario, 
+        // aunque idealmente Next.js maneja la navegación sin recarga completa.
     };
 
     const t = language === 'ES' ? contentES : contentPT;

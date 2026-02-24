@@ -1,5 +1,3 @@
-'use client';
-
 import { Hero } from "@/components/hero";
 import { ServiceCard } from "@/components/service-card";
 import { ClientsSection } from "@/components/clients-section";
@@ -9,26 +7,26 @@ import { SectionHeader } from "@/components/section-header";
 import { AnimatedSection, StaggeredAnimation } from "@/components/ui/animated-section";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
 import {
   ArrowRight,
-  CheckCircle,
   Star,
   LucideIcon,
   BookOpen,
-  Calendar,
 } from "lucide-react";
 import * as Icons from "lucide-react";
 import Link from "next/link";
-import { useLanguage } from "@/hooks/use-language";
+import { cookies } from "next/headers";
+import { contentES, contentPT } from "@/lib/content";
 
-export default function Home() {
-  const { t } = useLanguage();
+export const revalidate = 3600; // ISR cada hora
+
+export default async function Home() {
+  const cookieStore = await cookies();
+  const language = cookieStore.get('preferredLanguage')?.value || 'ES';
+  const t = language === 'ES' ? contentES : contentPT;
 
   const services = t.titles.servicios.items;
-
   const clients = t.shared.clients.items;
-
   const academyFeatures = t.academia.features;
 
   return (

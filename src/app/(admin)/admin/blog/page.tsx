@@ -13,7 +13,9 @@ export default function BlogPage() {
     const [loading, setLoading] = useState(true);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [editingPost, setEditingPost] = useState<any>(null);
-    const [formData, setFormData] = useState({ title: '', status: 'Publicado' });
+    const [formData, setFormData] = useState({ title: '', status: 'Publicado', content: '' });
+    const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+    const [viewingPost, setViewingPost] = useState<any>(null);
 
     useEffect(() => {
         refreshPosts();
@@ -33,12 +35,17 @@ export default function BlogPage() {
     const handleOpenModal = (post: any = null) => {
         if (post) {
             setEditingPost(post);
-            setFormData({ title: post.title, status: post.status });
+            setFormData({ title: post.title, status: post.status, content: post.content || '' });
         } else {
             setEditingPost(null);
-            setFormData({ title: '', status: 'Publicado' });
+            setFormData({ title: '', status: 'Publicado', content: '' });
         }
         setIsModalOpen(true);
+    };
+
+    const handleViewPost = (post: any) => {
+        setViewingPost(post);
+        setIsViewModalOpen(true);
     };
 
     const handleSave = async (e: React.FormEvent) => {
@@ -163,7 +170,11 @@ export default function BlogPage() {
                                                     <td className="whitespace-nowrap px-3 py-4 text-sm text-gray-500">{post.views}</td>
                                                     <td className="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                                                         <div className="flex items-center justify-end gap-2">
-                                                            <button className="text-blue-600 hover:text-blue-900">
+                                                            <button
+                                                                onClick={() => handleViewPost(post)}
+                                                                className="text-blue-600 hover:text-blue-900"
+                                                                title="Ver contenido"
+                                                            >
                                                                 <Eye className="h-4 w-4" />
                                                             </button>
                                                             <button
@@ -235,6 +246,16 @@ export default function BlogPage() {
                                                 <option value="Borrador">Borrador</option>
                                             </select>
                                         </div>
+                                        <div>
+                                            <label className="block text-sm font-medium text-gray-700">Contenido</label>
+                                            <textarea
+                                                rows={8}
+                                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
+                                                value={formData.content}
+                                                onChange={(e) => setFormData({ ...formData, content: e.target.value })}
+                                                placeholder="Escribe el contenido del artículo aquí..."
+                                            />
+                                        </div>
                                         <div className="mt-5 sm:mt-6 sm:flex sm:flex-row-reverse gap-3">
                                             <button
                                                 type="submit"
@@ -251,6 +272,53 @@ export default function BlogPage() {
                                             </button>
                                         </div>
                                     </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+            {/* View Modal */}
+            {isViewModalOpen && viewingPost && (
+                <div className="fixed inset-0 z-50 overflow-y-auto">
+                    <div className="flex items-center justify-center min-h-screen px-4 pt-4 pb-20 text-center sm:block sm:p-0">
+                        <div className="fixed inset-0 transition-opacity" onClick={() => setIsViewModalOpen(false)}>
+                            <div className="absolute inset-0 bg-gray-500 opacity-75"></div>
+                        </div>
+                        <span className="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+                        <div className="inline-block align-bottom bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-3xl sm:w-full sm:p-6">
+                            <div className="absolute top-0 right-0 pt-4 pr-4">
+                                <button
+                                    onClick={() => setIsViewModalOpen(false)}
+                                    className="bg-white rounded-md text-gray-400 hover:text-gray-500 focus:outline-none"
+                                >
+                                    <X className="h-6 w-6" />
+                                </button>
+                            </div>
+                            <div className="sm:flex sm:items-start">
+                                <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                    <h3 className="text-2xl leading-6 font-bold text-gray-900 mb-2">
+                                        {viewingPost.title}
+                                    </h3>
+                                    <div className="flex gap-4 text-sm text-gray-500 mb-6">
+                                        <span>Por: {viewingPost.author}</span>
+                                        <span>Fecha: {viewingPost.date}</span>
+                                        <span className={`px-2 rounded-full text-xs font-semibold ${viewingPost.status === 'Publicado' ? 'bg-green-100 text-green-800' : 'bg-yellow-100 text-yellow-800'}`}>
+                                            {viewingPost.status}
+                                        </span>
+                                    </div>
+                                    <div className="prose max-w-none mt-4 text-gray-700 whitespace-pre-wrap min-h-[200px] border-t pt-4">
+                                        {viewingPost.content || 'Sin contenido disponible.'}
+                                    </div>
+                                    <div className="mt-8 sm:flex sm:flex-row-reverse">
+                                        <button
+                                            type="button"
+                                            onClick={() => setIsViewModalOpen(false)}
+                                            className="w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 sm:w-auto sm:text-sm"
+                                        >
+                                            Cerrar
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>

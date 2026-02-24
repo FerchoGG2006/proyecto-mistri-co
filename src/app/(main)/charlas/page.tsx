@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
-import { 
+import {
   Calendar,
   ArrowRight,
   Clock,
@@ -13,128 +13,36 @@ import {
   Download,
   Star,
   Users,
-  Target,
-  TrendingUp,
-  Lightbulb,
-  Award,
-  BookOpen,
-  BarChart3,
-  Shield,
-  Zap,
-  Globe,
-  Heart,
-  Brain,
-  Briefcase,
-  GraduationCap
+  Award
 } from 'lucide-react'
 import Link from 'next/link'
+import prisma from '@/lib/db'
+import { cookies } from 'next/headers'
+import { contentES, contentPT } from '@/lib/content'
 
-export default function CharlasPage() {
-  const upcomingTalks = [
-    {
-      id: 1,
-      title: "El Futuro del Trabajo: Tendencias 2024",
-      speaker: "Dr. María González",
-      date: "2024-02-15",
-      time: "18:00",
-      location: "Auditorio Principal - Buenos Aires",
-      description: "Exploramos las tendencias emergentes en el mundo laboral y cómo prepararse para los cambios venideros.",
-      topics: ["Trabajo remoto", "IA y automatización", "Nuevas competencias", "Cultura organizacional"],
-      duration: "60 minutos",
-      capacity: 150,
-      registered: 89,
-      price: "Gratuito"
-    },
-    {
-      id: 2,
-      title: "Liderazgo en la Era Digital",
-      speaker: "Carlos Mendoza",
-      date: "2024-02-22",
-      time: "19:00",
-      location: "Centro de Convenciones - Córdoba",
-      description: "Cómo adaptar el liderazgo tradicional a los desafíos del mundo digital y la transformación tecnológica.",
-      topics: ["Liderazgo digital", "Gestión de equipos remotos", "Transformación digital", "Nuevas competencias"],
-      duration: "75 minutos",
-      capacity: 200,
-      registered: 156,
-      price: "Gratuito"
-    },
-    {
-      id: 3,
-      title: "Innovación y Creatividad Empresarial",
-      speaker: "Ana Rodríguez",
-      date: "2024-03-01",
-      time: "18:30",
-      location: "Hotel Sheraton - Rosario",
-      description: "Estrategias para fomentar la innovación y desarrollar una cultura creativa en las organizaciones.",
-      topics: ["Cultura de innovación", "Procesos creativos", "Design thinking", "Implementación"],
-      duration: "90 minutos",
-      capacity: 120,
-      registered: 78,
-      price: "Gratuito"
-    }
-  ];
+export const revalidate = 60; // ISR para carga instantánea
 
-  const pastTalks = [
-    {
-      id: 4,
-      title: "Transformación Digital: Casos de Éxito",
-      speaker: "Roberto Silva",
-      date: "2024-01-20",
-      description: "Análisis de casos reales de transformación digital en empresas argentinas.",
-      duration: "60 minutos",
-      attendees: 180,
-      rating: 4.8,
-      videoUrl: "https://youtube.com/watch?v=example1",
-      slidesUrl: "/slides/transformacion-digital.pdf"
-    },
-    {
-      id: 5,
-      title: "Gestión del Talento en el Siglo XXI",
-      speaker: "Laura Fernández",
-      date: "2024-01-15",
-      description: "Nuevas estrategias para atraer, desarrollar y retener el mejor talento.",
-      duration: "75 minutos",
-      attendees: 145,
-      rating: 4.9,
-      videoUrl: "https://youtube.com/watch?v=example2",
-      slidesUrl: "/slides/gestion-talento.pdf"
-    },
-    {
-      id: 6,
-      title: "Sostenibilidad Empresarial",
-      speaker: "Diego López",
-      date: "2024-01-10",
-      description: "Cómo integrar la sostenibilidad en la estrategia empresarial.",
-      duration: "60 minutos",
-      attendees: 165,
-      rating: 4.7,
-      videoUrl: "https://youtube.com/watch?v=example3",
-      slidesUrl: "/slides/sostenibilidad.pdf"
-    }
-  ];
+export default async function CharlasPage() {
+  const cookieStore = await cookies();
+  const language = cookieStore.get('preferredLanguage')?.value || 'ES';
+  const t = language === 'ES' ? contentES : contentPT;
+
+  // Fetch talks directamente desde la DB en el servidor
+  const talks = await prisma.talk.findMany({
+    orderBy: { date: 'desc' }
+  });
+
+  // Clasificar charlas
+  const upcomingTalks = talks.filter(talk => talk.type === 'Próxima' || talk.type === 'Charla')
+  const pastTalks = talks.filter(talk => talk.type === 'Finalizada' || talk.type === 'Conferencia')
 
   const speakers = [
     {
-      name: "Dr. María González",
-      title: "Especialista en Futuro del Trabajo",
-      company: "Universidad de Buenos Aires",
-      bio: "Doctora en Psicología Organizacional con más de 15 años de experiencia en consultoría.",
-      talks: 12
-    },
-    {
-      name: "Carlos Mendoza",
-      title: "Consultor en Transformación Digital",
-      company: "TechCorp Argentina",
-      bio: "Experto en liderazgo digital y transformación organizacional con experiencia internacional.",
-      talks: 8
-    },
-    {
-      name: "Ana Rodríguez",
-      title: "Especialista en Innovación",
-      company: "InnovateLab",
-      bio: "Consultora especializada en cultura de innovación y procesos creativos.",
-      talks: 15
+      name: "Fernando Mistri",
+      title: "Director Ejecutivo",
+      company: "Mistri&Co",
+      bio: "Especialista en transformación organizacional y desarrollo de equipos de alto rendimiento.",
+      talks: talks.length
     }
   ];
 
@@ -154,7 +62,7 @@ export default function CharlasPage() {
         }}
       />
 
-      {/* Stats Section */}
+      {/* Stats Section (Static for now, could be derived from DB) */}
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
@@ -201,130 +109,100 @@ export default function CharlasPage() {
             </TabsList>
 
             <TabsContent value="proximas" className="space-y-8">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {upcomingTalks.map((talk) => (
-                  <Card key={talk.id} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
-                <div className="relative">
-                      <div className="h-48 bg-gradient-to-br from-mistri-blue-500 to-mistri-blue-600 rounded-t-lg flex items-center justify-center">
-                        <Play className="h-16 w-16 text-white opacity-80" />
+              {upcomingTalks.length > 0 ? (
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {upcomingTalks.map((talk) => (
+                    <Card key={talk.id} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
+                      <div className="relative">
+                        <div className="h-48 bg-gradient-to-br from-mistri-blue-500 to-mistri-blue-600 rounded-t-lg flex items-center justify-center">
+                          <Play className="h-16 w-16 text-white opacity-80" />
+                        </div>
+                        <Badge className="absolute top-4 left-4 bg-secondary text-dark">
+                          {talk.type}
+                        </Badge>
                       </div>
-                      <Badge className="absolute top-4 left-4 bg-secondary text-dark">
-                        {talk.price}
-                    </Badge>
-                      <Badge variant="outline" className="absolute top-4 right-4 bg-white/90 text-dark">
-                        {talk.duration}
-                    </Badge>
-                  </div>
-                <CardHeader>
-                      <CardTitle className="text-xl font-semibold text-dark group-hover:text-primary transition-colors">
-                        {talk.title}
-                      </CardTitle>
-                      <CardDescription className="text-medium-gray">
-                        {talk.description}
-                      </CardDescription>
-                </CardHeader>
-                <CardContent>
-                      <div className="space-y-3 mb-6">
-                        <div className="flex items-center space-x-2 text-sm text-dark">
-                          <User className="h-4 w-4" />
-                          <span>{talk.speaker}</span>
-                    </div>
-                        <div className="flex items-center space-x-2 text-sm text-dark">
-                          <Calendar className="h-4 w-4" />
-                          <span>{new Date(talk.date).toLocaleDateString('es-ES', { 
-                            weekday: 'long', 
-                            year: 'numeric', 
-                            month: 'long', 
-                            day: 'numeric' 
-                          })}</span>
-                    </div>
-                        <div className="flex items-center space-x-2 text-sm text-dark">
-                          <Clock className="h-4 w-4" />
-                          <span>{talk.time}</span>
-                    </div>
-                        <div className="flex items-center space-x-2 text-sm text-dark">
-                          <MapPin className="h-4 w-4" />
-                          <span>{talk.location}</span>
-                    </div>
-                  </div>
-
-                      <div className="mb-4">
-                        <h4 className="text-sm font-semibold text-dark mb-2">Temas:</h4>
-                        <div className="flex flex-wrap gap-1">
-                          {talk.topics.map((topic, index) => (
-                            <Badge key={index} variant="secondary" className="text-xs">
-                              {topic}
-                      </Badge>
-                    ))}
+                      <CardHeader>
+                        <CardTitle className="text-xl font-semibold text-dark group-hover:text-primary transition-colors">
+                          {talk.title}
+                        </CardTitle>
+                        <CardDescription className="text-medium-gray line-clamp-2">
+                          {talk.description}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3 mb-6">
+                          <div className="flex items-center space-x-2 text-sm text-dark">
+                            <User className="h-4 w-4" />
+                            <span>Staff Mistri&Co</span>
+                          </div>
+                          <div className="flex items-center space-x-2 text-sm text-dark">
+                            <Calendar className="h-4 w-4" />
+                            <span>{talk.date}</span>
+                          </div>
+                          <div className="flex items-center space-x-2 text-sm text-dark">
+                            <MapPin className="h-4 w-4" />
+                            <span>{talk.location}</span>
+                          </div>
                         </div>
-                      </div>
 
-                      <div className="mb-4">
-                        <div className="flex justify-between text-sm text-dark mb-1">
-                          <span>Registrados</span>
-                          <span>{talk.registered}/{talk.capacity}</span>
-                        </div>
-                        <div className="w-full bg-light-gray rounded-full h-2">
-                          <div 
-                            className="bg-primary h-2 rounded-full" 
-                            style={{ width: `${(talk.registered / talk.capacity) * 100}%` }}
-                          ></div>
-                        </div>
-                  </div>
-
-                      <Button className="w-full" variant="outline">
-                        Registrarse
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
+                        <Button className="w-full" variant="outline" asChild>
+                          <Link href={talk.url || '#'}>
+                            Saber más
+                            <ArrowRight className="ml-2 h-4 w-4" />
+                          </Link>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-12 text-medium-gray">No hay charlas programadas próximamente.</div>
+              )}
             </TabsContent>
 
             <TabsContent value="anteriores" className="space-y-8">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {pastTalks.map((talk) => (
+                {pastTalks.length > 0 ? pastTalks.map((talk) => (
                   <Card key={talk.id} className="hover:shadow-lg transition-all duration-300 hover:-translate-y-2">
                     <div className="relative">
                       <div className="h-48 bg-gradient-to-br from-medium-gray to-dark rounded-t-lg flex items-center justify-center">
                         <Play className="h-16 w-16 text-white opacity-80" />
-                  </div>
+                      </div>
                       <Badge className="absolute top-4 left-4 bg-dark text-white">
                         Finalizada
-                  </Badge>
-                </div>
-                <CardHeader>
+                      </Badge>
+                    </div>
+                    <CardHeader>
                       <CardTitle className="text-xl font-semibold text-dark group-hover:text-primary transition-colors">
                         {talk.title}
                       </CardTitle>
                       <CardDescription className="text-medium-gray">
                         {talk.description}
                       </CardDescription>
-                </CardHeader>
-                <CardContent>
+                    </CardHeader>
+                    <CardContent>
                       <div className="space-y-3 mb-6">
                         <div className="flex items-center space-x-2 text-sm text-dark">
                           <User className="h-4 w-4" />
-                          <span>{talk.speaker}</span>
-                    </div>
+                          <span>{talk.speaker || 'Staff Mistri&Co'}</span>
+                        </div>
                         <div className="flex items-center space-x-2 text-sm text-dark">
                           <Calendar className="h-4 w-4" />
-                          <span>{new Date(talk.date).toLocaleDateString('es-ES')}</span>
-                    </div>
+                          <span>{new Date(talk.date).toLocaleDateString(language === 'ES' ? 'es-ES' : 'pt-BR')}</span>
+                        </div>
                         <div className="flex items-center space-x-2 text-sm text-dark">
                           <Clock className="h-4 w-4" />
-                          <span>{talk.duration}</span>
-                  </div>
+                          <span>{talk.duration || '60 min'}</span>
+                        </div>
                         <div className="flex items-center space-x-2 text-sm text-dark">
                           <Users className="h-4 w-4" />
-                          <span>{talk.attendees} asistentes</span>
-                    </div>
+                          <span>{talk.attendees || '0'} asistentes</span>
+                        </div>
                         <div className="flex items-center space-x-2 text-sm text-dark">
                           <Star className="h-4 w-4 text-secondary fill-current" />
-                          <span>{talk.rating}/5.0</span>
-                    </div>
-                  </div>
+                          <span>{talk.rating || '5.0'}/5.0</span>
+                        </div>
+                      </div>
 
                       <div className="flex space-x-2">
                         <Button className="flex-1" variant="outline" size="sm">
@@ -338,7 +216,9 @@ export default function CharlasPage() {
                       </div>
                     </CardContent>
                   </Card>
-                ))}
+                )) : (
+                  <div className="text-center py-12 text-medium-gray">No hay charlas anteriores registradas.</div>
+                )}
               </div>
             </TabsContent>
           </Tabs>
@@ -358,7 +238,7 @@ export default function CharlasPage() {
             <p className="text-lg text-medium-gray max-w-2xl mx-auto">
               Profesionales reconocidos que comparten su experiencia y conocimiento
             </p>
-                  </div>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {speakers.map((speaker, index) => (

@@ -1,5 +1,3 @@
-'use client';
-
 import { Hero } from '@/components/hero'
 import { CTASection } from '@/components/cta-section'
 import { SectionHeader } from '@/components/section-header'
@@ -12,38 +10,29 @@ import {
   BookOpen,
   Presentation,
   Lightbulb,
-  Calendar,
   ArrowRight,
   CheckCircle,
-  Star,
   Users,
-  Clock,
   Award,
   Target,
   TrendingUp,
-  Zap,
-  Globe,
-  Brain,
-  Heart,
-  Briefcase,
   LucideIcon
 } from 'lucide-react'
 import * as Icons from 'lucide-react'
 import Link from 'next/link'
-import { pageSEO } from '@/lib/seo'
-import { useLanguage } from '@/hooks/use-language'
-import type { Metadata } from 'next'
+import { cookies } from 'next/headers'
+import { contentES, contentPT } from '@/lib/content'
 
-// export const metadata: Metadata = pageSEO.academia
-// Nota: metadata no funciona en client components, se debería mover a un layout o componente padre si es crítico.
+export const revalidate = 3600; // ISR cada hora
 
+export default async function AcademiaPage() {
+  const cookieStore = await cookies();
+  const language = cookieStore.get('preferredLanguage')?.value || 'ES';
+  const t = language === 'ES' ? contentES : contentPT;
 
-export default function AcademiaPage() {
-  const { t, language } = useLanguage()
   const courses = t.academia.courses
   const workshops = t.academia.workshops
   const talks = t.academia.talks
-
 
   return (
     <div className="min-h-screen">
@@ -312,7 +301,7 @@ export default function AcademiaPage() {
       {/* CTA Section */}
       <CTASection
         title={t.titles.academia.cta}
-        description={language === 'ES' ? "Únete a nuestros programas de formación y transforma tu carrera profesional" : "Junte-se aos nossos programas de formação e transforme sua carreira profissional"}
+        description={language === 'ES' ? "Únete a nuestros programas de formación y transforma tu carrera profesional" : "Junte-se aos nossos programas de formação e transforme sua carreira profesional"}
         primaryButton={{
           text: t.ctas.academia.ctaSection.primary.text,
           href: t.ctas.academia.ctaSection.primary.href,
