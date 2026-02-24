@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 // Force restart
 const nextConfig = {
+  output: 'standalone',
   // Fix para el warning de workspace root
   outputFileTracingRoot: __dirname,
   images: {

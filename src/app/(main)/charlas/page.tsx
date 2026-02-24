@@ -184,7 +184,7 @@ export default async function CharlasPage() {
                       <div className="space-y-3 mb-6">
                         <div className="flex items-center space-x-2 text-sm text-dark">
                           <User className="h-4 w-4" />
-                          <span>{talk.speaker || 'Staff Mistri&Co'}</span>
+                          <span>{(talk as any).speaker || 'Staff Mistri&Co'}</span>
                         </div>
                         <div className="flex items-center space-x-2 text-sm text-dark">
                           <Calendar className="h-4 w-4" />
@@ -192,15 +192,15 @@ export default async function CharlasPage() {
                         </div>
                         <div className="flex items-center space-x-2 text-sm text-dark">
                           <Clock className="h-4 w-4" />
-                          <span>{talk.duration || '60 min'}</span>
+                          <span>{(talk as any).duration || '60 min'}</span>
                         </div>
                         <div className="flex items-center space-x-2 text-sm text-dark">
                           <Users className="h-4 w-4" />
-                          <span>{talk.attendees || '0'} asistentes</span>
+                          <span>{(talk as any).attendees || '0'} asistentes</span>
                         </div>
                         <div className="flex items-center space-x-2 text-sm text-dark">
                           <Star className="h-4 w-4 text-secondary fill-current" />
-                          <span>{talk.rating || '5.0'}/5.0</span>
+                          <span>{(talk as any).rating || '5.0'}/5.0</span>
                         </div>
                       </div>
 

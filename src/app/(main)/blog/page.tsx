@@ -39,7 +39,7 @@ export default async function BlogPage() {
     ...posts[0],
     excerpt: posts[0].content?.substring(0, 150) + '...',
     readTime: '5 min',
-    category: posts[0].category || 'General',
+    category: (posts[0] as any).category || 'General',
     slug: posts[0].id.toString()
   } : null;
 
@@ -47,7 +47,7 @@ export default async function BlogPage() {
     ...post,
     excerpt: post.content?.substring(0, 100) + '...',
     readTime: '3 min',
-    category: post.category || 'General',
+    category: (post as any).category || 'General',
     slug: post.id.toString()
   }));
 
