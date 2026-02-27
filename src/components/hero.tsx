@@ -22,29 +22,35 @@ interface HeroProps {
     href: string
     icon?: string
   }
+  statsLabels?: {
+    satisfiedClients: string
+    successRate: string
+    yearsExperience: string
+  }
 }
 
-export const Hero = memo(function Hero({ 
-  title, 
-  subtitle, 
-  description, 
-  ctaText, 
+export const Hero = memo(function Hero({
+  title,
+  subtitle,
+  description,
+  ctaText,
   ctaLink,
   showStats = false,
   backgroundImage,
   overlayType = 'photo',
-  secondaryButton
+  secondaryButton,
+  statsLabels
 }: HeroProps) {
   const stats = [
-    { icon: Users, value: '450+', label: 'Clientes satisfechos' },
-    { icon: Target, value: '95%', label: 'Tasa de éxito' },
-    { icon: TrendingUp, value: '15', label: 'Años de experiencia' },
+    { icon: Users, value: '450+', label: statsLabels?.satisfiedClients || 'Clientes satisfechos' },
+    { icon: Target, value: '95%', label: statsLabels?.successRate || 'Tasa de éxito' },
+    { icon: TrendingUp, value: '15', label: statsLabels?.yearsExperience || 'Años de experiencia' },
   ]
 
   // Configuración del overlay según el tipo
   const getOverlayConfig = () => {
     if (!backgroundImage) return {}
-    
+
     if (overlayType === 'photo') {
       // Para fotos reales: overlay azul oscuro 70% + blur ligero
       return {
@@ -66,14 +72,14 @@ export const Hero = memo(function Hero({
   }
 
   return (
-    <section 
+    <section
       className="relative overflow-hidden gradient-hero"
       style={getOverlayConfig()}
     >
       <div className="absolute inset-0 bg-black/10"></div>
       <div className="absolute inset-0 bg-pattern-dots opacity-10"></div>
-        <div className="relative container-custom section-padding">
-          <div className="max-w-4xl mx-auto text-center">
+      <div className="relative container-custom section-padding">
+        <div className="max-w-4xl mx-auto text-center">
           {/* Content */}
           <AnimatedSection animation="slideLeft" className="text-white space-y-8">
             <div className="space-y-6">
@@ -127,8 +133,8 @@ export const Hero = memo(function Hero({
                     </div>
                   </div>
                   <div className="text-3xl font-bold mb-2 text-gradient-accent">
-                    <CounterAnimation 
-                      end={parseInt(stat.value.replace(/[^\d]/g, ''))} 
+                    <CounterAnimation
+                      end={parseInt(stat.value.replace(/[^\d]/g, ''))}
                       suffix={stat.value.includes('%') ? '%' : stat.value.includes('+') ? '+' : ''}
                     />
                   </div>

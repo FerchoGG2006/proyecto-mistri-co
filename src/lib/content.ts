@@ -145,6 +145,7 @@ export type TranslationType = {
       title: string;
       description: string;
       loadMore: string;
+      readMore: string;
     };
     sidebar: {
       categories: string;
@@ -155,6 +156,8 @@ export type TranslationType = {
         placeholder: string;
         button: string;
       };
+      noPosts: string;
+      noRecentPosts: string;
     };
     cta: {
       title: string;
@@ -232,10 +235,11 @@ export type TranslationType = {
     blog: string;
     cta: string;
   };
-    shared: {
+  shared: {
     clients: {
       title: string;
       subtitle: string;
+      moreText: string;
       items: Array<{
         name: string;
         logo: string;
@@ -251,6 +255,18 @@ export type TranslationType = {
       ourServices: string;
       contact: string;
       rights: string;
+    };
+    testimonials: Array<{
+      quote: string;
+      author: string;
+      role: string;
+      company: string;
+      initials: string;
+    }>;
+    stats: {
+      satisfiedClients: string;
+      successRate: string;
+      yearsExperience: string;
     };
   };
   admin: {
@@ -415,7 +431,8 @@ export const contentES: TranslationType = {
     recent: {
       title: "Artículos Recientes",
       description: "Mantente actualizado con las últimas tendencias y mejores prácticas",
-      loadMore: "Cargar más artículos"
+      loadMore: "Cargar más artículos",
+      readMore: "Leer"
     },
     sidebar: {
       categories: "Categorías",
@@ -425,7 +442,9 @@ export const contentES: TranslationType = {
         description: "Recibe nuestros artículos más recientes directamente en tu correo",
         placeholder: "Tu email",
         button: "Suscribirse"
-      }
+      },
+      noPosts: "No hay artículos publicados aún.",
+      noRecentPosts: "No hay más artículos recientes."
     },
     cta: {
       title: "¿Te gusta lo que lees?",
@@ -503,6 +522,7 @@ export const contentES: TranslationType = {
     clients: {
       title: "Organizaciones que Confían en Nosotros",
       subtitle: "Hemos trabajado con empresas de diversos sectores, ayudándolas a alcanzar sus objetivos de transformación organizacional.",
+      moreText: "Y muchas más organizaciones que confían en nosotros",
       items: [
         { name: "Muñoz Marchesí", logo: "/images/clients/logo-munoz-marchesi.png", alt: "Logo de Muñoz Marchesí" },
         { name: "Dala Computación", logo: "/images/clients/logo-dala-computacion.png", alt: "Logo de Dala Computación" },
@@ -521,6 +541,34 @@ export const contentES: TranslationType = {
       ourServices: "Nuestros Servicios",
       contact: "Contacto",
       rights: "Todos los derechos reservados."
+    },
+    testimonials: [
+      {
+        quote: "Con Mistri&Co hemos transformado nuestro negocio. No solo capacitamos a nuestro equipo de ventas, sino que reorganizamos la empresa por completo. Su trabajo en marketing y el análisis de números estratégicos nos dio una claridad que no teníamos.",
+        author: "Emmanuel Amado",
+        role: "Presidente",
+        company: "SBR SAS",
+        initials: "EA"
+      },
+      {
+        quote: "Mistri&Co resolvió nuestro gran desafío: cómo vender y comercializar servicios intangibles. Nos ayudaron a acceder a más clientes con una mentalidad completamente nueva, transformando nuestra perspectiva comercial.",
+        author: "Patricia Vázquez",
+        role: "Fundadora",
+        company: "Vazquez Contadores Asociados",
+        initials: "PV"
+      },
+      {
+        quote: "Como Gerente de Sucursal, he transformado la forma de liderar a mis equipos. Junto a Mistri&Co, combinamos metas claras, entrenamiento continuo e incentivos estratégicos. Esta fórmula ha optimizado significativamente el desempeño.",
+        author: "Gustavo Melinik",
+        role: "Gerente",
+        company: "Muñoz Marchesí",
+        initials: "GM"
+      }
+    ],
+    stats: {
+      satisfiedClients: "Clientes satisfechos",
+      successRate: "Tasa de éxito",
+      yearsExperience: "Años de experiencia"
     }
   },
   admin: {
@@ -679,9 +727,10 @@ export const contentPT: TranslationType = {
       readMore: "Ler mais"
     },
     recent: {
-      title: "Artigos Recientes",
+      title: "Artigos Recentes",
       description: "Mantenha-se atualizado com as últimas tendências e melhores práticas",
-      loadMore: "Carregar mais artigos"
+      loadMore: "Carregar mais artigos",
+      readMore: "Ler"
     },
     sidebar: {
       categories: "Categorias",
@@ -691,7 +740,9 @@ export const contentPT: TranslationType = {
         description: "Receba nossos artigos mais recentes diretamente em seu e-mail",
         placeholder: "Seu e-mail",
         button: "Inscrever-se"
-      }
+      },
+      noPosts: "Não há artigos publicados ainda.",
+      noRecentPosts: "Não há mais artigos recentes."
     },
     cta: {
       title: "Gosta do que lê?",
@@ -763,12 +814,13 @@ export const contentPT: TranslationType = {
     servicios: "Serviços",
     academia: "Academia Mistri",
     blog: "Blog",
-    cta: "Agende uma reunión"
+    cta: "Agende uma reunião"
   },
   shared: {
     clients: {
       title: "Organizações que Confiam em Nós",
       subtitle: "Trabalhamos com empresas de diversos setores, ajudando-as a alcançar seus objetivos de transformação organizacional.",
+      moreText: "E muitas mais organizações que confiam em nós",
       items: [
         { name: "Muñoz Marchesí", logo: "/images/clients/logo-munoz-marchesi.png", alt: "Logo de Muñoz Marchesí" },
         { name: "Dala Computación", logo: "/images/clients/logo-dala-computacion.png", alt: "Logo de Dala Computación" },
@@ -787,6 +839,34 @@ export const contentPT: TranslationType = {
       ourServices: "Nossos Serviços",
       contact: "Contato",
       rights: "Todos os direitos reservados."
+    },
+    testimonials: [
+      {
+        quote: "Com a Mistri&Co transformamos nosso negócio. Não apenas capacitamos nossa equipe de vendas, mas reorganizamos a empresa por completo. Seu trabalho em marketing e análise de números estratégicos nos deu uma clareza que não tínhamos.",
+        author: "Emmanuel Amado",
+        role: "Presidente",
+        company: "SBR SAS",
+        initials: "EA"
+      },
+      {
+        quote: "A Mistri&Co resolveu nosso grande desafio: como vender e comercializar serviços intangíveis. Eles nos ajudaram a acessar mais clientes com uma mentalidade completamente nova, transformando nossa perspectiva comercial.",
+        author: "Patricia Vázquez",
+        role: "Fundadora",
+        company: "Vazquez Contadores Asociados",
+        initials: "PV"
+      },
+      {
+        quote: "Como Gerente de Filial, transformei a forma de liderar minhas equipes. Junto com a Mistri&Co, combinamos metas claras, treinamento contínuo e incentivos estratégicos. Esta fórmula otimizou significativamente o desempenho.",
+        author: "Gustavo Melinik",
+        role: "Gerente",
+        company: "Muñoz Marchesí",
+        initials: "GM"
+      }
+    ],
+    stats: {
+      satisfiedClients: "Clientes satisfeitos",
+      successRate: "Taxa de sucesso",
+      yearsExperience: "Anos de experiência"
     }
   },
   admin: {

@@ -46,7 +46,7 @@ export default async function AcademiaPage() {
         backgroundImage="/images/academy/bg-mistri-academy.jpg"
         overlayType="abstract"
         secondaryButton={{
-          text: "Descargar programa",
+          text: t.ctas.academia.secondary.text,
           href: "/contacto?form=academia",
           icon: "Download"
         }}
@@ -301,7 +301,7 @@ export default async function AcademiaPage() {
       {/* CTA Section */}
       <CTASection
         title={t.titles.academia.cta}
-        description={language === 'ES' ? "Únete a nuestros programas de formación y transforma tu carrera profesional" : "Junte-se aos nossos programas de formação e transforme sua carreira profesional"}
+        description={t.descriptions.academia.cta}
         primaryButton={{
           text: t.ctas.academia.ctaSection.primary.text,
           href: t.ctas.academia.ctaSection.primary.href,

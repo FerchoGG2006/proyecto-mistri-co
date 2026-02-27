@@ -3,6 +3,7 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { contentES, contentPT, TranslationType } from '@/lib/content';
+import { useRouter } from 'next/navigation';
 
 export type Language = 'ES' | 'PT';
 
@@ -16,6 +17,7 @@ const LanguageContext = createContext<LanguageContextType | undefined>(undefined
 
 export function LanguageProvider({ children, initialLanguage = 'ES' }: { children: React.ReactNode, initialLanguage?: Language }) {
     const [language, setLanguageState] = useState<Language>(initialLanguage);
+    const router = useRouter();
 
     // Sincronizar con localStorage y cookies en el cliente
     useEffect(() => {
@@ -30,8 +32,9 @@ export function LanguageProvider({ children, initialLanguage = 'ES' }: { childre
         localStorage.setItem('preferredLanguage', lang);
         // Establecer cookie para el servidor
         document.cookie = `preferredLanguage=${lang}; path=/; max-age=31536000; samesite=lax`;
-        // Recargar para que el servidor tome el cambio si es necesario, 
-        // aunque idealmente Next.js maneja la navegación sin recarga completa.
+
+        // Refrescar las rutas de Next.js para actualizar los Server Components
+        router.refresh();
     };
 
     const t = language === 'ES' ? contentES : contentPT;

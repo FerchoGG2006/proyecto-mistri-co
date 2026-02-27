@@ -25,7 +25,7 @@ export default async function ServiciosPage() {
         backgroundImage="/images/servicios/bg-services.jpg"
         overlayType="photo"
         secondaryButton={{
-          text: language === 'ES' ? "Ver casos de éxito" : "Ver casos de sucesso",
+          text: t.ctas.home.secondary.text,
           href: "#testimonios",
           icon: "CheckCircle",
         }}

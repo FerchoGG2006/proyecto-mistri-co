@@ -63,8 +63,8 @@ export default async function QuienesSomosPage() {
                     <CheckCircle className="text-mistri-blue-900 h-6 w-6" />
                   </div>
                   <div>
-                    <div className="text-white font-bold text-lg">+15 Años</div>
-                    <div className="text-white/70 text-sm">Impulsando talento</div>
+                    <div className="text-white font-bold text-lg">{t.titles.quienesSomos.experience.title}</div>
+                    <div className="text-white/70 text-sm">Mistri & Co.</div>
                   </div>
                 </div>
               </div>

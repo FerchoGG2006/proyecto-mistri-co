@@ -41,6 +41,7 @@ export default async function Home() {
         showStats={true}
         backgroundImage="/images/home/bg-home.jpg"
         overlayType="photo"
+        statsLabels={t.shared.stats}
         secondaryButton={{
           text: t.ctas.home.secondary.text,
           href: t.ctas.home.secondary.href,
@@ -156,6 +157,7 @@ export default async function Home() {
         <ClientsSection
           title={t.shared.clients.title}
           subtitle={t.shared.clients.subtitle}
+          moreText={t.shared.clients.moreText}
           clients={clients}
         />
       </LazySection>
@@ -164,20 +166,14 @@ export default async function Home() {
       <AnimatedSection animation="fadeIn" className="section-padding bg-white">
         <div className="container-custom">
           <SectionHeader
-            badge={t.badges.home.testimonials}
             title={t.titles.home.testimonials}
             description={t.descriptions.home.testimonials}
             badgeVariant="outline"
           />
 
           <StaggeredAnimation animation="slideUp" staggerDelay={150} className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <Link
-              href="https://sbrepuestos.com/?fbclid=PAZXh0bgNhZW0CMTEAAaclbXScXu8RceUjjq00qm-mYUN02TEV6WQCR9UiVWoL-RWtP-iQKCpeZkc50Q_aem_Zbuodh380rtXQEgevzcWeQ"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
-            >
-              <Card className="card hover-lift">
+            {t.shared.testimonials.map((testimonial, index) => (
+              <Card key={index} className="card hover-lift">
                 <CardContent className="p-6">
                   <div className="flex items-center mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -188,87 +184,24 @@ export default async function Home() {
                     ))}
                   </div>
                   <p className="text-body text-gray-700 mb-6">
-                    &ldquo;Con Mistri&Co hemos transformado nuestro negocio. No solo capacitamos a nuestro equipo de ventas, sino que reorganizamos la empresa por completo. Su trabajo en marketing y el análisis de números estratégicos nos dio una claridad que no teníamos.&rdquo;
+                    &ldquo;{testimonial.quote}&rdquo;
                   </p>
                   <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-mistri-blue-500 to-mistri-blue-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-semibold">EA</span>
+                    <div className={`w-10 h-10 bg-gradient-to-br ${index === 1 ? 'from-mistri-lime-500 to-mistri-lime-600' : 'from-mistri-blue-500 to-mistri-blue-600'} rounded-full flex items-center justify-center`}>
+                      <span className={`${index === 1 ? 'text-gray-900' : 'text-white'} font-semibold`}>
+                        {testimonial.initials}
+                      </span>
                     </div>
                     <div>
-                      <div className="font-semibold text-gray-900">Emmanuel Amado</div>
+                      <div className="font-semibold text-gray-900">{testimonial.author}</div>
                       <div className="text-small text-gray-600">
-                        Presidente, SBR SAS
+                        {testimonial.role}, {testimonial.company}
                       </div>
                     </div>
                   </div>
                 </CardContent>
               </Card>
-            </Link>
-
-            <Card className="card hover-lift">
-              <CardContent className="p-6">
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className="h-5 w-5 text-mistri-lime-500 fill-current"
-                    />
-                  ))}
-                </div>
-                <p className="text-body text-gray-700 mb-6">
-                  &ldquo;Mistri&Co resolvió nuestro gran desafío: cómo vender y comercializar servicios intangibles. Nos ayudaron a acceder a más clientes con una mentalidad completamente nueva, transformando nuestra perspectiva comercial.&rdquo;
-                </p>
-                <div className="flex items-center space-x-3">
-                  <div className="w-10 h-10 bg-gradient-to-br from-mistri-lime-500 to-mistri-lime-600 rounded-full flex items-center justify-center">
-                    <span className="text-gray-900 font-semibold">PV</span>
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900">
-                      Patricia Vázquez
-                    </div>
-                    <div className="text-small text-gray-600">
-                      Fundadora, Vazquez Contadores Asociados
-                    </div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-
-            <Link
-              href="https://www.munozmarchesi.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
-            >
-              <Card className="card hover-lift">
-                <CardContent className="p-6">
-                  <div className="flex items-center mb-4">
-                    {[...Array(5)].map((_, i) => (
-                      <Star
-                        key={i}
-                        className="h-5 w-5 text-mistri-lime-500 fill-current"
-                      />
-                    ))}
-                  </div>
-                  <p className="text-body text-gray-700 mb-6">
-                    &ldquo;Como Gerente de Sucursal, he transformado la forma de liderar a mis equipos. Junto a Mistri&Co, combinamos metas claras, entrenamiento continuo e incentivos estratégicos. Esta fórmula ha optimizado significativamente el desempeño.&rdquo;
-                  </p>
-                  <div className="flex items-center space-x-3">
-                    <div className="w-10 h-10 bg-gradient-to-br from-mistri-blue-500 to-mistri-blue-600 rounded-full flex items-center justify-center">
-                      <span className="text-white font-semibold">GM</span>
-                    </div>
-                    <div>
-                      <div className="font-semibold text-gray-900">
-                        Gustavo Melinik
-                      </div>
-                      <div className="text-small text-gray-600">
-                        Gerente, Muñoz Marchesí
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </Link>
+            ))}
           </StaggeredAnimation>
         </div>
       </AnimatedSection>

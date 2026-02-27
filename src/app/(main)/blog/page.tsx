@@ -16,6 +16,7 @@ import {
   Users
 } from 'lucide-react'
 import Link from 'next/link'
+import { RippleButton } from '@/components/ui/ripple-button'
 import { contentES, contentPT } from '@/lib/content'
 import { cookies } from 'next/headers'
 import prisma from '@/lib/db'
@@ -153,7 +154,7 @@ export default async function BlogPage() {
               </Card>
             </>
           ) : (
-            <div className="text-center py-12 text-medium-gray">No hay artículos publicados aún.</div>
+            <div className="text-center py-12 text-medium-gray">{b.sidebar.noPosts}</div>
           )}
         </div>
       </section>
@@ -208,7 +209,7 @@ export default async function BlogPage() {
                         </div>
                         <Button asChild variant="ghost" size="sm">
                           <Link href={`/blog/${post.slug}`}>
-                            {language === 'ES' ? 'Leer' : 'Ler'}
+                            {b.recent.readMore}
                             <ArrowRight className="ml-1 h-4 w-4" />
                           </Link>
                         </Button>
@@ -216,7 +217,7 @@ export default async function BlogPage() {
                     </CardContent>
                   </Card>
                 )) : (
-                  <div className="col-span-2 text-center text-medium-gray py-8">No hay más artículos recientes.</div>
+                  <div className="col-span-2 text-center text-medium-gray py-8">{b.sidebar.noRecentPosts}</div>
                 )}
               </div>
 
@@ -298,10 +299,10 @@ export default async function BlogPage() {
                         {b.sidebar.newsletter.description}
                       </p>
                       <div className="space-y-3">
-                        <Input placeholder={b.sidebar.newsletter.placeholder} className="text-sm" />
-                        <Button className="w-full" size="sm">
+                        <Input placeholder={b.sidebar.newsletter.placeholder} className="text-sm border-primary/20 focus:border-primary/50" />
+                        <RippleButton className="w-full bg-mistri-lime-500 hover:bg-mistri-lime-600 text-mistri-blue-900 font-bold shadow-lg shadow-mistri-lime-500/20 hover:shadow-mistri-lime-500/40 transition-all duration-300" size="sm">
                           {b.sidebar.newsletter.button}
-                        </Button>
+                        </RippleButton>
                       </div>
                     </div>
                   </CardContent>
@@ -322,13 +323,13 @@ export default async function BlogPage() {
             {b.cta.description}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" className="btn-secondary hover:shadow-xl hover:shadow-white-400/25 text-gray-600">
+            <RippleButton size="lg" className="bg-mistri-blue-600 hover:bg-mistri-blue-700 text-white font-bold shadow-xl shadow-mistri-blue-900/20 hover:shadow-mistri-blue-900/40 transform hover:-translate-y-1 transition-all duration-300">
               {b.cta.primary}
               <ArrowRight className="ml-2 h-5 w-5" />
-            </Button>
-            <Button size="lg" variant="outline" className="border-white text-gray-600 hover:bg-white hover:text-mistri-blue-500 glass-effect">
+            </RippleButton>
+            <RippleButton size="lg" variant="outline" className="border-2 border-mistri-blue-600/30 text-mistri-blue-900 hover:bg-white/50 backdrop-blur-sm transition-all duration-300">
               {b.cta.secondary}
-            </Button>
+            </RippleButton>
           </div>
         </div>
       </section>
