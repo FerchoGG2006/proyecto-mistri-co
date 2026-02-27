@@ -4,6 +4,7 @@ import { CTASection } from '@/components/cta-section'
 import { SectionHeader } from '@/components/section-header'
 import { AnimatedSection, StaggeredAnimation } from '@/components/ui/animated-section'
 import Link from 'next/link'
+import Image from 'next/image'
 import {
   Users,
   ArrowRight,
@@ -27,35 +28,77 @@ export default async function QuienesSomosPage() {
   return (
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
-      <section
-        className="section-padding gradient-hero text-white relative overflow-hidden"
-        style={{
-          backgroundImage: `linear-gradient(135deg, rgba(33, 150, 243, 0.8) 0%, rgba(13, 71, 161, 0.9) 100%), url('/images/quienes-somos/bg-who-are.jpg')`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          backgroundRepeat: 'no-repeat'
-        }}
-      >
-        <div className="absolute inset-0 bg-pattern-dots opacity-10"></div>
-        <div className="relative container-custom text-center">
-          <h1 className="text-hero text-white mb-6 animate-fade-in">
-            {t.titles.quienesSomos.hero}
-          </h1>
-          <p className="text-body text-white/90 max-w-3xl mx-auto mb-8 animate-fade-in">
-            {t.descriptions.quienesSomos.hero}
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up">
-            <Button asChild size="lg" className="btn-secondary hover:shadow-xl hover:shadow-lime-400/25">
-              <Link href={t.ctas.quienesSomos.primary.href}>
-                {t.ctas.quienesSomos.primary.text}
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Link>
-            </Button>
-            <Button asChild variant="outline" size="lg" className="border-white text-gray-900 hover:bg-white hover:text-mistri-blue-500 glass-effect">
-              <Link href={t.ctas.quienesSomos.secondary.href}>
-                {t.ctas.quienesSomos.secondary.text}
-              </Link>
-            </Button>
+      <section className="relative min-h-[70vh] lg:min-h-[80vh] flex items-center bg-[#0a192f] py-12 lg:py-24 overflow-hidden">
+        {/* Advanced Background Design */}
+        <div className="absolute inset-0 bg-gradient-to-br from-[#0a192f] via-[#0d213f] to-[#0a192f]"></div>
+
+        {/* Animated Blobs */}
+        <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-mistri-blue-600/20 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-mistri-lime-500/10 rounded-full blur-[100px] animate-pulse" style={{ animationDelay: '2s' }}></div>
+
+        {/* Refined Decorative Elements */}
+        <div className="absolute inset-0 bg-pattern-dots opacity-[0.05] mix-blend-overlay"></div>
+        <div className="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_30%,rgba(33,150,243,0.15),transparent_50%)]"></div>
+
+        <div className="container-custom relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            {/* Image Column */}
+            <AnimatedSection animation="slideRight" className="relative group order-2 lg:order-1">
+              <div className="relative h-[400px] md:h-[500px] lg:h-[600px] w-full rounded-3xl overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] border border-white/10">
+                <Image
+                  src="/images/quienes-somos/hero-historia.jpg"
+                  alt={t.titles.quienesSomos.hero}
+                  fill
+                  className="object-cover object-top transition-all duration-1000 group-hover:scale-110"
+                  priority
+                />
+                {/* Subtle internal gradient */}
+                <div className="absolute inset-0 bg-gradient-to-tr from-[#0a192f]/40 via-transparent to-transparent"></div>
+              </div>
+
+              {/* Floating Decorative Card */}
+              <div className="absolute -bottom-10 -left-10 bg-white/10 backdrop-blur-xl border border-white/20 p-6 rounded-2xl shadow-2xl hidden md:block animate-float">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-mistri-lime-500 rounded-full flex items-center justify-center">
+                    <CheckCircle className="text-mistri-blue-900 h-6 w-6" />
+                  </div>
+                  <div>
+                    <div className="text-white font-bold text-lg">+15 Años</div>
+                    <div className="text-white/70 text-sm">Impulsando talento</div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Decorative behind elements */}
+              <div className="absolute -z-10 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] border border-white/5 rounded-[40px] rotate-3"></div>
+            </AnimatedSection>
+
+            {/* Content Column */}
+            <AnimatedSection animation="slideLeft" className="text-white space-y-8 order-1 lg:order-2">
+              <div className="space-y-6">
+                <h1 className="text-hero text-white leading-[1.1] tracking-tight">
+                  {t.titles.quienesSomos.hero}
+                </h1>
+                <div className="w-24 h-2 bg-gradient-to-r from-mistri-lime-500 to-mistri-lime-300 rounded-full shadow-[0_0_15px_rgba(131,233,53,0.3)]"></div>
+                <p className="text-xl lg:text-2xl text-white/80 font-medium leading-relaxed max-w-xl">
+                  {t.descriptions.quienesSomos.hero}
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-6 pt-6">
+                <Button asChild size="lg" className="btn-secondary h-16 px-10 text-lg font-bold hover:scale-105 transition-all shadow-xl shadow-mistri-lime-500/10">
+                  <Link href={t.ctas.quienesSomos.primary.href}>
+                    {t.ctas.quienesSomos.primary.text}
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </Link>
+                </Button>
+                <Button asChild size="lg" className="h-16 px-10 text-lg font-semibold bg-transparent border-2 border-white/60 text-white hover:bg-white hover:text-[#0a192f] transition-all duration-300">
+                  <Link href={t.ctas.quienesSomos.secondary.href}>
+                    {t.ctas.quienesSomos.secondary.text}
+                  </Link>
+                </Button>
+              </div>
+            </AnimatedSection>
           </div>
         </div>
       </section>
