@@ -21,7 +21,7 @@ export default function LoginPage() {
         try {
             // TODO: Replace with actual API call
             // For now, using simple validation
-            if (email === 'admin@mistri.com' && password === 'admin123') {
+            if (email === 'contacto@mistriconsultora.com' && password === 'admin123') {
                 // Store token (in production, this would come from the API)
                 localStorage.setItem('admin_token', 'demo_token_' + Date.now());
                 router.push('/admin/dashboard');
@@ -80,7 +80,7 @@ export default function LoginPage() {
                                     value={email}
                                     onChange={(e) => setEmail(e.target.value)}
                                     className="appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm"
-                                    placeholder="admin@mistri.com"
+                                    placeholder="contacto@mistriconsultora.com"
                                 />
                             </div>
                         </div>
@@ -136,7 +136,7 @@ export default function LoginPage() {
 
                         <div className="mt-4 text-sm text-gray-600 bg-gray-50 p-4 rounded-md">
                             <p className="font-medium mb-2">Para desarrollo:</p>
-                            <p>Email: <code className="bg-white px-2 py-1 rounded">admin@mistri.com</code></p>
+                            <p>Email: <code className="bg-white px-2 py-1 rounded">contacto@mistriconsultora.com</code></p>
                             <p>Contraseña: <code className="bg-white px-2 py-1 rounded">admin123</code></p>
                         </div>
                     </div>

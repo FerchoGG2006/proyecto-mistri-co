@@ -32,7 +32,7 @@ export default function ContactoPage() {
       icon: 'Mail',
       title: 'Email',
       description: 'Escríbenos para cualquier consulta',
-      value: 'mistriconsultora@gmail.com',
+      value: 'contacto@mistriconsultora.com',
       action: 'Enviar email'
     },
     {
@@ -127,7 +127,7 @@ export default function ContactoPage() {
                         if (info.title === 'Teléfono' || info.title === 'Agenda una reunión') {
                           window.location.href = 'tel:+5493624649700'
                         } else if (info.title === 'Email') {
-                          window.open('mailto:mistriconsultora@gmail.com', '_blank')
+                          window.open('mailto:contacto@mistriconsultora.com', '_blank')
                         }
                       }}
                     >

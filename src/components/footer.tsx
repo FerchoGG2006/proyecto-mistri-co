@@ -174,10 +174,10 @@ export function Footer() {
               <div className="flex items-center space-x-3">
                 <Mail className="h-5 w-5 text-primary flex-shrink-0" />
                 <Link
-                  href="mailto:info@mistri.co"
+                  href="mailto:contacto@mistriconsultora.com"
                   className="text-gray-300 hover:text-primary transition-colors"
                 >
-                  info@mistri.co
+                  contacto@mistriconsultora.com
                 </Link>
               </div>
             </div>

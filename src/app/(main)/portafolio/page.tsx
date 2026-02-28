@@ -53,7 +53,7 @@ export default function ContactPage() {
     {
       icon: Mail,
       title: "Email",
-      details: "mistriconsultora@gmail.com",
+      details: "contacto@mistriconsultora.com",
       subtitle: "Respuesta en 24 horas"
     },
     {
