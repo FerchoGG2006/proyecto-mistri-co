@@ -20,15 +20,11 @@ import {
 } from 'lucide-react'
 import * as Icons from 'lucide-react'
 import Link from 'next/link'
-import { cookies } from 'next/headers'
-import { contentES, contentPT } from '@/lib/content'
-
-export const revalidate = 3600; // ISR cada hora
+import { contentES } from '@/lib/content'
 
 export default async function AcademiaPage() {
-  const cookieStore = await cookies();
-  const language = cookieStore.get('preferredLanguage')?.value || 'ES';
-  const t = language === 'ES' ? contentES : contentPT;
+  const t = contentES;
+  const language = 'ES';
 
   const courses = t.academia.courses
   const workshops = t.academia.workshops

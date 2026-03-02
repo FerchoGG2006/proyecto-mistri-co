@@ -17,15 +17,13 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import prisma from '@/lib/db'
-import { cookies } from 'next/headers'
-import { contentES, contentPT } from '@/lib/content'
+import { contentES } from "@/lib/content";
 
 export const revalidate = 60; // ISR para carga instantánea
 
 export default async function CharlasPage() {
-  const cookieStore = await cookies();
-  const language = cookieStore.get('preferredLanguage')?.value || 'ES';
-  const t = language === 'ES' ? contentES : contentPT;
+  const t = contentES;
+  const language = 'ES';
 
   // Fetch talks directamente desde la DB en el servidor
   const talks = await prisma.talk.findMany({

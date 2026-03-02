@@ -17,16 +17,11 @@ import {
 } from 'lucide-react'
 import Link from 'next/link'
 import { RippleButton } from '@/components/ui/ripple-button'
-import { contentES, contentPT } from '@/lib/content'
-import { cookies } from 'next/headers'
-import prisma from '@/lib/db'
-
-export const revalidate = 60; // ISR cada minuto para carga instantánea
+import { contentES } from '../../../lib/content'
+import prisma from '../../../lib/db'
 
 export default async function BlogPage() {
-  const cookieStore = await cookies();
-  const language = cookieStore.get('preferredLanguage')?.value || 'ES';
-  const t = language === 'ES' ? contentES : contentPT;
+  const t = contentES;
   const b = t.blog
 
   // Fetch posts directamente desde la DB en el servidor

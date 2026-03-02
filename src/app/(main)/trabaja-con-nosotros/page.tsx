@@ -33,7 +33,7 @@ export default function CareersPage() {
     "Capacitador en Finanzas"
   ];
 
-  const handleApplicationSubmit = (e: React.FormEvent) => {
+  const handleApplicationSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     if (!applicationData.name || !applicationData.email || !applicationData.position) {
@@ -41,21 +41,50 @@ export default function CareersPage() {
       return;
     }
 
-    toast.success('¡Aplicación enviada exitosamente! Te contactaremos pronto.');
+    try {
+      // Verificar que EmailJS esté disponible
+      if (typeof (window as any).sendEmail === 'undefined') {
+        throw new Error('Servicio de email no disponible');
+      }
 
-    // Reset form
-    setApplicationData({
-      name: '',
-      email: '',
-      phone: '',
-      position: '',
-      experience: '',
-      expectedSalary: '',
-      availability: '',
-      message: '',
-      resume: null
-    });
-    setSelectedPosition('');
+      // Preparar datos para el template
+      // Nota: EmailJS no maneja archivos adjuntos de forma nativa fácilmente en el cliente sin servicios adicionales
+      // Enviaremos la información y notificaremos que el CV debe ser revisado manualmente si se adjuntó
+      const templateParams = {
+        from_name: applicationData.name,
+        from_email: applicationData.email,
+        phone: applicationData.phone || 'No proporcionado',
+        subject: `Nueva Aplicación Laboral: ${applicationData.position}`,
+        service: 'Recursos Humanos / Empleo',
+        message: `Posición: ${applicationData.position}\nExperiencia: ${applicationData.experience}\nDisponibilidad: ${applicationData.availability}\n\nCarta de presentación:\n${applicationData.message}\n\n${applicationData.resume ? 'ADJUNTO: El candidato ha cargado un CV.' : 'ADJUNTO: No se cargó CV.'}`,
+        reply_to: applicationData.email
+      };
+
+      // Enviar email usando EmailJS
+      const result = await (window as any).sendEmail(templateParams);
+
+      if (result.success) {
+        toast.success('¡Aplicación enviada exitosamente! Te contactaremos pronto.');
+        // Reset form
+        setApplicationData({
+          name: '',
+          email: '',
+          phone: '',
+          position: '',
+          experience: '',
+          expectedSalary: '',
+          availability: '',
+          message: '',
+          resume: null
+        });
+        setSelectedPosition('');
+      } else {
+        throw new Error(result.error || 'Error al enviar la aplicación');
+      }
+    } catch (error: any) {
+      console.error('Error:', error);
+      toast.error('Error al enviar la aplicación. Por favor, inténtalo de nuevo o contáctanos directamente.');
+    }
   };
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {

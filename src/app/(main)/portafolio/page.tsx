@@ -21,7 +21,7 @@ export default function ContactPage() {
     message: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
 
     // Validate required fields
@@ -30,19 +30,46 @@ export default function ContactPage() {
       return;
     }
 
-    // Simulate form submission
-    toast.success('¡Mensaje enviado exitosamente! Te contactaremos pronto.');
+    try {
+      // Verificar que EmailJS esté disponible
+      if (typeof (window as any).sendEmail === 'undefined') {
+        throw new Error('Servicio de email no disponible');
+      }
 
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      company: '',
-      subject: '',
-      service: '',
-      message: ''
-    });
+      // Preparar datos para el template
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone || 'No proporcionado',
+        company: formData.company || 'No proporcionado',
+        subject: `Consulta Portafolio: ${formData.subject}`,
+        service: formData.service || 'Portafolio/Proyecto',
+        message: formData.message,
+        reply_to: formData.email
+      };
+
+      // Enviar email usando EmailJS
+      const result = await (window as any).sendEmail(templateParams);
+
+      if (result.success) {
+        toast.success('¡Mensaje enviado exitosamente! Te contactaremos pronto.');
+        // Reset form
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          company: '',
+          subject: '',
+          service: '',
+          message: ''
+        });
+      } else {
+        throw new Error(result.error || 'Error al enviar el mensaje');
+      }
+    } catch (error: any) {
+      console.error('Error:', error);
+      toast.error('Error al enviar el mensaje. Por favor, inténtalo de nuevo o contáctanos directamente.');
+    }
   };
 
   const handleInputChange = (field: string, value: string) => {

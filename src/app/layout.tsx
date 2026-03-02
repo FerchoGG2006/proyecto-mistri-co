@@ -2,13 +2,11 @@ import './globals.css';
 import { LanguageProvider, Language } from '@/hooks/use-language';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { cookies } from 'next/headers';
 
 const inter = Inter({ subsets: ['latin'] });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const cookieStore = await cookies();
-  const language = cookieStore.get('preferredLanguage')?.value || 'ES';
+  const language = 'ES' as string; // Cast to string to avoid overlap error
   const isPT = language === 'PT';
 
   return {
@@ -16,7 +14,7 @@ export async function generateMetadata(): Promise<Metadata> {
       ? 'Mistri&Co - Consultoria Especializada em Transformação Organizacional'
       : 'Mistri&Co - Consultora Especializada en Transformación Organizacional',
     description: isPT
-      ? 'Consultoria argentina especializada em transformação organizacional, desenvolvimento de equipes e formação de líderes.'
+      ? 'Consultoria argentina especializada em transformação organizacional, desarrollo de equipos y formación de líderes.'
       : 'Consultora argentina especializada en transformación organizacional, desarrollo de equipos y formación de mandos medios. Impulsamos el crecimiento sostenible de tu organización.',
     keywords: isPT
       ? 'consultoria, transformação organizacional, desenvolvimento de equipes, formação de líderes, capacitação, coaching, Argentina'
@@ -40,8 +38,7 @@ export default async function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const cookieStore = await cookies();
-  const language = (cookieStore.get('preferredLanguage')?.value as Language) || 'ES';
+  const language = 'ES' as Language;
   return (
     <html lang={language.toLowerCase()} suppressHydrationWarning>
       <head>

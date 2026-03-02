@@ -1,15 +1,10 @@
-import React from "react";
 import { Hero } from "@/components/hero";
-import { cookies } from "next/headers";
-import { contentES, contentPT } from "@/lib/content";
+import { contentES } from "@/lib/content";
 import { ServiciosClient } from "@/components/servicios-client";
 
-export const revalidate = 3600; // ISR cada hora
-
-export default async function ServiciosPage() {
-  const cookieStore = await cookies();
-  const language = cookieStore.get('preferredLanguage')?.value || 'ES';
-  const t = language === 'ES' ? contentES : contentPT;
+export default function ServiciosPage() {
+  const t = contentES;
+  const language = 'ES';
 
   const mistriMethod = t.titles.servicios.method;
 

@@ -12,15 +12,12 @@ import {
   LucideIcon
 } from 'lucide-react'
 import * as Icons from 'lucide-react'
-import { cookies } from 'next/headers'
-import { contentES, contentPT } from '@/lib/content'
+import { contentES } from '@/lib/content'
 
 export const revalidate = 3600; // ISR cada hora
 
-export default async function QuienesSomosPage() {
-  const cookieStore = await cookies();
-  const language = cookieStore.get('preferredLanguage')?.value || 'ES';
-  const t = language === 'ES' ? contentES : contentPT;
+export default function QuienesSomos() {
+  const t = contentES;
 
   const teamAreas = t.titles.quienesSomos.teamAreas
   const values = t.titles.quienesSomos.values
