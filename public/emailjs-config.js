@@ -3,9 +3,9 @@
 
 (function () {
   // Configuración de EmailJS
-  const EMAILJS_SERVICE_ID = 'service_mistri_consultora'; // Reemplazar con tu Service ID
-  const EMAILJS_TEMPLATE_ID = 'template_contacto'; // Reemplazar con tu Template ID
-  const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY'; // Reemplazar con tu Public Key
+  const EMAILJS_SERVICE_ID = 'service_7vxwzog'; // Reemplazar con tu Service ID
+  const EMAILJS_TEMPLATE_ID = 'template_32pkabm'; // Reemplazar con tu Template ID
+  const EMAILJS_PUBLIC_KEY = 'KyQFYJJpxQSHaDyGr'; // Reemplazar con tu Public Key
 
   // Función genérica para enviar email
   window.sendEmail = async function (templateParams) {
